@@ -18,11 +18,11 @@ def pig_latin_word(word)
         firstVowel = 0
         returningWord = ""
 
-        word.each_char.with_index do |char, i|
+        word.each_char.with_index do |char, idx|
 
             if vowels.include?(char)
 
-                returningWord = word[i..-1] + word[0...i] + "ay"
+                returningWord = word[idx..-1] + word[0...idx] + "ay"
                 return returningWord
 
             end
