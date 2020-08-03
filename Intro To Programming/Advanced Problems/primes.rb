@@ -2,21 +2,16 @@
 # indicating whether the number is prime. A prime number is only divisible by 1 and itself.
 
 def prime?(num)
-
     is_prime = true
-
     if num < 0
         is_prime = false
     end
-
     for i in 2...num do
         if num % i == 0
             is_prime = false
         end
     end
-
     return is_prime
-
 end
 
 puts prime?(2)  #=> true
