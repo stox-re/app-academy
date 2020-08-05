@@ -2,12 +2,18 @@
 # The method should return true if there is at least 1 person with an age of 18 or greater.
 # The method should return false otherwise.
 
+#def adult_in_group?(people)
+#    age_array = []
+#    people.each do |person|
+#        age_array.push(person[:age])
+#    end
+#    age_array.max > 18
+#end
+# With select
 def adult_in_group?(people)
-    age_array = []
-    people.each do |person|
-        age_array.push(person[:age])
+    people.any? do |person|
+        person[:age] >= 18
     end
-    age_array.max > 18
 end
 
 people_1 = [
