@@ -1,11 +1,11 @@
 # Write a method combinations that takes in an array of unique elements,
-# the method should return a 2D array representing all possible 
+# the method should return a 2D array representing all possible
 # combinations of 2 elements of the array.
 
 def combinations(arr)
 
     nestedArray = []
-    
+
     arr.each_with_index do |ele1, idx1|
         arr.each_with_index do |ele2, idx2|
             if (idx2 > idx1)
@@ -13,7 +13,7 @@ def combinations(arr)
             end
         end
     end
-    
+
     return nestedArray
 
 end
