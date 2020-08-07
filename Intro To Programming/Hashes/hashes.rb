@@ -64,3 +64,13 @@ end
 p count
 p count.sort_by { |k, v| v }
 
+# Hash with select to select specific items in the hash and return a hash
+def dupe_indices(array)
+    indices = Hash.new { |hash, key| hash[key] = [] }
+    for i in 0...array.length do
+        indices[array[i]] << i
+    end
+    indices.select { |element, value_array| value_array.length > 1}
+end
+
+p dupe_indices(["a", "a", "c", "c", "b", "c"])

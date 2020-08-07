@@ -20,17 +20,20 @@ def substrings(string)
     sub_strings
 end
 
-def palindrome_substrings(string)
-    all_substrings = substrings(string)
-    palindrome_substrings = []
-    all_substrings.each do |word|
-        if word.length > 1
-            if palindrome?(word)
-                palindrome_substrings.push(word)
-            end
-        end
-    end
-    palindrome_substrings
-end
+#def palindrome_substrings(string)
+#    all_substrings = substrings(string)
+#    palindrome_substrings = []
+#    all_substrings.each do |word|
+#        if word.length > 1
+#            if palindrome?(word)
+#                palindrome_substrings.push(word)
+#            end
+#        end
+#    end
+#    palindrome_substrings
+#end
 
-p palindrome_substrings("abracadabra")
+# Shorter solution
+def palindrome_substrings(string)
+    substrings(string).select { |substr| palindrome?(substr) && substr.length > 1}
+end
