@@ -74,3 +74,6 @@ def dupe_indices(array)
 end
 
 p dupe_indices(["a", "a", "c", "c", "b", "c"])
+
+# Distinct arrays as default values
+grades = Hash.new { |hash, key| hash[key] = [] }
