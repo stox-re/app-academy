@@ -9,9 +9,11 @@ class GuessingGame
     def num_attempts
         return @num_attempts
     end
+
     def game_over?
         @game_over
     end
+
     def check_num(num)
         @num_attempts += 1
         if num == @secret_num
@@ -23,6 +25,7 @@ class GuessingGame
             p "too small"
         end
     end
+    
     def ask_user
         p "enter a number"
         number = gets.chomp.to_i
