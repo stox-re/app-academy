@@ -156,5 +156,3 @@ class String
     end
 
 end
-
-p "zebra".caesar_cipher(4)
