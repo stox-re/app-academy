@@ -125,5 +125,3 @@ def silly_syllables(sentance)
 
     new_words.join(" ")
 end
-
-p silly_syllables('properly precisely written code')

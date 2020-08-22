@@ -1,7 +1,7 @@
 # Arrays
 
 letters = [
-    "a", 
+    "a",
     "b",
     "c"
 ]
@@ -37,13 +37,19 @@ def printArray(arr)
     i = 0
 
     while i < arr.length
-        
+
         puts arr[i]
         i += 1
-    
-    end    
+
+    end
 
 end
 
 printArray(foods)
 
+
+# Pushing a new array inside an array with values of nil
+
+find_largest_length.times do |i|
+    new_2d_array.push(Array.new(arrays.length, nil))
+end
