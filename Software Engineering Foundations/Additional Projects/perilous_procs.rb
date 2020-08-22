@@ -327,3 +327,4 @@ p chain_map(25, [half, add_5])          # 17.5
 p chain_map(25, [add_5, half, square])  # 225
 p chain_map(4, [square, half])          # 8
 p chain_map(4, [half, square])          # 4
+
