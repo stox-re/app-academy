@@ -41,23 +41,24 @@ class List
     end
 
     def print
-        puts "-------------------------------------------------"
-        puts "                    Todo List                    "
-        puts "-------------------------------------------------"
-        puts "Index  |  Item                         | Deadline"
-        puts "-------------------------------------------------"
+        puts "--------------------------------------------------------------------"
+        puts "                            Todo List                               "
+        puts "--------------------------------------------------------------------"
+        puts "Index  |  Item                         | Deadline     | Done        "
+        puts "--------------------------------------------------------------------"
         @items.each_with_index do |item, idx|
-            puts "#{(idx.to_s).ljust(6, " ")} | #{(item.title).ljust(27, " ")} | #{item.deadline} "
+            puts "#{(idx.to_s).ljust(6, " ")} | #{(item.title).ljust(29, " ")} | #{item.deadline}   | #{item.done}"
         end
-        puts "-------------------------------------------------\n"
+        puts "--------------------------------------------------------------------\n"
     end
 
     def print_full_item(index)
         if valid_index?(index)
-            puts "-------------------------------------------------"
+        puts "--------------------------------------------------------------------"
             puts "#{(@items[index].title).ljust(38, " ")} #{@items[index].deadline}"
             puts "#{@items[index].description}"
-            puts "-------------------------------------------------"
+            puts "Done: #{@items[index].done}"
+        puts "--------------------------------------------------------------------"
         end
     end
 
@@ -96,5 +97,24 @@ class List
     def sort_by_date!
         sorted = @items.sort_by! { |item| item.deadline }
         @items = sorted.reverse
+    end
+
+    def toggle_item(index)
+        if valid_index?(index)
+            @items[index].toggle
+        end
+    end
+
+    def remove_item(index)
+        if valid_index?(index)
+            @items.delete_at(index)
+            return true
+        else
+            return false
+        end
+    end
+
+    def purge
+        @items.reject! {|item| item.done }
     end
 end
