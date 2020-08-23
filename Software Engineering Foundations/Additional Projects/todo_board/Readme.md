@@ -8,6 +8,9 @@ This is a console based todo board. It supports various commands such as:
 * sort
 * priority
 * print optional_index
+* toggle optional_index
+* rm optional_index
+* purge
 * quit
 
 ![Todo Board](todo_board.gif)
