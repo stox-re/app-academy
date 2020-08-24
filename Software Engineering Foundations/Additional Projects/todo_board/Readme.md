@@ -13,6 +13,6 @@ This is a console based todo board. It supports various commands such as:
 * purge
 * quit
 
-### Preview
+## Preview
 
 ![Todo Board](todo_board.gif)
