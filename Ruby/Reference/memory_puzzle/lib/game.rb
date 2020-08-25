@@ -56,9 +56,9 @@ class Game
     end
 
     def previous_guesses_dont_match
-        p "Previous guess and guess don't match."
         @board.reveal(@guessed_pos)
         @board.render(true)
+        p "Guesses don't match."
         sleep(SLEEP_LENGTH)
         @board.flip_down(@guessed_pos)
         @board.flip_down(@previous_guess)
