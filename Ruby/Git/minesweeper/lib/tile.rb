@@ -1,7 +1,7 @@
 require 'colorize'
 
 class Tile
-    attr_reader :type, :my_coordinates, :bomb_count, :revealed
+    attr_reader :type, :bomb_count, :revealed, :neighbors
 
     def initialize(type, my_coordinates)
         @type = type
@@ -25,17 +25,31 @@ class Tile
     def reveal_fringe_if_applicable
         @neighbors.each do |key, value|
 
-            if is_valid_position?(key)
-                this_neighbor = @grid[key[0]][key[1]]
-                if !this_neighbor.is_bomb && this_neighbor.bomb_count == 0 && !this_neighbor.revealed
+            this_neighbor = @grid[key[0]][key[1]]
+
+            if !this_neighbor.is_bomb && this_neighbor.bomb_count == 0 && !this_neighbor.revealed
+                if !check_neighbors_for_bomb_count(this_neighbor)
                     this_neighbor.reveal
                 end
             end
+
         end
+    end
+
+    def check_neighbors_for_bomb_count(tile_to_check)
+
+        tile_to_check.neighbors.each do |neighbor_key, neighbor_value|
+            if @grid[neighbor_key[0]][neighbor_key[1]].bomb_count > 0
+                return true
+            end
+        end
+
+        false
     end
 
     def to_s
         case type
+
         when "*"
             to_s_default
         when "_"
@@ -79,10 +93,11 @@ class Tile
         all_neighbors.each do |check_neighbor_position|
             if is_valid_position?(check_neighbor_position)
                 @neighbors[check_neighbor_position] = grid[check_neighbor_position[0]][check_neighbor_position[1]].is_bomb
-            else
+            elsif is_valid_position?(check_neighbor_position)
                 @neighbors[check_neighbor_position] = false
             end
         end
+
         parse_my_bomb_count
     end
 
@@ -92,6 +107,7 @@ class Tile
                 @bomb_count += 1
             end
         end
+
         if @bomb_count > 0 && @type != "X"
             @type = @bomb_count
         elsif @bomb_count == 0

@@ -26,7 +26,6 @@ class Game
             split_input = input.split(",")
             @board.grid[split_input[0].to_i][split_input[1].to_i].reveal
             @board.render
-            sleep(SLEEP_LENGTH)
             return input
         else
             puts "Invalid input"
@@ -40,7 +39,6 @@ class Game
         if split_input.length == 2
             these_coordinates = [split_input[0].to_i, split_input[1].to_i]
             if @board.grid[0][0].is_valid_position?(these_coordinates)
-                puts "Valid input"
                 return true
             end
         end
@@ -61,4 +59,4 @@ class Game
     end
 end
 
-game = Game.new(9, 5)
+game = Game.new(9, 9)
