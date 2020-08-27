@@ -15,6 +15,9 @@ class Game
             puts "Please enter coordinates to guess (eg: 0,2): "
             get_guess
         end
+        if is_lost
+            puts "Game over, you hit a bomb."
+        end
     end
 
     def get_guess

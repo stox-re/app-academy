@@ -23,13 +23,11 @@ class Tile
     end
 
     def reveal_fringe_if_applicable
-        p "Reveal fringe"
         @neighbors.each do |key, value|
-            p "This key and value: " + key.to_s
+
             if is_valid_position?(key)
                 this_neighbor = @grid[key[0]][key[1]]
-
-                if !this_neighbor.is_bomb && this_neighbor.type == "_" && !this_neighbor.revealed
+                if !this_neighbor.is_bomb && this_neighbor.bomb_count == 0 && !this_neighbor.revealed
                     this_neighbor.reveal
                 end
             end
