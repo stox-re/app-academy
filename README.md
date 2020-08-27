@@ -9,3 +9,4 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Ghost Game](https://github.com/stockermans/App-Academy/tree/master/Ruby/Enumerables%20and%20Debugging/ghost) - Ghost, a word guessing game (CLI)
 * [Memory Puzzle](https://github.com/stockermans/App-Academy/tree/master/Ruby/Reference/memory_puzzle) - Memory Puzzle game to find matching pairs on a board (CLI)
 * [Sudoku Game](https://github.com/stockermans/App-Academy/tree/master/Ruby/Reference/sudoku) - Sudoku game loading puzzles from text files (CLI)
+* [Minesweeper](https://github.com/stockermans/App-Academy/tree/master/Ruby/Git/minesweeper) - Minesweeper in the console (CLI)
