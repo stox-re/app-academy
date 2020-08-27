@@ -8,11 +8,13 @@ class WordChainer
 
     def adjacent_words(word)
         list_of_adjacent_words = []
+
         @dictionary.each do |test_word|
             if (is_word_adjacent(test_word, word))
                 list_of_adjacent_words << test_word
             end
         end
+
         list_of_adjacent_words
     end
 
@@ -37,6 +39,7 @@ class WordChainer
         File.foreach("./" + input_name) do |line|
             word_array << line.chomp
         end
+
         word_array
     end
 
@@ -52,17 +55,18 @@ class WordChainer
 
     def explore_current_words
         new_current_words = []
+
         @current_words.each do |word|
             all_adjacent = adjacent_words(word)
 
             all_adjacent.each do |adj_word|
-                if @all_seen_words.include?(adj_word)
-                else
+                if !@all_seen_words.include?(adj_word)
                     @all_seen_words << adj_word
                     new_current_words << adj_word
                 end
             end
         end
+
         new_current_words
     end
 end
