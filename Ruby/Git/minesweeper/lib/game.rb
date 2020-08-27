@@ -10,13 +10,19 @@ class Game
     end
 
     def play
+        start_time = Time.now
+
         while !(is_won || is_lost)
             @board.render
             puts "Please enter coordinates to guess (eg: 0,2): "
             get_guess
         end
+        end_time = Time.now
         if is_lost
-            puts "Game over, you hit a bomb."
+            puts "Game over, you hit a bomb. It took you: " + (end_time - start_time).to_s + " s."
+        end
+        if is_won
+            puts "You won! It took you: " + (end_time - start_time).to_s + " s."
         end
     end
 
