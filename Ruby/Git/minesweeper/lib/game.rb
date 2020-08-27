@@ -1,4 +1,5 @@
 require "./board"
+require 'colorize'
 
 class Game
     def initialize(size, bombs)
