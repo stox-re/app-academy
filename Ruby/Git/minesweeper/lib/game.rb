@@ -2,6 +2,7 @@ require "./board"
 require 'colorize'
 
 # Class for launching minesweeper. It plays until the game is won or lost.
+# It gets input from the user and determines which coordinates to guess.
 class Game
     SLEEP_LENGTH = 1
 
