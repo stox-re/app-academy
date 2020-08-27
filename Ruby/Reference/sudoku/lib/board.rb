@@ -18,7 +18,6 @@ class Board
 
     def squares
         square_arrays = []
-
         (0...9).each do |i|
             square_arrays << square(i)
         end
@@ -35,6 +34,7 @@ class Board
                 tile_values << @grid[row_idx][col_idx].value
             end
         end
+
         tile_values
     end
 
@@ -70,6 +70,7 @@ class Board
         File.foreach("./puzzles/sudoku1.txt") do |line|
             puzzle_array << line.chomp
         end
+
         self.parse_as_2d_tiles(puzzle_array)
     end
 
@@ -81,6 +82,7 @@ class Board
                 new_2d_array_of_tiles[idx] << Tile.new(element.to_i, element.to_i==0)
             end
         end
+
         new_2d_array_of_tiles
     end
 end

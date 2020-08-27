@@ -1,5 +1,8 @@
 require 'colorize'
 
+# Class for each tile which parses for neighbors,
+# and decides what to reveal on the board based on whether
+# it is revealed or not yet.
 class Tile
     attr_reader :type, :bomb_count, :revealed, :neighbors
 
@@ -24,7 +27,6 @@ class Tile
 
     def reveal_fringe_if_applicable
         @neighbors.each do |key, value|
-
             this_neighbor = @grid[key[0]][key[1]]
 
             if !this_neighbor.is_bomb && this_neighbor.bomb_count == 0 && !this_neighbor.revealed
@@ -49,7 +51,6 @@ class Tile
 
     def to_s
         case type
-
         when "*"
             to_s_default
         when "_"
@@ -74,6 +75,7 @@ class Tile
         if position[0] >= 0 && position[0] < @grid.length
             return true if position[1] >= 0 && position[1] < @grid.length
         end
+
         false
     end
 

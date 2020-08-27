@@ -1,10 +1,13 @@
 require "./board"
 require 'colorize'
 
+# Class for launching minesweeper. It plays until the game is won or lost.
 class Game
     SLEEP_LENGTH = 1
 
     def initialize(size, bombs)
+        @size = size
+        @bombs = bombs
         @board = Board.new(size, bombs)
         play
     end
@@ -45,6 +48,7 @@ class Game
 
         if split_input.length == 2
             these_coordinates = [split_input[0].to_i, split_input[1].to_i]
+
             if @board.grid[0][0].is_valid_position?(these_coordinates)
                 return true
             end
@@ -54,7 +58,15 @@ class Game
     end
 
     def is_won
-        return false
+        revealed_count = 0
+
+        @board.grid.each do |sub_array|
+            sub_array.each do |tile|
+                revealed_count += 1 if tile.revealed
+            end
+        end
+
+        return revealed_count == ((@size * @size) - @bombs)
     end
 
     def is_lost

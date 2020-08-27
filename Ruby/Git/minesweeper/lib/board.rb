@@ -1,6 +1,8 @@
 require 'colorize'
 require "./tile.rb"
 
+# Class for the game board, it generates the grid of tiles.
+# It also generates the random bombs at random coordinates
 class Board
     attr_reader :grid
 
