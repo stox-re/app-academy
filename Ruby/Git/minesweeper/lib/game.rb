@@ -17,37 +17,39 @@ class Game
             puts "Please enter coordinates to guess (eg: 0,2): "
             get_guess
         end
+
         end_time = Time.now
+
         if is_lost
             puts "Game over, you hit a bomb. It took you: " + (end_time - start_time).to_s + " s."
-        end
-        if is_won
+        elsif is_won
             puts "You won! It took you: " + (end_time - start_time).to_s + " s."
         end
     end
 
     def get_guess
         input = gets.chomp
+
         if is_valid_input?(input)
             split_input = input.split(",")
             @board.grid[split_input[0].to_i][split_input[1].to_i].reveal
             @board.render
-            return input
         else
             puts "Invalid input"
             sleep(SLEEP_LENGTH)
-            return
         end
     end
 
     def is_valid_input?(input)
         split_input = input.split(",")
+
         if split_input.length == 2
             these_coordinates = [split_input[0].to_i, split_input[1].to_i]
             if @board.grid[0][0].is_valid_position?(these_coordinates)
                 return true
             end
         end
+
         false
     end
 
@@ -61,6 +63,7 @@ class Game
                 return true if tile.revealed && tile.is_bomb
             end
         end
+
         false
     end
 end
