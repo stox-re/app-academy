@@ -2,12 +2,13 @@ require 'colorize'
 require "./tile.rb"
 
 class Board
+    attr_reader :grid
+
     def initialize(size, bomb_count)
         @size = size
         @bomb_count = bomb_count
         @grid = generate_tiles
         parse_for_neighbors
-        render
     end
 
     def render
@@ -15,7 +16,7 @@ class Board
 
         @grid.each do |sub_array|
             sub_array.each do |tile|
-                print tile.type.to_s + " "
+                print tile.to_s.to_s + " "
             end
             print "\n"
         end
