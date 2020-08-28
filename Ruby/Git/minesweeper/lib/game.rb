@@ -35,8 +35,7 @@ class Game
         input = gets.chomp
 
         if is_valid_input?(input)
-            split_input = input.split(",")
-            @board.grid[split_input[0].to_i][split_input[1].to_i].reveal
+            split_and_invoke(input)
             @board.render
         else
             puts "Invalid input"
@@ -44,12 +43,28 @@ class Game
         end
     end
 
+    def split_and_invoke(input)
+        split_input = input.split(",")
+        split_again_for_flag = split_input[0].split(" ")
+        if split_again_for_flag.length == 1
+            these_coordinates = [split_input[0].to_i, split_input[1].to_i]
+            @board.grid[these_coordinates[0]][these_coordinates[1]].reveal
+        else
+            these_coordinates = [split_again_for_flag[1].to_i, split_input[1].to_i]
+            @board.grid[these_coordinates[0]][these_coordinates[1]].type = "F"
+        end
+    end
+
     def is_valid_input?(input)
         split_input = input.split(",")
 
         if split_input.length == 2
-            these_coordinates = [split_input[0].to_i, split_input[1].to_i]
-
+            split_again_for_flag = split_input[0].split(" ")
+            if split_again_for_flag.length == 1
+                these_coordinates = [split_input[0].to_i, split_input[1].to_i]
+            else
+                these_coordinates = [split_again_for_flag[1].to_i, split_input[1].to_i]
+            end
             if @board.grid[0][0].is_valid_position?(these_coordinates)
                 return true
             end

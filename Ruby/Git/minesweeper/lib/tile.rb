@@ -4,7 +4,8 @@ require 'colorize'
 # and decides what to reveal on the board based on whether
 # it is revealed or not yet.
 class Tile
-    attr_reader :type, :bomb_count, :revealed, :neighbors
+    attr_reader :bomb_count, :revealed, :neighbors
+    attr_accessor :type
 
     def initialize(type, my_coordinates)
         @type = type
@@ -57,7 +58,7 @@ class Tile
             return (type.to_s).colorize(:light_blue) if @revealed
             to_s_default
         when "F"
-            (type.to_s).colorize(:orange)
+            (type.to_s).colorize(:green)
         when "X"
             return (type.to_s).colorize(:red) if @revealed
             to_s_default
