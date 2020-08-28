@@ -4,4 +4,4 @@ This is a console program which builds a poly node tree of all possible moves fo
 
 ## Preview
 
-![Ghost Game](knights.gif)
+![Knights Travails](knights.gif)
