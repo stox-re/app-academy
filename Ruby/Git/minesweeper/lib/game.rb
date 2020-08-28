@@ -33,7 +33,6 @@ class Game
 
     def get_guess
         input = gets.chomp
-
         if is_valid_input?(input)
             split_and_invoke(input)
             @board.render
@@ -44,28 +43,32 @@ class Game
     end
 
     def split_and_invoke(input)
+        these_coordinates_res = get_these_coordinates_from_input(input)
+        if these_coordinates_res[0]
+            @board.grid[these_coordinates_res[1][0]][these_coordinates_res[1][1]].type = "F"
+        else
+            @board.grid[these_coordinates_res[1][0]][these_coordinates_res[1][1]].reveal
+        end
+    end
+
+    def get_these_coordinates_from_input(input)
         split_input = input.split(",")
         split_again_for_flag = split_input[0].split(" ")
+
         if split_again_for_flag.length == 1
-            these_coordinates = [split_input[0].to_i, split_input[1].to_i]
-            @board.grid[these_coordinates[0]][these_coordinates[1]].reveal
+            return [false, [split_input[0].to_i, split_input[1].to_i]]
         else
-            these_coordinates = [split_again_for_flag[1].to_i, split_input[1].to_i]
-            @board.grid[these_coordinates[0]][these_coordinates[1]].type = "F"
+            return [true, [split_again_for_flag[1].to_i, split_input[1].to_i]]
         end
     end
 
     def is_valid_input?(input)
+
         split_input = input.split(",")
 
         if split_input.length == 2
-            split_again_for_flag = split_input[0].split(" ")
-            if split_again_for_flag.length == 1
-                these_coordinates = [split_input[0].to_i, split_input[1].to_i]
-            else
-                these_coordinates = [split_again_for_flag[1].to_i, split_input[1].to_i]
-            end
-            if @board.grid[0][0].is_valid_position?(these_coordinates)
+            these_coordinates_res = get_these_coordinates_from_input(input)
+            if @board.grid[0][0].is_valid_position?(these_coordinates_res[1])
                 return true
             end
         end
