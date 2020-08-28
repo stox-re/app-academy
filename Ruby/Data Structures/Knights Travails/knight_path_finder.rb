@@ -24,7 +24,8 @@ class KnightPathFinder
         path_array << @root_node.value
 
         p "-------------------------------"
-        p "Found path: " + path_array.to_s
+        p "Found path: " + path_array.reverse.to_s
+        path_array.reverse
     end
 
     def self.valid_moves(pos)
@@ -81,3 +82,4 @@ end
 kpf = KnightPathFinder.new([0, 0])
 
 kpf.find_path([7, 6])
+kpf.find_path([6, 2])
