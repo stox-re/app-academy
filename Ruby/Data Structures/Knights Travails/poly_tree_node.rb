@@ -61,6 +61,6 @@ class PolyTreeNode
     end
 
     def inspect
-        @value.inspect
+        { 'value' => @value, 'parent_value' => @parent }.inspect
     end
 end
