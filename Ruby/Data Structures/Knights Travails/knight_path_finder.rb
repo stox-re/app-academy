@@ -9,6 +9,7 @@ class KnightPathFinder
 
     def find_path(end_position)
         tree_node_at_end = @root_node.bfs(end_position)
+        p "-------------------------------"
         p "Tree node at end: " + tree_node_at_end.to_s
         path = trace_path_back(tree_node_at_end)
     end
@@ -23,7 +24,6 @@ class KnightPathFinder
         end
         path_array << @root_node.value
 
-        p "-------------------------------"
         p "Found path: " + path_array.reverse.to_s
         path_array.reverse
     end
