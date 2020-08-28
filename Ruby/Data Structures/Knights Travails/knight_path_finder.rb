@@ -14,13 +14,14 @@ class KnightPathFinder
     end
 
     def trace_path_back(tree_node)
-        path_array = []
+        path_array = [tree_node.value]
         current_parent = tree_node.parent
 
         until current_parent == @root_node
             path_array << current_parent.value
             current_parent = current_parent.parent
         end
+        path_array << @root_node.value
 
         p "-------------------------------"
         p "Found path: " + path_array.to_s
