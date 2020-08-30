@@ -1,8 +1,9 @@
 require_relative "./slideable.rb"
 require_relative "./stepable.rb"
+require 'colorize'
 
 class Piece
-  attr_accessor :pos
+  attr_accessor :pos, :colour
 
   def initialize(colour, board, pos)
     @colour = colour
@@ -11,16 +12,16 @@ class Piece
   end
 
   def valid_moves
-    p "Returning these moves"
-    p moves
-    return moves
-  end
-
-  def moves
+    p "Returning these moves: " + moves.to_s
+    moves
   end
 
   def to_s
-    return self.symbol
+    if @colour == :white
+      return self.symbol.colorize(:white)
+    else
+      return self.symbol.colorize(:blue)
+    end
   end
 
   def symbol
@@ -29,5 +30,8 @@ class Piece
 
   def inspect
     { 'value' => symbol, 'colour' => @colour, 'pos' => @pos }.inspect
+  end
+
+  def move_into_check(end_pos)
   end
 end

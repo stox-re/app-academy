@@ -6,6 +6,7 @@ class Pawn < Piece
   end
 
   def moves
+    p "These are side attacks: " + side_attacks.to_s
     forward_steps + side_attacks
   end
 
@@ -19,8 +20,8 @@ class Pawn < Piece
 
   private
   def at_start_row
-    return true if @pos[1] == 1 && @colour == :white
-    return true if @pos[1] == 6 && @colour == :black
+    return true if @pos[0] == 1 && @colour == :white
+    return true if @pos[0] == 6 && @colour == :black
     return false
   end
 
@@ -41,13 +42,13 @@ class Pawn < Piece
       first_diagonal = @board.grid[pos[0] + forward_direction][pos[1] + forward_direction]
       second_diagonal = @board.grid[pos[0] + forward_direction][pos[1] - forward_direction]
 
-      if first_diagonal != nil && first_diagonal.class = Piece
+      if first_diagonal != nil
         if first_diagonal.colour != @colour
           moves << [pos[0] + forward_direction, pos[1] + forward_direction]
         end
       end
 
-      if second_diagonal != nil && second_diagonal.class == Piece
+      if second_diagonal != nil
         if second_diagonal.colour != @colour
           moves << [pos[0] + forward_direction, pos[1] - forward_direction]
         end
