@@ -79,6 +79,3 @@ class Board
     return @name2 if side2 > side1
   end
 end
-
-board = Board.new("Erica", "James")
-p board.make_move(5, "Erica")
