@@ -34,7 +34,6 @@ class Board
       p "Moving: " + piece_to_move.symbol + " to: " + end_pos.to_s
       self[end_pos] = piece_to_move
       piece_to_move.pos = end_pos
-      p piece_to_move
       self[start_pos] = nil
     else
       p "Didn't find the move"
@@ -70,6 +69,7 @@ class Board
 end
 
 board = Board.new
+board.move_piece([1,4], [2,4])
 board.move_piece([6,1], [4, 1])
 board.move_piece([1,2], [3, 2])
 board.move_piece([4,1], [3, 2])

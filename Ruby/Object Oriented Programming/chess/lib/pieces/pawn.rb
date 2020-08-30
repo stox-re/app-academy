@@ -6,7 +6,6 @@ class Pawn < Piece
   end
 
   def moves
-    p "These are side attacks: " + side_attacks.to_s
     forward_steps + side_attacks
   end
 
