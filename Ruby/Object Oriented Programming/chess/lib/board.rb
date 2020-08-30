@@ -11,6 +11,10 @@ class Board
     @grid[pos[0]][pos[1]]
   end
 
+  def []=(pos, result)
+    @grid[pos[0]][pos[1]] = result
+  end
+
   def is_valid_move(pos)
     return false if pos[0] < 0 || pos[0] > 7
     return false if pos[1] < 0 || pos[1] > 7
@@ -22,8 +26,9 @@ class Board
     raise "This end position is off the board" if !is_valid_move(end_pos)
     raise "There is no piece at starting position: #{start_pos}" if self.[](start_pos) == nil
     piece_to_move = self.[](start_pos)
-    @grid[end_pos[0]][end_pos[1]] = piece_to_move
-    @grid[start_pos[0]][end_pos[1]] = nil
+    self[end_pos] = piece_to_move
+    self[start_pos] = nil
+    p @grid
   end
 
   def setup_chess_board
@@ -38,3 +43,4 @@ end
 
 board = Board.new
 board.move_piece([0,1], [1,1])
+board.move_piece([7,1], [6,1])
