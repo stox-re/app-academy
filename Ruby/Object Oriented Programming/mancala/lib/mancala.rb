@@ -6,6 +6,7 @@ class Mancala
     @player1 = Player.new(name1, 1)
     @player2 = Player.new(name2, 2)
     @board = Board.new(name1, name2)
+    play
   end
 
   def play
@@ -62,3 +63,5 @@ class Mancala
     puts " 1   2   3   4   5   6"
   end
 end
+
+mancala = Mancala.new("James", "Erica")

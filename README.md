@@ -13,3 +13,4 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Minesweeper](https://github.com/stockermans/App-Academy/tree/master/Ruby/Git/minesweeper) - Minesweeper in the console (CLI)
 * [Knights Travails](https://github.com/stockermans/app-academy/tree/master/Ruby/Data%20Structures/Knights%20Travails) - Builds a tree and finds the shortest path for all moves of a knight in chess (CLI)
 * [Tic Tac Toe AI](https://github.com/stockermans/app-academy/tree/master/Ruby/Data%20Structures/Tic%20Tac%20Toe%20AI) - Tic Tac Toe game with an AI that can't be beaten (CLI)
+* [Mancala](https://github.com/stockermans/app-academy/tree/master/Ruby/Object%20Oriented%20Programming/mancala) - Mancala game (CLI)
