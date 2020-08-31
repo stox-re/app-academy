@@ -4,6 +4,7 @@ require_relative "./pieces/knight.rb"
 require_relative "./pieces/king.rb"
 require_relative "./pieces/rook.rb"
 require_relative "./pieces/bishop.rb"
+require_relative "./pieces/queen.rb"
 
 class Board
   attr_reader :grid
@@ -61,8 +62,8 @@ class Board
         @grid[0][white_index] = Rook.new(:white, self, [0, white_index])
       elsif white_index == 2 || white_index == 5
         @grid[0][white_index] = Bishop.new(:white, self, [0, white_index])
-      else
-        @grid[0][white_index] = Piece.new(:white, self, [0, white_index])
+      elsif white_index == 4
+        @grid[0][white_index] = Queen.new(:white, self, [0, white_index])
       end
       @grid[1][white_index] = Pawn.new(:white, self, [1, white_index])
     end
@@ -76,8 +77,8 @@ class Board
         @grid[7][black_index] = Rook.new(:black, self, [7, black_index])
       elsif black_index == 2 || black_index == 5
         @grid[7][black_index] = Bishop.new(:black, self, [7, black_index])
-      else
-        @grid[7][black_index] = Piece.new(:black, self, [7, black_index])
+      elsif black_index == 4
+        @grid[7][black_index] = Queen.new(:black, self, [7, black_index])
       end
     end
   end
@@ -129,3 +130,5 @@ board.move_piece([1,0], [3,0])
 board.move_piece([0,0], [2,0])
 board.move_piece([1,3], [3,3])
 board.move_piece([0,2], [4,6])
+board.move_piece([0,3], [1,3])
+board.move_piece([0,4], [0,0])

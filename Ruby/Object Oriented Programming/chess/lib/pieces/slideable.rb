@@ -4,6 +4,7 @@ module Slideable
 
     move_dirs.each do |new_direction|
       new_pos = [@pos[0] + new_direction[0], @pos[1] + new_direction[1]]
+      p "checking position: " + new_pos.to_s
       while @board.is_valid_move(new_pos) && !@board.ends_on_own_piece(@pos, new_pos)
         new_moves << new_pos.dup
         new_pos[0] += new_direction[0]
