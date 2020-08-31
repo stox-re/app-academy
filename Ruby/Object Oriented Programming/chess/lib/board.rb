@@ -29,6 +29,7 @@ class Board
     raise "This start position is off the board." if !is_valid_move(start_pos)
     raise "This end position is off the board" if !is_valid_move(end_pos)
     raise "There is no piece at starting position: #{start_pos}" if self.[](start_pos) == nil
+    raise "This end position lands on your own piece!" if self.[](end_pos) != nil && self.[](end_pos).colour == self.[](start_pos).colour
     piece_to_move = self.[](start_pos)
 
     if piece_to_move.valid_moves.include?(end_pos)
@@ -54,7 +55,7 @@ class Board
     8.times do |black_index|
       @grid[6][black_index] = Pawn.new(:black, self, [6, black_index])
       if black_index == 1 || black_index == 6
-        @grid[7][black_index] = Knight.new(:black, self, [6, black_index])
+        @grid[7][black_index] = Knight.new(:black, self, [7, black_index])
       else
         @grid[7][black_index] = Piece.new(:black, self, [7, black_index])
       end
@@ -82,3 +83,7 @@ board.move_piece([1,4], [2,4])
 board.move_piece([6,1], [4, 1])
 board.move_piece([1,2], [3, 2])
 board.move_piece([4,1], [3, 2])
+board.move_piece([6,2], [4, 2])
+#board.move_piece([4,2], [3, 2])
+board.move_piece([7,1], [5,0])
+#board.move_piece([5,0], [4,2])
