@@ -1,6 +1,7 @@
 require_relative "./pieces/piece.rb"
 require_relative "./pieces/pawn.rb"
 require_relative "./pieces/knight.rb"
+require_relative "./pieces/king.rb"
 
 class Board
   attr_reader :grid
@@ -47,6 +48,8 @@ class Board
     8.times do |white_index|
       if white_index == 1 || white_index == 6
         @grid[0][white_index] = Knight.new(:white, self, [0, white_index])
+      elsif white_index == 3
+        @grid[0][white_index] = King.new(:white, self, [0, white_index])
       else
         @grid[0][white_index] = Piece.new(:white, self, [0, white_index])
       end
@@ -56,6 +59,8 @@ class Board
       @grid[6][black_index] = Pawn.new(:black, self, [6, black_index])
       if black_index == 1 || black_index == 6
         @grid[7][black_index] = Knight.new(:black, self, [7, black_index])
+      elsif black_index == 3
+        @grid[7][black_index] = King.new(:black, self, [7, black_index])
       else
         @grid[7][black_index] = Piece.new(:black, self, [7, black_index])
       end
@@ -64,14 +69,24 @@ class Board
 
   def render
     #puts `clear`
-
+    is_black = false
     @grid.each do |sub_array|
+      is_black = !is_black
       sub_array.each do |ele|
         if ele == nil
-          print "_" + " "
+          if is_black
+            print " ".colorize(:background => :light_black) + " "
+          else
+            print " " + " "
+          end
         else
-          print ele.to_s + " "
+          if is_black
+            print ele.to_s.colorize(:background => :light_black) + " "
+          else
+            print ele.to_s + " "
+          end
         end
+        is_black = !is_black
       end
       print "\n"
     end
@@ -85,5 +100,11 @@ board.move_piece([1,2], [3, 2])
 board.move_piece([4,1], [3, 2])
 board.move_piece([6,2], [4, 2])
 #board.move_piece([4,2], [3, 2])
-board.move_piece([7,1], [5,0])
+board.move_piece([7,1], [5,2])
 #board.move_piece([5,0], [4,2])
+board.move_piece([6,3], [4,3])
+board.move_piece([7,3], [6,3])
+
+board.move_piece([1,3], [3,3])
+board.move_piece([0,3], [1,3])
+board.move_piece([1,3], [2,2])
