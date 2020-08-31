@@ -1,5 +1,6 @@
 require_relative "./pieces/piece.rb"
 require_relative "./pieces/pawn.rb"
+require_relative "./pieces/knight.rb"
 
 class Board
   attr_reader :grid
@@ -43,12 +44,20 @@ class Board
 
   def setup_chess_board
     8.times do |white_index|
-      @grid[0][white_index] = Piece.new(:white, self, [0, white_index])
+      if white_index == 1 || white_index == 6
+        @grid[0][white_index] = Knight.new(:white, self, [0, white_index])
+      else
+        @grid[0][white_index] = Piece.new(:white, self, [0, white_index])
+      end
       @grid[1][white_index] = Pawn.new(:white, self, [1, white_index])
     end
     8.times do |black_index|
       @grid[6][black_index] = Pawn.new(:black, self, [6, black_index])
-      @grid[7][black_index] = Piece.new(:black, self, [7, black_index])
+      if black_index == 1 || black_index == 6
+        @grid[7][black_index] = Knight.new(:black, self, [6, black_index])
+      else
+        @grid[7][black_index] = Piece.new(:black, self, [7, black_index])
+      end
     end
   end
 
