@@ -10,7 +10,7 @@ class Pawn < Piece
   end
 
   def symbol
-    return "\u2657"
+    return "\u2659"
   end
 
   def move_dirs
@@ -31,25 +31,25 @@ class Pawn < Piece
 
   def forward_steps
     moves = []
-      moves << [pos[0] + forward_direction, pos[1]] if @board.grid[pos[0] + forward_direction][pos[1]] == nil
-      moves << [pos[0] + forward_direction + forward_direction, pos[1]] if at_start_row
+      moves << [@pos[0] + forward_direction, @pos[1]] if @board.grid[@pos[0] + forward_direction][@pos[1]] == nil
+      moves << [@pos[0] + forward_direction + forward_direction, @pos[1]] if at_start_row
     moves
   end
 
   def side_attacks
     moves = []
-      first_diagonal = @board.grid[pos[0] + forward_direction][pos[1] + forward_direction]
-      second_diagonal = @board.grid[pos[0] + forward_direction][pos[1] - forward_direction]
+      first_diagonal = @board.grid[@pos[0] + forward_direction][@pos[1] + forward_direction]
+      second_diagonal = @board.grid[@pos[0] + forward_direction][@pos[1] - forward_direction]
 
       if first_diagonal != nil
         if first_diagonal.colour != @colour
-          moves << [pos[0] + forward_direction, pos[1] + forward_direction]
+          moves << [@pos[0] + forward_direction, @pos[1] + forward_direction]
         end
       end
 
       if second_diagonal != nil
         if second_diagonal.colour != @colour
-          moves << [pos[0] + forward_direction, pos[1] - forward_direction]
+          moves << [@pos[0] + forward_direction, @pos[1] - forward_direction]
         end
       end
 
