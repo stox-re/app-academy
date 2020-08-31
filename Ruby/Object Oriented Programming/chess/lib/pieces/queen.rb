@@ -2,6 +2,7 @@ require_relative "./slideable.rb"
 
 class Queen < Piece
   include Slideable
+
   def symbol
     "\u2655"
   end

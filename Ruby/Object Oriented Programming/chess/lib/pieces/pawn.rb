@@ -31,7 +31,7 @@ class Pawn < Piece
 
   def forward_steps
     moves = []
-      moves << [@pos[0] + forward_direction, @pos[1]] if @board.grid[@pos[0] + forward_direction][@pos[1]] == nil
+      moves << [@pos[0] + forward_direction, @pos[1]] if @board.grid[@pos[0] + forward_direction][@pos[1]] == NullPiece.instance
       moves << [@pos[0] + forward_direction + forward_direction, @pos[1]] if at_start_row
     moves
   end
@@ -41,13 +41,13 @@ class Pawn < Piece
       first_diagonal = @board.grid[@pos[0] + forward_direction][@pos[1] + forward_direction]
       second_diagonal = @board.grid[@pos[0] + forward_direction][@pos[1] - forward_direction]
 
-      if first_diagonal != nil
+      if first_diagonal != NullPiece.instance
         if first_diagonal.colour != @colour
           moves << [@pos[0] + forward_direction, @pos[1] + forward_direction]
         end
       end
 
-      if second_diagonal != nil
+      if second_diagonal != NullPiece.instance
         if second_diagonal.colour != @colour
           moves << [@pos[0] + forward_direction, @pos[1] - forward_direction]
         end

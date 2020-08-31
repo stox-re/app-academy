@@ -5,6 +5,7 @@ require_relative "./pieces/king.rb"
 require_relative "./pieces/rook.rb"
 require_relative "./pieces/bishop.rb"
 require_relative "./pieces/queen.rb"
+require_relative "./pieces/null_piece.rb"
 
 class Board
   attr_reader :grid
@@ -30,14 +31,14 @@ class Board
   end
 
   def ends_on_own_piece(start_pos, end_pos)
-    return true if self.[](end_pos) != nil && self.[](end_pos).colour == self.[](start_pos).colour
+    return true if self.[](end_pos) != NullPiece.instance && self.[](end_pos).colour == self.[](start_pos).colour
     return false
   end
 
   def move_piece(start_pos, end_pos)
     raise "This start position is off the board." if !is_valid_move(start_pos)
     raise "This end position is off the board" if !is_valid_move(end_pos)
-    raise "There is no piece at starting position: #{start_pos}" if self.[](start_pos) == nil
+    raise "There is no piece at starting position: #{start_pos}" if self.[](start_pos) == NullPiece.instance
     raise "This end position lands on your own piece" if ends_on_own_piece(start_pos, end_pos)
     piece_to_move = self.[](start_pos)
 
@@ -45,7 +46,7 @@ class Board
       p "Moving: " + piece_to_move.symbol + " to: " + end_pos.to_s
       self[end_pos] = piece_to_move
       piece_to_move.pos = end_pos
-      self[start_pos] = nil
+      self[start_pos] = NullPiece.instance
     else
       p "Didn't find the move"
     end
@@ -66,6 +67,11 @@ class Board
         @grid[0][white_index] = Queen.new(:white, self, [0, white_index])
       end
       @grid[1][white_index] = Pawn.new(:white, self, [1, white_index])
+    end
+    8.times do |null_piece_index|
+      (2..5).each do |i|
+        @grid[i][null_piece_index] = NullPiece.instance
+      end
     end
     8.times do |black_index|
       @grid[6][black_index] = Pawn.new(:black, self, [6, black_index])
@@ -89,7 +95,7 @@ class Board
     @grid.each do |sub_array|
       is_black = !is_black
       sub_array.each do |ele|
-        if ele == nil
+        if ele.class == NullPiece
           if is_black
             print " ".colorize(:background => :light_black) + " "
           else
@@ -124,8 +130,8 @@ board = Board.new
 #board.move_piece([1,3], [3,3])
 #board.move_piece([0,3], [1,3])
 #board.move_piece([1,3], [2,2])
-board.move_piece([1,1], [3,1])
-board.move_piece([0,1], [2,2])
+#board.move_piece([1,1], [3,1])
+#board.move_piece([0,1], [2,2])
 board.move_piece([1,0], [3,0])
 board.move_piece([0,0], [2,0])
 board.move_piece([1,3], [3,3])

@@ -1,6 +1,10 @@
 require_relative "./piece.rb"
+require "singleton"
 
 class NullPiece < Piece
-     include Singleton
+  include Singleton
 
+  def symbol
+    " "
+  end
 end

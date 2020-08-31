@@ -2,6 +2,7 @@ require_relative "./slideable.rb"
 
 class Bishop < Piece
   include Slideable
+
   def symbol
     "\u2657"
   end

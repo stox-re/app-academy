@@ -5,7 +5,7 @@ require 'colorize'
 class Piece
   attr_accessor :pos, :colour
 
-  def initialize(colour, board, pos)
+  def initialize(colour = nil, board = nil, pos = nil)
     @colour = colour
     @board = board
     @pos = pos

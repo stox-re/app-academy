@@ -2,6 +2,7 @@ require_relative "./stepable.rb"
 
 class King < Piece
   include Stepable
+
   def symbol
     return "\u2654"
   end
