@@ -28,14 +28,12 @@ class Piece
   end
 
   def inspect
-    #{ 'value' => symbol, 'colour' => @colour, 'pos' => @pos }.inspect
+    { 'value' => symbol, 'colour' => @colour, 'pos' => @pos }.inspect
   end
 
   def move_into_check(end_pos)
     board_duplicate = @board.dup
-    board_duplicate.move_piece(@pos, end_pos)
-
-    #p "Still in check? #{@colour} " + board_duplicate.in_check?(@colour).to_s
+    board_duplicate.move_piece!(@pos, end_pos)
     board_duplicate.in_check?(@colour)
   end
 

@@ -6,11 +6,13 @@ module Slideable
       new_pos = [@pos[0] + new_direction[0], @pos[1] + new_direction[1]]
       while @board.is_valid_move(new_pos) && !@board.ends_on_own_piece(@pos, new_pos)
         new_moves << new_pos.dup
+        if @board.ends_on_opponent_piece(@pos, new_pos)
+          break
+        end
         new_pos[0] += new_direction[0]
         new_pos[1] += new_direction[1]
       end
     end
-
     new_moves
   end
 

@@ -6,17 +6,20 @@ class Display
   def initialize(board)
     @board = board
     @cursor = Cursor.new([0,0], board)
+    @current_colour = :white
     render
     test_play
   end
 
   def test_play
-    while !@cursor.selected
+    while !@cursor.selected && !@board.checkmate?(:white)
       input = @cursor.get_input
-      p "Got input: " + input.to_s
       p "In checkmate? : " + @board.checkmate?(:white).to_s
       sleep(1)
       render
+    end
+    if @board.checkmate?(:white)
+      puts "Checkmate, game over."
     end
   end
 
@@ -31,7 +34,8 @@ class Display
 
   def render
     puts `clear`
-    puts "You are in check " if @board.in_check?(:white).to_s
+    p "Is in check? " + @board.in_check?(:white).to_s
+    puts "You are in check." if @board.in_check?(@current_colour)
     decreasing_print = [8, 7, 6, 5, 4, 3, 2, 1]
     is_black = true
     print_letters
