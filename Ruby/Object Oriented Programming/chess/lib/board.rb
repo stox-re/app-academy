@@ -6,14 +6,16 @@ require_relative "./pieces/rook.rb"
 require_relative "./pieces/bishop.rb"
 require_relative "./pieces/queen.rb"
 require_relative "./pieces/null_piece.rb"
+require_relative "./display.rb"
 
+# Handles board logic, making pieces, moving pieces, and setting up the chess board
 class Board
   attr_reader :grid
+
   def initialize
     @grid = Array.new(8){ Array.new(8) }
     setup_chess_board
     #p @grid
-    render
   end
 
   def [](pos)
@@ -50,7 +52,6 @@ class Board
     else
       p "Didn't find the move"
     end
-    render
   end
 
   def setup_chess_board
@@ -88,34 +89,10 @@ class Board
       end
     end
   end
-
-  def render
-    #puts `clear`
-    is_black = false
-    @grid.each do |sub_array|
-      is_black = !is_black
-      sub_array.each do |ele|
-        if ele.class == NullPiece
-          if is_black
-            print " ".colorize(:background => :light_black) + " "
-          else
-            print " " + " "
-          end
-        else
-          if is_black
-            print ele.to_s.colorize(:background => :light_black) + " "
-          else
-            print ele.to_s + " "
-          end
-        end
-        is_black = !is_black
-      end
-      print "\n"
-    end
-  end
 end
 
 board = Board.new
+display = Display.new(board)
 #board.move_piece([1,4], [2,4])
 #board.move_piece([6,1], [4, 1])
 #board.move_piece([1,2], [3, 2])
@@ -132,9 +109,9 @@ board = Board.new
 #board.move_piece([1,3], [2,2])
 #board.move_piece([1,1], [3,1])
 #board.move_piece([0,1], [2,2])
-board.move_piece([1,0], [3,0])
-board.move_piece([0,0], [2,0])
-board.move_piece([1,3], [3,3])
-board.move_piece([0,2], [4,6])
-board.move_piece([0,3], [1,3])
-board.move_piece([0,4], [0,0])
+#board.move_piece([1,0], [3,0])
+#board.move_piece([0,0], [2,0])
+#board.move_piece([1,3], [3,3])
+#board.move_piece([0,2], [4,6])
+#board.move_piece([0,3], [1,3])
+#board.move_piece([0,4], [0,0])

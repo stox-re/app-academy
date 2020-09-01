@@ -20,7 +20,7 @@ class Piece
     if @colour == :white
       return self.symbol.colorize(:white)
     else
-      return self.symbol.colorize(:cyan)
+      return self.symbol.colorize(:red)
     end
   end
 
