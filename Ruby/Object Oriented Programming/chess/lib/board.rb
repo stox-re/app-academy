@@ -36,11 +36,12 @@ class Board
     @grid.each do |sub_array|
       sub_array.each do |ele|
         if ele.class != NullPiece && ele != nil && ele.colour == colour
-          p "my colour piece, checking if " + colour.to_s + " is in checkmate"
+          #p "my colour piece, checking if " + colour.to_s + " is in checkmate"
           all_moves = ele.valid_moves
           all_moves.each do |check_move|
             if is_valid_move(check_move)
               if !ele.move_into_check(check_move)
+                p " Was found NOT IN CHECK!"
                 was_found = false
               end
             end

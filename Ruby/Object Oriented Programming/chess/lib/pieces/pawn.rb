@@ -32,7 +32,12 @@ class Pawn < Piece
   def forward_steps
     moves = []
       moves << [@pos[0] + forward_direction, @pos[1]] if @board.grid[@pos[0] + forward_direction][@pos[1]] == NullPiece.instance
-      moves << [@pos[0] + forward_direction + forward_direction, @pos[1]] if at_start_row
+
+      at_the_end_position = @board.grid[@pos[0] + forward_direction + forward_direction][pos[1]]
+      if at_start_row && at_the_end_position == NullPiece.instance
+        moves << [@pos[0] + forward_direction + forward_direction, @pos[1]] if at_start_row
+      end
+
     moves
   end
 
