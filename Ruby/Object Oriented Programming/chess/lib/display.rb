@@ -15,7 +15,7 @@ class Display
       input = @cursor.get_input
       p "Got input: " + input.to_s
       p "In checkmate? : " + @board.checkmate?(:white).to_s
-      sleep(10)
+      sleep(1)
       render
     end
   end
