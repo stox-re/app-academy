@@ -135,15 +135,15 @@ class Board
     2.times do |i|
       8.times do |index|
         if index == 1 || index == 6
-          @grid[start_index][index] = Knight.new(colouring, self, [0, index])
+          @grid[start_index][index] = Knight.new(colouring, self, [start_index, index])
         elsif index == 4
-          @grid[start_index][index] = King.new(colouring, self, [0, index])
+          @grid[start_index][index] = King.new(colouring, self, [start_index, index])
         elsif index == 0 || index == 7
-          @grid[start_index][index] = Rook.new(colouring, self, [0, index])
+          @grid[start_index][index] = Rook.new(colouring, self, [start_index, index])
         elsif index == 2 || index == 5
-          @grid[start_index][index] = Bishop.new(colouring, self, [0, index])
+          @grid[start_index][index] = Bishop.new(colouring, self, [start_index, index])
         elsif index == 3
-          @grid[start_index][index] = Queen.new(colouring, self, [0, index])
+          @grid[start_index][index] = Queen.new(colouring, self, [start_index, index])
         end
         @grid[pawn_index][index] = Pawn.new(colouring, self, [pawn_index, index])
       end
@@ -162,10 +162,11 @@ end
 
 board = Board.new
 board.move_piece([1,4], [3,4])
-#board.move_piece([6,6], [4,6])
-#board.move_piece([6,4], [5,5])
+board.move_piece([6,6], [4,6])
+board.move_piece([6,4], [5,5])
 #board.move_piece([6,0], [4,0])
-#board.move_piece([6,5], [5,5])
-#board.move_piece([0,3], [4,7])
+board.move_piece([6,5], [5,5])
+
+board.move_piece([0,3], [4,7])
 
 display = Display.new(board)
