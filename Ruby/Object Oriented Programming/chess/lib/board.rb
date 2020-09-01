@@ -15,7 +15,65 @@ class Board
   def initialize
     @grid = Array.new(8){ Array.new(8) }
     setup_chess_board
-    #p @grid
+  end
+
+  def dup
+    new_board = Board.new
+    (0..7).each do |i|
+      (0..7).each do |k|
+        if @grid[i][k].class == NullPiece
+          new_board.grid[i][k] = NullPiece.instance
+        else
+          this_item = @grid[i][k]
+          new_board.grid[i][k] = this_item.class.new(this_item.colour, new_board, this_item.pos)
+        end
+      end
+    end
+    new_board
+  end
+
+  def checkmate?(colour)
+    @grid.each do |sub_array|
+      sub_array.each do |ele|
+        if ele.class != NullPiece && ele != nil && ele.colour == colour
+          p "my colour piece, checking if " + colour.to_s + " is in checkmate"
+          all_moves = ele.valid_moves
+          all_moves.each do |check_move|
+            if is_valid_move(check_move)
+              if !ele.move_into_check(check_move)
+                was_found = false
+              end
+            end
+          end
+        end
+      end
+    end
+    return true
+  end
+
+  def in_check?(colour)
+    king_location = find_king(colour)
+    p "Found king at: " + king_location.to_s
+    @grid.each do |sub_array|
+      sub_array.each do |ele|
+        if ele.class != NullPiece && ele.colour == (colour == :black ? :white : :black)
+          if ele.valid_moves.include?(king_location)
+            return true
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  def find_king(colour)
+    @grid.each do |sub_array|
+      sub_array.each do |ele|
+        if ele.class == King && ele.colour == colour
+          return ele.pos
+        end
+      end
+    end
   end
 
   def [](pos)
@@ -55,63 +113,46 @@ class Board
   end
 
   def setup_chess_board
-    8.times do |white_index|
-      if white_index == 1 || white_index == 6
-        @grid[0][white_index] = Knight.new(:white, self, [0, white_index])
-      elsif white_index == 3
-        @grid[0][white_index] = King.new(:white, self, [0, white_index])
-      elsif white_index == 0 || white_index == 7
-        @grid[0][white_index] = Rook.new(:white, self, [0, white_index])
-      elsif white_index == 2 || white_index == 5
-        @grid[0][white_index] = Bishop.new(:white, self, [0, white_index])
-      elsif white_index == 4
-        @grid[0][white_index] = Queen.new(:white, self, [0, white_index])
+    8.times do |black_index|
+      if black_index == 1 || black_index == 6
+        @grid[0][black_index] = Knight.new(:black, self, [0, black_index])
+      elsif black_index == 4
+        @grid[0][black_index] = King.new(:black, self, [0, black_index])
+      elsif black_index == 0 || black_index == 7
+        @grid[0][black_index] = Rook.new(:black, self, [0, black_index])
+      elsif black_index == 2 || black_index == 5
+        @grid[0][black_index] = Bishop.new(:black, self, [0, black_index])
+      elsif black_index == 3
+        @grid[0][black_index] = Queen.new(:black, self, [0, black_index])
       end
-      @grid[1][white_index] = Pawn.new(:white, self, [1, white_index])
+      @grid[1][black_index] = Pawn.new(:black, self, [1, black_index])
     end
     8.times do |null_piece_index|
       (2..5).each do |i|
         @grid[i][null_piece_index] = NullPiece.instance
       end
     end
-    8.times do |black_index|
-      @grid[6][black_index] = Pawn.new(:black, self, [6, black_index])
-      if black_index == 1 || black_index == 6
-        @grid[7][black_index] = Knight.new(:black, self, [7, black_index])
-      elsif black_index == 3
-        @grid[7][black_index] = King.new(:black, self, [7, black_index])
-      elsif black_index == 0 || black_index == 7
-        @grid[7][black_index] = Rook.new(:black, self, [7, black_index])
-      elsif black_index == 2 || black_index == 5
-        @grid[7][black_index] = Bishop.new(:black, self, [7, black_index])
-      elsif black_index == 4
-        @grid[7][black_index] = Queen.new(:black, self, [7, black_index])
+    8.times do |white_index|
+      @grid[6][white_index] = Pawn.new(:white, self, [6, white_index])
+      if white_index == 1 || white_index == 6
+        @grid[7][white_index] = Knight.new(:white, self, [7, white_index])
+      elsif white_index == 4
+        @grid[7][white_index] = King.new(:white, self, [7, white_index])
+      elsif white_index == 0 || white_index == 7
+        @grid[7][white_index] = Rook.new(:white, self, [7, white_index])
+      elsif white_index == 2 || white_index == 5
+        @grid[7][white_index] = Bishop.new(:white, self, [7, white_index])
+      elsif white_index == 3
+        @grid[7][white_index] = Queen.new(:white, self, [7, white_index])
       end
     end
   end
 end
 
 board = Board.new
+board.move_piece([6,5], [5,5])
+board.move_piece([1,4], [3,4])
+board.move_piece([6,6], [4,6])
+board.move_piece([0,3], [4,7])
+
 display = Display.new(board)
-#board.move_piece([1,4], [2,4])
-#board.move_piece([6,1], [4, 1])
-#board.move_piece([1,2], [3, 2])
-#board.move_piece([4,1], [3, 2])
-#board.move_piece([6,2], [4, 2])
-##board.move_piece([4,2], [3, 2])
-#board.move_piece([7,1], [5,2])
-##board.move_piece([5,0], [4,2])
-#board.move_piece([6,3], [4,3])
-#board.move_piece([7,3], [6,3])
-#
-#board.move_piece([1,3], [3,3])
-#board.move_piece([0,3], [1,3])
-#board.move_piece([1,3], [2,2])
-#board.move_piece([1,1], [3,1])
-#board.move_piece([0,1], [2,2])
-#board.move_piece([1,0], [3,0])
-#board.move_piece([0,0], [2,0])
-#board.move_piece([1,3], [3,3])
-#board.move_piece([0,2], [4,6])
-#board.move_piece([0,3], [1,3])
-#board.move_piece([0,4], [0,0])
