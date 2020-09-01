@@ -159,14 +159,3 @@ class Board
     end
   end
 end
-
-board = Board.new
-board.move_piece([1,4], [3,4])
-board.move_piece([6,6], [4,6])
-board.move_piece([6,4], [5,5])
-#board.move_piece([6,0], [4,0])
-board.move_piece([6,5], [5,5])
-
-board.move_piece([0,3], [4,7])
-
-display = Display.new(board)
