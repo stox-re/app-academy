@@ -55,7 +55,7 @@ class Board
     king_location = find_king(colour)
     @grid.each do |sub_array|
       sub_array.each do |ele|
-        if ele.class != King && ele.class != NullPiece && ele.colour != colour
+        if ele.class != NullPiece && ele.colour != colour
           if ele.valid_moves.include?(king_location)
             return true
           end
