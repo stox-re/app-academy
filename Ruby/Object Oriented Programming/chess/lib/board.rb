@@ -107,17 +107,19 @@ class Board
     piece_to_move = self.[](start_pos)
 
     if piece_to_move.valid_moves.include?(end_pos)
-      p " End move: " + end_pos.to_s
       if piece_to_move.move_into_check(end_pos)
         raise "Moves yourself into check"
       else
         self[end_pos] = piece_to_move
         piece_to_move.pos = end_pos
         self[start_pos] = NullPiece.instance
+        return true
       end
     else
-      p "Didn't find the move"
+      puts "This move is invalid."
+      sleep(0.5)
     end
+    false
   end
 
   def move_piece!(start_pos, end_pos)

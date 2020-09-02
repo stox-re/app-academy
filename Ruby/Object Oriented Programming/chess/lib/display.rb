@@ -6,15 +6,14 @@ class Display
   attr_accessor :cursor
   def initialize(board)
     @board = board
-    @cursor = Cursor.new([0,0], board)
-    render
+    @cursor = Cursor.new([7,0], board)
   end
 
   def print_letters
     abc = "abcdefgh"
     print "  "
     8.times do |i|
-      print abc[i].colorize(:blue) + " "
+      print abc[i] + " "
     end
     print "\n"
   end
@@ -26,7 +25,7 @@ class Display
     print_letters
 
     @board.grid.each_with_index do |sub_array, sub_index|
-      print (decreasing_print[sub_index].to_s).colorize(:blue) + " "
+      print (decreasing_print[sub_index].to_s) + " "
       is_black = !is_black
 
       sub_array.each_with_index do |ele, index|
