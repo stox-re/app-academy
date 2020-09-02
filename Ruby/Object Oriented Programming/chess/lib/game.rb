@@ -4,6 +4,7 @@ require_relative "./human_player.rb"
 
 class Game
   SLEEP_TIME = 0.5
+
   def initialize
     @board = Board.new()
     @display = Display.new(@board)
