@@ -1,5 +1,8 @@
 # hello_spec.rb
 
+# Run to show test descriptions
+# rspec -f d --color
+
 require 'rspec'
 require 'hello'
 
