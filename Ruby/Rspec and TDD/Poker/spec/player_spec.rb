@@ -1,20 +1,35 @@
 require 'player'
 
 describe Player do
+  subject(:player) { Player.new }
+
   describe '#initialize' do
-    it 'creates a new Hand with 5 cards from the Deck'
+    it 'creates a new Hand' do
+      expect(player.hand).to be_a(Hand)
+    end
   end
 
-  describe '#draw_card' do
-    it 'draws a card from the Deck and puts it in it\'s Hand'
+  describe '#deal_hand' do
+    it 'should deal a hand to the player of 5 cards' do
+      player.instance_variable_set(:@hand, nil)
+      cards = []
+      player.deal(cards)
+      expect(player.hand).to be_a(Hand)
+    end
   end
 
   describe '#discard_card' do
-    it 'calls discard on the Hand, and puts that card in the Deck\'s discard pile'
+    it 'calls discard on the Hand, and puts that card in the Deck\'s discard pile' do
+      length = player.hand.cards.length
+      player.discard_card
+      expect(player.hand.cards.length).to eq(length - 1)
+    end
   end
 
   describe '#fold' do
-    it 'discards all the cards of the hand'
-    it 'puts the discarded cards in the Deck\'s discard pile'
+    it 'discards all the cards of the hand' do
+      player.fold
+      expect(player.folded).to eq(true)
+    end
   end
 end
