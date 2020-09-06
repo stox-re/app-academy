@@ -10,6 +10,14 @@ class Card
     @suit = suit
   end
 
+  def self.suits
+    SUITS
+  end
+
+  def self.values
+    VALUES
+  end
+
   def is_valid_suit?(suit)
     SUITS.include?(suit)
   end
