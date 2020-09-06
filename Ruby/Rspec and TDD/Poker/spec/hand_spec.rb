@@ -15,25 +15,23 @@ describe Hand do
       expect(hand.cards.length).to eq(5)
       expect(hand.cards[0]).to be_a(Card)
     end
-    it 'calls Deck#deal' do
-          expect(hand).to receive(:deal)
-    end
-    it 'should be readable for @hand' do
-      expect(hand.hand).not_to raise_error
-    end
   end
 
   describe '#add_card' do
     it 'adds a new card to this hand' do
       new_card = Card.new(10, "D")
       hand.add_card(new_card)
-      expect(hand.cards[hand.cards.length]).to eq(new_card)
+      expect(hand.cards[hand.cards.length - 1]).to eq(new_card)
     end
     it 'recalculates and calls #calculate_hand' do
+      new_card = Card.new(10, "D")
       expect(hand).to receive(:calculate_hand)
+      hand.add_card(new_card)
     end
     it 'updates @current_hand score with #hands_order' do
+      new_card = Card.new(10, "D")
       expect(hand).to receive(:hands_order)
+      hand.add_card(new_card)
     end
   end
 
