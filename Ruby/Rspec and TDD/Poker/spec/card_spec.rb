@@ -20,4 +20,5 @@ describe Card do
       expect { Card.new(11, "C") }.to raise_error("Card: Invalid value.")
       expect { Card.new(12, "S") }.to raise_error("Card: Invalid value.")
     end
+  end
 end

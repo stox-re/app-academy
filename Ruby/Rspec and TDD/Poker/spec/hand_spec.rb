@@ -165,8 +165,25 @@ describe Hand do
   end
 
   describe 'Hand::wins' do
-    it 'returns the winning hand'
-
+    it 'returns the winning hand' do
+      cards = [
+        Card.new(2, "C"),
+        Card.new(4, "D"),
+        Card.new(6, "S"),
+        Card.new(10, "D"),
+        Card.new("Q", "H")
+      ]
+      high_hand = Hand.new(cards)
+      other_cards = [
+        Card.new("J", "D"),
+        Card.new("J", "H"),
+        Card.new("J", "C"),
+        Card.new("J", "S"),
+        Card.new(2, "H")
+      ]
+      kind_hand = Hand.new(other_cards)
+      expect(Hand.wins([high_hand, kind_hand])).to eq(kind_hand)
+    end
   end
 
 end
