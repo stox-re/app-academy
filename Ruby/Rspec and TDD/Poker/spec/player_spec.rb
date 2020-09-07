@@ -1,7 +1,7 @@
 require 'player'
 
 describe Player do
-  subject(:player) { Player.new }
+  subject(:player) { Player.new() }
 
   describe '#initialize' do
     it 'creates a new Hand' do
