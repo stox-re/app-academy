@@ -37,7 +37,8 @@ describe Hand do
 
   describe '#discard' do
     it 'returns the top card from @cards' do
-      expect(hand.discard).to eq(cards[4])
+      discard_card = hand.cards[hand.cards.length - 1]
+      expect(hand.discard).to eq(discard_card)
     end
   end
 
@@ -98,18 +99,18 @@ describe Hand do
   end
 
   describe '#straight' do
-    it 'returns the cards if there is a straight' do
+    it 'returns true if there is a straight' do
      cards = [
-        Card.new(2, "D"),
-        Card.new(3, "H"),
-        Card.new(4, "C"),
         Card.new(5, "D"),
+        Card.new(2, "D"),
+        Card.new(4, "C"),
+        Card.new(3, "H"),
         Card.new(6, "H")
       ]
       hand = Hand.new(cards)
-      expect(hand.straight).to eq(cards)
+      expect(hand.straight).to eq(true)
     end
-    it 'returns the cards if there is an Ace, 2, 3, 4, 5' do
+    it 'returns true if there is an Ace, 2, 3, 4, 5' do
      cards = [
         Card.new("A", "D"),
         Card.new(2, "H"),
@@ -118,7 +119,19 @@ describe Hand do
         Card.new(5, "H")
       ]
       hand = Hand.new(cards)
-      expect(hand.straight).to eq(cards)
+      expect(hand.straight).to eq(true)
+    end
+
+    it 'returns true if there is 10, j, q , k, ace' do
+      cards = [
+        Card.new(10, "D"),
+        Card.new("J", "H"),
+        Card.new("Q", "C"),
+        Card.new("K", "D"),
+        Card.new("A", "S")
+      ]
+      hand = Hand.new(cards)
+      expect(hand.straight).to eq(true)
     end
   end
 
