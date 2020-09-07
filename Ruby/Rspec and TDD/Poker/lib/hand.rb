@@ -3,25 +3,31 @@ require_relative "./card.rb"
 class Hand
   attr_reader :cards
 
+  HAND_RANKS = {
+    :straight_flush => 9,
+    :four_of_a_kind => 8,
+    :full_house => 7,
+    :flush => 6,
+    :straigh => 5,
+    :four_of_a_kind => 4,
+    :three_of_a_kind => 3,
+    :two_pairs => 2,
+    :one_pair => 1,
+    :high_card => 0
+  }
+
   def initialize(cards)
     @cards = cards
   end
 
   def add_card(new_card)
     @cards << new_card
-    calculate_hand
-    @current_hand_score = hands_order
   end
 
   def discard
     @cards.pop
   end
 
-  def calculate_hand
-  end
-
-  def hands_order
-  end
 
   def cards_hash_count(cards)
     check_counts = Hash.new(0)
@@ -124,6 +130,65 @@ class Hand
       end
     end
     return found
+  end
+
+  def flush
+    found = true
+    this_suit = @cards[0].suit
+    @cards.each do |card|
+      if this_suit != card.suit
+        found = false
+      end
+    end
+    found
+  end
+
+  def high_card
+    sorted = @cards.sort_by { |card| card.rank }
+    if sorted[0].rank == 0
+      return sorted[0]
+    else
+      return sorted[sorted.length - 1]
+    end
+  end
+
+  def self.wins(hands)
+    hand_results = [:high_card, :high_card]
+    current_hand = 0
+    hands.each_with_index do |hand, index|
+
+      if hand.one_pair.length > 0
+        hand_results[current_hand] = :one_pair
+      end
+      if hand.two_pairs.length > 0
+        hand_results[current_hand] = :two_pairs
+      end
+      if hand.three_of_a_kind.length > 0
+        hand_results[current_hand] = :three_of_a_kind
+      end
+      if hand.straight
+        hand_results[current_hand] = :straight
+      end
+      if hand.flush
+        hand_results[current_hand] = :flush
+      end
+      if hand.three_of_a_kind.length > 0 && hand.one_pair.length > 0
+        hand_results[current_hand] = :full_house
+      end
+      if hand.four_of_a_kind.length > 0
+        hand_results[current_hand] = :four_of_a_kind
+      end
+      if hand.straight && hand.flush
+        hand_results[current_hand] = :straight_flush
+      end
+      current_hand += 1
+    end
+
+    hand_ranking = []
+    hand_results.each do |result|
+      hand_ranking << HAND_RANKS[result]
+    end
+    hands[hand_ranking.index(hand_ranking.max)]
   end
 
 end

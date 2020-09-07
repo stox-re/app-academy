@@ -23,16 +23,6 @@ describe Hand do
       hand.add_card(new_card)
       expect(hand.cards[hand.cards.length - 1]).to eq(new_card)
     end
-    it 'recalculates and calls #calculate_hand' do
-      new_card = Card.new(10, "D")
-      expect(hand).to receive(:calculate_hand)
-      hand.add_card(new_card)
-    end
-    it 'updates @current_hand score with #hands_order' do
-      new_card = Card.new(10, "D")
-      expect(hand).to receive(:hands_order)
-      hand.add_card(new_card)
-    end
   end
 
   describe '#discard' do
@@ -136,7 +126,7 @@ describe Hand do
   end
 
   describe '#flush' do
-    it 'returns the cards if there is a flush' do
+    it 'returns true if there is a flush' do
       cards = [
         Card.new(3, "S"),
         Card.new(4, "S"),
@@ -145,7 +135,7 @@ describe Hand do
         Card.new("Q", "S")
       ]
       hand = Hand.new(cards)
-      expect(hand.flush).to eq(cards)
+      expect(hand.flush).to eq(true)
     end
 
     it 'is false if there is only 4 of a kind' do
