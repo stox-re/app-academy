@@ -9,7 +9,6 @@ class Hand
     :full_house => 7,
     :flush => 6,
     :straigh => 5,
-    :four_of_a_kind => 4,
     :three_of_a_kind => 3,
     :two_pairs => 2,
     :one_pair => 1,

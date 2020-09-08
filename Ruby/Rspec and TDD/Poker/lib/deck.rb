@@ -32,6 +32,16 @@ class Deck
     new_deal
   end
 
+  def add_to_discards(array_of_cards)
+    if array_of_cards.class == Array
+      array_of_cards.each do |card|
+        @discards << card
+      end
+    elsif array_of_cards.class == Card
+      @discards << array_of_cards
+    end
+  end
+
   def take_card
     @cards.pop
   end
