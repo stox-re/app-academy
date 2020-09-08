@@ -1,7 +1,15 @@
 require 'player'
 
 describe Player do
-  subject(:player) { Player.new() }
+  cards = [
+    Card.new("J", "D"),
+    Card.new(10, "H"),
+    Card.new(4, "S"),
+    Card.new("Q", "C"),
+    Card.new("Q", "S")
+  ]
+  hand = Hand.new(cards)
+  subject(:player) { Player.new(hand) }
 
   describe '#initialize' do
     it 'creates a new Hand' do
@@ -13,7 +21,7 @@ describe Player do
     it 'should deal a hand to the player of 5 cards' do
       player.instance_variable_set(:@hand, nil)
       cards = []
-      player.deal(cards)
+      player.deal_hand(cards)
       expect(player.hand).to be_a(Hand)
     end
   end
