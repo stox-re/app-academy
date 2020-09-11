@@ -40,7 +40,7 @@ describe HashSet do
     before do
       set.insert(1)
     end
-    
+
     context "if the number exists in the set" do
       before do
         set.remove(1)

@@ -99,7 +99,6 @@ class ResizingIntSet
   end
 
   def resize!
-    puts "Calling resize"
     @count = 0
     previous_buckets = @store.dup
     @store = Array.new(num_buckets * BUCKET_RESIZE) { Array.new }
@@ -111,8 +110,3 @@ class ResizingIntSet
     end
   end
 end
-
-
- resizing = ResizingIntSet.new(20)
- 21.times { |i| resizing.insert(i)}
- p resizing.store.length
