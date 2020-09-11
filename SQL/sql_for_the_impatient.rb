@@ -143,3 +143,44 @@ JOIN
   likes ON posts.id = likes.post_id
 JOIN
   users ON likes.user_id = users.id
+
+# Self Join from the same table
+SELECT
+  team_member.first_name, team_member.last_name,
+   manager.first_name, manager.last_name
+FROM
+  employee AS team_member # reference name when it returns
+JOIN
+  employee AS manager ON manager.id = team_member.manager_id
+
+# Naming conventions
+# Always name SQL tables snake_case and pluralized. (e.g., musical_instruments, favorite_cats)
+# If a musician belongs to a band, your musicians table will need to store a foreign key
+# that refers to the id column in the bands table. The foreign key column should be named band_id.
+# Always have a column named id, and use it as the primary key for a table.
+
+# Null
+# always use IS NULL or IS NOT NULL in place of the traditional (== or !=) comparisons.
+
+# CASE
+SELECT title,
+       length,
+       CASE
+           WHEN length> 0
+                AND length <= 50 THEN 'Short'
+           WHEN length > 50
+                AND length <= 120 THEN 'Medium'
+           WHEN length> 120 THEN 'Long'
+       END duration
+FROM film
+ORDER BY title;
+
+# COALESCE
+# The COALESCE function accepts an unlimited number of arguments.
+# It returns the first argument that is not null. If all arguments are null,
+# the COALESCE function will return null.
+
+SELECT
+	COALESCE (excerpt, LEFT(CONTENT, 150))
+FROM
+  posts;
