@@ -38,6 +38,17 @@ class User
     @lname = options["lname"]
   end
 
+  def save
+    raise "#{self} already in database" if self.id
+    QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname)
+      INSERT INTO
+        users (fname, lname)
+      VALUES
+        (?, ?)
+    SQL
+    self.id = QuestionsDatabase.instance.last_insert_row_id
+  end
+
   def authored_questions
     Question.find_by_author_id(@id)
   end
@@ -109,6 +120,17 @@ class Question
     @title = options["title"]
     @body = options["body"]
     @user_id = options["user_id"]
+  end
+
+  def save
+    raise "#{self} already in database" if self.id
+    QuestionsDatabase.instance.execute(<<-SQL, @title, @body, @user_id)
+      INSERT INTO
+        questions (title, body, user_id)
+      VALUES
+        (?, ?, ?)
+    SQL
+    self.id = QuestionsDatabase.instance.last_insert_row_id
   end
 
   def author
