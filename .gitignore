@@ -11,3 +11,6 @@
 
 credentials.*
 **/credentials.*
+
+secrets.yml
+**/secrets.yml
