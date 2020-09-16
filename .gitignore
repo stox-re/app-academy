@@ -1,1 +1,13 @@
+._.DS_Store
 .DS_Store
+**/.DS_store
+**/._.DS_Store
+
+*.key
+**/*.key
+
+*.env
+**/*.env
+
+credentials.*
+**/credentials.*
