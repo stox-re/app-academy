@@ -14,3 +14,7 @@ credentials.*
 
 secrets.yml
 **/secrets.yml
+
+Gemfile.lock
+
+**/tmp/*
