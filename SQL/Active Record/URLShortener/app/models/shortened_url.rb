@@ -20,6 +20,17 @@ class ShortenedUrl < ApplicationRecord
     class_name: :User
   })
 
+  has_many(:visits, {
+    primary_key: :id,
+    foreign_key: :shortened_url_id,
+    class_name: :Visit
+  })
+
+  has_many(:visitors, {
+    through: :visits,
+    source: :visitor
+  })
+
   def self.random_code
     new_code = SecureRandom::urlsafe_base64
     if ShortenedUrl.exists?({ :short_url => new_code })
@@ -37,5 +48,13 @@ class ShortenedUrl < ApplicationRecord
       :short_url => ShortenedUrl.random_code,
       :user_id => user.id
     })
+  end
+
+  def num_clicks
+    Visit.where({ "shortened_url_id" => self.id }).count
+  end
+
+  def num_uniques
+    Visit.where({ "shortened_url_id" => self.id }).distinct.count("user_id")
   end
 end
