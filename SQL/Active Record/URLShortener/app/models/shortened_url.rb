@@ -13,6 +13,7 @@ class ShortenedUrl < ApplicationRecord
   validates :long_url, presence: true, uniqueness: true
   validates :short_url, presence: true, uniqueness: true
   validates :user_id, presence: true
+  validate :no_spamming
 
   belongs_to(:submitter, {
     primary_key: :id,
@@ -31,6 +32,19 @@ class ShortenedUrl < ApplicationRecord
     through: :visits,
     source: :visitor
   )
+
+  has_many(:taggings, {
+    primary_key: :id,
+    foreign_key: :shortened_url_id,
+    class_name: :Tagging
+  })
+
+   has_many(:tag_topics,
+    -> { distinct },
+    through: :taggings,
+    source: :tag_topic
+  )
+
 
   def self.random_code
     new_code = SecureRandom::urlsafe_base64
@@ -64,5 +78,14 @@ class ShortenedUrl < ApplicationRecord
       "shortened_url_id" => self.id,
       "created_at" => 1.hour.ago..Time.now
     }).count
+  end
+
+  def no_spamming
+    this_user_urls_in_last_minute = self.submitter.submitted_urls.where({
+      "created_at" => 1.minute.ago..Time.now
+    })
+    if this_user_urls_in_last_minute >= 5
+      errors[:base] << "It is not allowed to submit more than 5 urls in 1 minute."
+    end
   end
 end
