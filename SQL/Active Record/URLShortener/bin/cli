@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+puts "Welcome to the URLShortener"
+puts "--------------------------"
+puts "Please enter your email: "
+input = gets.chomp
+
+user = User.find_by({ "email" => input })
+puts user.id
+
+puts "What do you want to do?: "
+puts "0 - Create shortened Url"
+puts "1 - Visit shortened Url"
+
+choice = gets.chomp.to_i
+
+if choice == 0
+  puts "Type in a long url: "
+  new_url = gets.chomp
+  new_shortened_url = ShortenedUrl.create_shortened_url({
+    :user => user,
+    :long_url => new_url
+  })
+  puts "-------------New Shortened Url-------------"
+  puts new_shortened_url.short_url
+elsif choice == 1
+  puts "Please enter a shortenedUrl: "
+  shortened_url_to_visit = gets.chomp
+  found_short_url = ShortenedUrl.find_by({ "short_url" => shortened_url_to_visit })
+  puts "Opening url: " + found_short_url.long_url
+  Launchy.open(found_short_url.long_url)
+  Visit.record_visit!({
+    "user" => user,
+    "shortened_url" => shortened_url_to_visit
+  })
+end

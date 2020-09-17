@@ -26,10 +26,11 @@ class ShortenedUrl < ApplicationRecord
     class_name: :Visit
   })
 
-  has_many(:visitors, {
+  has_many(:visitors,
+    -> { distinct },
     through: :visits,
     source: :visitor
-  })
+  )
 
   def self.random_code
     new_code = SecureRandom::urlsafe_base64
@@ -55,6 +56,13 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def num_uniques
-    Visit.where({ "shortened_url_id" => self.id }).distinct.count("user_id")
+    self.visitors.count
+  end
+
+  def num_recent_uniques
+    Visit.distinct.where({
+      "shortened_url_id" => self.id,
+      "created_at" => 1.hour.ago..Time.now
+    }).count
   end
 end

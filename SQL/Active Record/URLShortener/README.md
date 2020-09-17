@@ -1,24 +1,7 @@
-# README
+# URLShortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a URLShortener app with a CLI interface for creating new shortened urls and visiting links from the urls.
 
-Things you may want to cover:
+## Preview
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![ShortenedURL](shortened_url.gif)
