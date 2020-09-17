@@ -14,6 +14,7 @@ class ShortenedUrl < ApplicationRecord
   validates :short_url, presence: true, uniqueness: true
   validates :user_id, presence: true
   validate :no_spamming
+  validate :nonpremium_max
 
   belongs_to(:submitter, {
     primary_key: :id,
@@ -44,7 +45,6 @@ class ShortenedUrl < ApplicationRecord
     through: :taggings,
     source: :tag_topic
   )
-
 
   def self.random_code
     new_code = SecureRandom::urlsafe_base64
@@ -84,8 +84,17 @@ class ShortenedUrl < ApplicationRecord
     this_user_urls_in_last_minute = self.submitter.submitted_urls.where({
       "created_at" => 1.minute.ago..Time.now
     })
-    if this_user_urls_in_last_minute >= 5
+    if this_user_urls_in_last_minute.count >= 5
       errors[:base] << "It is not allowed to submit more than 5 urls in 1 minute."
+    end
+  end
+
+  def nonpremium_max
+    this_user_urls = self.submitter.submitted_urls
+    if this_user_urls.count >= 5
+      if self.submitter.premium == false
+        errors[:base] << "Free mode only allows 5 saved urls. Please upgrade to the pro version."
+      end
     end
   end
 end
