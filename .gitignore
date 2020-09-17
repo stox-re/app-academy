@@ -18,3 +18,7 @@ secrets.yml
 Gemfile.lock
 
 **/tmp/*
+**/log/*
+
+*.log
+**/log
