@@ -394,3 +394,108 @@ end
 # This ensures that there can be no more than one entry in the
 # conversations table with the same user_id and title - useful if want
 # to allow multiple conversations to have the same title, but not for the same user.
+
+------------------------Includes----------------------------------------
+# Instead of doing n+1 queries, use includes to do it in one query
+posts = self.posts.includes(:comments)
+comments = user.comments.includes(:post, :parent_comment)
+posts = user.posts.includes(:comments => [:author, :parent_comment])
+first_post = posts[0]
+
+------------------------Just counts----------------------------------------
+ posts_with_counts = self
+      .posts
+      .select("posts.*, COUNT(*) AS comments_count") # more in a sec
+      .joins(:comments)
+      .group("posts.id") # "comments.post_id" would be equivalent
+
+posts_with_counts.map do |post|
+  # `#comments_count` will access the column we `select`ed in the
+   # query.
+  [post.title, post.comments_count]
+end
+
+# The default for joins is to perform an INNER JOIN.
+# In the previous example we will not return any posts with zero comments
+# because there will be no comment row to join the post against.
+
+# If we want to include posts with zero comments, we need to do an outer join. We can do this like so:
+posts_with_counts = self
+  .posts
+  .select('posts.*, COUNT(comments.id) AS comments_count')
+  .left_outer_joins(:comments) #still the name of the association
+  .group('posts.id') # "comments.post_id" would be equivalent
+
+------------------------Scopes----------------------------------------
+# Keep code DRY for commonly made queries
+
+class Post < ApplicationRecord
+  def self.by_popularity
+    self
+      .select('posts.*, COUNT(*) AS comment_count')
+      .joins(:comments)
+      .group('posts.id')
+      .order('comment_count DESC')
+  end
+end
+
+# Returns a relation object so we can add on other methods
+posts = Post.by_popularity.limit(5)
+posts.count
+
+# Can be used through associations
+User.first.posts.by_popularity
+
+------------------------Finders----------------------------------------
+# Where returns an array of ActiveRecord objects
+# Find and Find_by returns only 1 item matching the query
+Application.find_by(email_address: 'ned@appacademy.io')
+Application.find(4)
+# ::find_by accepts an options hash, which allows us to specify as many criteria as necessary
+
+------------------------Order, Group, and Having----------------------------------------
+Client.order('orders_count ASC, created_at DESC').all
+
+UserPost
+  .joins(:likes)
+  .group('posts.id')
+  .having('COUNT(*) > 5')
+
+# Aggregations
+# You can perform all the typical aggregations:
+Client.count
+Orders.sum(:total_price)
+Orders.average(:total_price)
+Orders.minimum(:total_price)
+Orders.maximum(:total_price)
+
+------------------------Finding by SQL----------------------------------------
+Case.find_by_sql(<<-SQL)
+  SELECT
+    cases.*
+  FROM
+    cases
+  JOIN (
+    -- the five lawyers with the most clients
+    SELECT
+      lawyers.*
+    FROM
+      lawyers
+    LEFT OUTER JOIN
+      clients ON lawyers.id = clients.lawyer_id
+    GROUP BY
+      lawyers.id
+    SORT BY
+      COUNT(clients.*)
+    LIMIT 5
+  ) ON ((cases.prosecutor_id = lawyer.id)
+         OR (cases.defender_id = lawyer.id))
+SQL
+
+# If you have a parameterized query, you must pass everything in an array
+
+Post.find_by_sql([
+  'SELECT title FROM posts WHERE author = ? AND created > ?',
+  author_id,
+  start_date
+])
