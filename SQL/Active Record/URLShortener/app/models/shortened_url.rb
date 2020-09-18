@@ -65,6 +65,14 @@ class ShortenedUrl < ApplicationRecord
     })
   end
 
+  def self.prune(minutes)
+    these_urls_in_timeframe = self.all.where({
+      "created_at" => minutes.minute.ago..Time.now
+    }).destroy_all
+
+    puts "Pruned: " + these_urls_in_timeframe.to_s
+  end
+
   def num_clicks
     Visit.where({ "shortened_url_id" => self.id }).count
   end
