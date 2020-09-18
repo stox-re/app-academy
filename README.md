@@ -1,6 +1,6 @@
 # App Academy Full Stack Curriculum
 
-I started the course from [App Academy](https://www.appacademy.io/immersive/curriculum) in July 2020. I took it in the App Academy Open format which is remote. I track my hours using a google spreadsheet as well as writing blog posts.
+I started the course from [App Academy](https://www.appacademy.io/immersive/curriculum) in July 2020. I took it in the App Academy Open format which is remote.
 
 ## Projects Completed
 
