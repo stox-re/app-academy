@@ -66,10 +66,7 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def self.prune(minutes)
-    these_urls_in_timeframe = self.all.where({
-      "created_at" => minutes.minute.ago..Time.now
-    }).destroy_all
-
+    these_urls_in_timeframe = self.all.where("created_at < ?", minutes.minute.ago).destroy_all
     puts "Pruned: " + these_urls_in_timeframe.to_s
   end
 
