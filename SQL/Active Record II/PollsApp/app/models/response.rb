@@ -9,7 +9,8 @@
 #  updated_at       :datetime         not null
 #
 class Response < ApplicationRecord
-  validate :respondent_already_answered
+  validate :respondent_already_answered?
+  validate :author_cant_answer_own_poll
 
   belongs_to(:answer_choice, {
     primary_key: :id,
@@ -29,20 +30,18 @@ class Response < ApplicationRecord
   )
 
   def sibling_responses
-    my_question = self.question
-    my_question.responses.where.not({ :id => self.id })
+    self.question.responses.where.not({ :id => self.id })
   end
 
   def respondent_already_answered?
-    if self.sibling_responses.any? { |reply| reply.id == self.user_id }
+    if self.sibling_responses.any? { |response| response.user_id == self.user_id }
       errors[:respondent] << "already answered this question"
     end
   end
 
   def author_cant_answer_own_poll
-    this_questions_author_id = self.question.poll.author_id
-    if self.sibling_responses.any? { |reply| reply.user_id == this_questions_author_id }
-    errors[:respondent] << "created this poll, so you can not answer a question in it"
+    if self.user_id = self.question.poll.author_id
+      errors[:respondent] << "created this poll, so you can not answer a question in it"
     end
   end
 end
