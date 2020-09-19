@@ -9,8 +9,7 @@
 #  updated_at  :datetime         not null
 #
 class AnswerChoice < ApplicationRecord
-  validates :text, presence: true
-  validates :question_id, presence: true
+  validates :text, presence: true, uniqueness: true
 
   belongs_to(:question, {
     primary_key: :id,
