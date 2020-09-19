@@ -28,4 +28,21 @@ class Question < ApplicationRecord
     source: :responses
   )
 
+  def results
+    results = {}
+
+    data = answer_choices.find_by_sql([
+      'SELECT answer_choices.id, answer_choices.text, COUNT(answer_choice_id) AS response_count
+      FROM answer_choices
+      LEFT JOIN responses ON responses.answer_choice_id = answer_choices.id
+      WHERE question_id = ?
+      GROUP BY answer_choices.id',
+      self.id])
+
+    data.each do |choice|
+      results[choice.text] = choice.response_count
+    end
+
+    results
+  end
 end
