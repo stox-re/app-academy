@@ -15,5 +15,6 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Tic Tac Toe AI](https://github.com/stockermans/app-academy/tree/master/Ruby/Data%20Structures/Tic%20Tac%20Toe%20AI) - Tic Tac Toe game with an AI that can't be beaten (CLI)
 * [Mancala](https://github.com/stockermans/app-academy/tree/master/Ruby/Object%20Oriented%20Programming/mancala) - Mancala game (CLI)
 * [Chess](https://github.com/stockermans/app-academy/tree/master/Ruby/Object%20Oriented%20Programming/chess) - Chess game (CLI)
-* [Hash Map](https://github.com/stockermans/app-academy/tree/master/Ruby/LRU%20Cache/Hash%20Map%20%26%20LRU%20Cache) - Creating data structures for an LRU Cache with TDD in Rspec.
-* [URL Shortener](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record/URLShortener) - A URL Shortener app in Rails which also tracks visits.
+* [Hash Map](https://github.com/stockermans/app-academy/tree/master/Ruby/LRU%20Cache/Hash%20Map%20%26%20LRU%20Cache) - Creating data structures for an LRU Cache with TDD in Rspec
+* [URL Shortener](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record/URLShortener) - A URL Shortener app in Rails which also tracks visits
+* [Polls App](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record%20II/PollsApp) - Rails database setup and use of ActiveRecord for a survey polls app
