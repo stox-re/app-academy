@@ -25,8 +25,8 @@ Gemfile.lock
 
 /.bundle
 
-!/log/.keep
-!/tmp/.keep
+**/log/.keep
+**/tmp/.keep
 
 /node_modules
 /yarn-error.log
