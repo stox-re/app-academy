@@ -37,7 +37,7 @@ class HasManyOptions < AssocOptions
     defaults = {
       foreign_key: "#{self_class_name.downcase || name}_id".to_sym,
       primary_key: :id,
-      class_name: name.capitalize.singularize
+      class_name: name.capitalize.to_s.singularize
     }
     defaults.each do |key, value|
       send("#{key}=", options[key] || value )
@@ -48,12 +48,21 @@ end
 module Associatable
   # Phase IIIb
   def belongs_to(name, options = {})
-
-    # ...
+    options = BelongsToOptions.new(name, options)
+    define_method(name) do
+      foreign_key = send(options.foreign_key)
+      model_class = options.class_name
+      options.model_class.where({options.primary_key => foreign_key}).first
+    end
   end
 
   def has_many(name, options = {})
-    # ...
+    options = HasManyOptions.new(name, self.name, options)
+    define_method(name) do
+      primary_key = send(options.primary_key)
+      model_class = options.class_name
+      options.model_class.where({options.foreign_key => primary_key})
+    end
   end
 
   def assoc_options
@@ -64,4 +73,5 @@ end
 class SQLObject
   # Mixin Associatable here...
   extend Associatable
+  extend Searchable
 end
