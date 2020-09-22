@@ -26,6 +26,15 @@ class SuperheroesController < ApplicationController
     render json: Superhero.all
   end
 
+  def create
+    superhero = Superhero.new(superhero_params)
+    if superhero.save
+      render json: superhero
+    else
+      render json: superhero.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
   def show
     superhero = Superhero.find_by_id(id: params[:id])
     render json: superhero
@@ -52,5 +61,63 @@ class SuperheroesController < ApplicationController
   def superhero_params
     params.require(:superhero).permit(:name, :secret_identity, :power)
     # in postman superhero[power]
+  end
+end
+
+# Controllers are always named in the plural: PhotosController, UsersController
+
+# app/controllers/clients_controller.rb
+class ClientsController < ApplicationController
+  def index
+    render json: Client.all
+  end
+
+  def show
+    render json: Client.find(params[:id])
+  end
+end
+
+# config/routes.rb
+MyLittleProject::Application.routes.draw do
+  resources :clients, only: [:index, :show]
+end
+
+class PostsController < ApplicationController
+  def create
+    @post = Post.new(params[:post].permit(:title, :body))
+    @post.save!
+    render json: "Thanks for making the new post named #{@post.title}"
+  end
+end
+
+class CatsController < ActionController::Base
+  # Using "Cat.create(params[:cat])" would raise an
+  # ActiveModel::ForbiddenAttributes exception because it'd be using
+  # mass assignment without an explicit permit step.
+  # This is the recommended form:
+  def create
+    Cat.create!(cat_params)
+  end
+
+  # This will pass with flying colors as long as there's a cat key in
+  # the parameters, otherwise it'll raise an
+  # ActionController::MissingParameter exception, which will get
+  # caught by ActionController::Base and turned into a 400 Bad Request
+  # reply.
+  def update
+    # params[:id] is a routing parameter; more in a sec!
+    @cat = Cat.find(params[:id])
+    @cat.update!(cat_params)
+    render json: @cat
+  end
+
+  private
+
+  # Using a private method to encapsulate the permissible parameters
+  # is just a good pattern since you'll be able to reuse the same
+  # permit list between create and update. Also, you can specialize
+  # this method with per-user checking of permissible attributes.
+  def cat_params
+    params.require(:cat).permit(:name, :age)
   end
 end
