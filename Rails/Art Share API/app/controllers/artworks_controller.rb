@@ -1,6 +1,11 @@
 class ArtworksController < ApplicationController
   def index
-    render json: Artwork.all
+    this_user = User.find_by_id(params[:user_id])
+    if this_user == nil
+      user_nil_message
+    else
+      render json: { artworks: this_user.artworks, artwork_shares: this_user.artwork_shares}
+    end
   end
 
   def create
@@ -50,5 +55,9 @@ class ArtworksController < ApplicationController
 
   def is_nil_message
       render json: { errors: ['Artwork does not exist'] }, status: :unprocessable_entity
+  end
+
+  def user_nil_message
+    render json: { errors: ['User does not exist'] }, status: :unprocessable_entity
   end
 end
