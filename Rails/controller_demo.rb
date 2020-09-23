@@ -121,3 +121,9 @@ class CatsController < ActionController::Base
     params.require(:cat).permit(:name, :age)
   end
 end
+
+# Params come from 3 things
+
+# Route parameters (e.g. the :id from /users/:id)
+# Query string (the part of the URL after the ?: ?key=value)
+# POST/PATCH request data (the body of the HTTP request).

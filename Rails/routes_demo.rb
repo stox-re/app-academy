@@ -2,12 +2,12 @@
 # /config/routes.rb
 
 Rails.application.routes.draw do
-# get 'superheroes', to: 'superheroes#index'
-# get 'superheroes/:id' to: 'superheroes#show'
-# post 'superheroes' to: 'superheroes#create'
-# patch 'superheroes/:id', to: 'superheroes#update'
-# put 'superheroes/:id, to: 'superheroes#update'
-# delete 'superheroes/:id', to 'superheroes#destroy'
+  # get 'users', to: 'users#index'
+  # get 'users/:id', to: 'users#show'
+  # post 'users', to: 'users#create'
+  # patch 'users/:id', to: 'users#update'
+  # put 'users/:id', to: 'users#update'
+  # delete 'users/:id', to: 'users#destroy'
 
 # Can all be created with
 # resources :superheroes, only [:index, :show, :create, :update, :destroy]
