@@ -3,8 +3,8 @@
 # Table name: artwork_shares
 #
 #  id         :bigint           not null, primary key
-#  artwork_id :string           not null
-#  viewer_id  :string           not null
+#  artwork_id :integer          not null
+#  viewer_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
