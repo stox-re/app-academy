@@ -19,3 +19,8 @@ ArtworkShare.destroy_all
 share1 = ArtworkShare.create(artwork_id: art2.id, viewer_id: user1.id)
 share2 = ArtworkShare.create(artwork_id: art2.id, viewer_id: user3.id)
 share3 = ArtworkShare.create(artwork_id: art3.id, viewer_id: user2.id)
+
+Comment.destroy_all
+comment1 = Comment.create(artwork_id: art1.id, user_id: user2.id, body: "Nice cat, wish I had one!")
+comment2 = Comment.create(artwork_id: art2.id, user_id: user1.id, body: "Aww such a cute dog.")
+comment3 = Comment.create(artwork_id: art2.id, user_id: user3.id, body: "Definitly a good dog.")
