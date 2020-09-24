@@ -1,14 +1,13 @@
 class CommentsController < ApplicationController
   def index
-    this_comment = params[:comment]
-    if this_comment[:user_id] != nil
-      comment = Comment.find_by({user_id: this_comment[:user_id]})
+    if params[:user_id] != nil
+      comment = Comment.find_by({user_id: params[:user_id]})
       render json: comment
-    elsif this_comment[:artwork_id] != nil
-      comment = Comment.find_by({artwork_id: this_comment[:artwork_id]})
+    elsif params[:artwork_id] != nil
+      comment = Comment.find_by({artwork_id: params[:artwork_id]})
       render json: comment
     else
-      render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: "Could not find the comment." }, status: :unprocessable_entity
     end
   end
 
