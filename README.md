@@ -18,4 +18,4 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Hash Map](https://github.com/stockermans/app-academy/tree/master/Ruby/LRU%20Cache/Hash%20Map%20%26%20LRU%20Cache) - Creating data structures for an LRU Cache with TDD in Rspec
 * [URL Shortener](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record/URLShortener) - A URL Shortener app in Rails which also tracks visits
 * [Polls App](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record%20II/PollsApp) - Rails database setup and use of ActiveRecord for a survey polls app
-* [Art Share API](https://github.com/stockermans/app-academy/tree/master/Rails/Art%20Share%20API) - An API for art sharing, with users, artworks and comments
+* [Art Share API](https://github.com/stockermans/app-academy/tree/master/Rails/Routes%20and%20Controllers/Art%20Share%20API) - An API for art sharing, with users, artworks and comments
