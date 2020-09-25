@@ -82,3 +82,19 @@ end
 
     <input type="submit" value="Add book to library">
 </form
+
+#------------------Updating------------------
+# In controller
+def edit
+  @book = Book.find_by({id: params[:id]})
+  render :edit
+end
+
+def update
+  @book = Book.find_by({id: params[:id]})
+  if @book.update_attributes(book_params)
+    redirect_to books_url(@book)
+  else
+    render :edit
+  end
+end
