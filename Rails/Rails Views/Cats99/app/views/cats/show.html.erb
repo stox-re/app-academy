@@ -27,3 +27,32 @@
         </tr>
     </tbody>
 </table>
+
+
+
+    <% @cat_rental_requests.each do |rental_request| %>
+    <table style="margin:0;margin-top:30px;">
+        <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : "background-color:#9659ff;color:#fff" %>">
+            <tr>
+                <th style="padding:10px;" colspan="2">Rental Request <%= rental_request.id %></th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td style="padding:10px;border:1px solid #333;">Start Date</td>
+              <td style="padding:10px;border:1px solid #333;"><%= rental_request.start_date %></td>
+          </tr>
+          <tr>
+              <td style="padding:10px;border:1px solid #333;">End Date</td>
+              <td style="padding:10px;border:1px solid #333;"><%= rental_request.end_date %></td>
+          </tr>
+          <tr>
+              <td style="padding:10px;border:1px solid #333;">Approved</td>
+              <td style="padding:10px;border:1px solid #333;"><%= rental_request.status %></td>
+          </tr>
+        </tbody>
+    </table>
+    <% end %>
+
+
+

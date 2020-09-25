@@ -21,10 +21,31 @@ class CatRentalRequest < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :status, presence: true, inclusion: { in: self.statuses, message: "%{value} is not a valid status" }
+  validate :does_not_overlap_approved_request, unless: -> { status == "DENIED" }
 
   belongs_to(:cat, {
     primary_key: :id,
     foreign_key: :cat_id,
     class_name: :Cat
   })
+
+  def overlapping_requests
+    CatRentalRequest
+      .where.not('start_date > :ending_date OR end_date < :starting_date', starting_date: self.start_date, ending_date: self.end_date)
+      .where.not(id: id)
+      .where(cat_id: cat_id)
+  end
+
+  def overlapping_approved_requests
+    overlapping_requests.where(status: "APPROVED")
+  end
+
+  def does_not_overlap_approved_request
+    if overlapping_requests.exists?
+      errors[:base] << "has an overlap with an approved rental request"
+      false
+    else
+      true
+    end
+  end
 end

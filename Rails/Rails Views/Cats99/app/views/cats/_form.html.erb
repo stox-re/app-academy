@@ -29,6 +29,9 @@
     <label for="description"><br>
     <textarea id="description" name="cat[description]" rows="8" cols="30"><%= @cat.description %></textarea><br>
 
-    <input type="submit" value="Add cat">
-
+    <% if action == :edit %>
+    <input type="submit" value="Edit this cat">
+    <% else %>
+      <input type="submit" value="Add new cat">
+    <% end %>
 </form>

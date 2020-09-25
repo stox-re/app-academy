@@ -6,6 +6,10 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find_by_id(params[:id])
+    @cat_rental_requests = CatRentalRequest.where({cat_id: params[:id]}).order(:start_date)
+    @cat_rental_requests.each do |request|
+      puts request
+    end
     if @cat == nil
       is_nil_message
     else
