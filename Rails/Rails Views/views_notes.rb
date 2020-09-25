@@ -98,3 +98,7 @@ def update
     render :edit
   end
 end
+
+#------------ Debugging ---------------------
+gem 'better-errors'
+gem 'binding_of_caller'
