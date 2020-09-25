@@ -1,0 +1,13 @@
+<h1>All the cats to rent</h1>
+<a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%=new_cat_url%>>Add a new cat &#x2b;</a>
+
+<ul style="list-style:none;margin:0;padding:0;margin-top:30px;width:50%;">
+  <%@cats.each do |cat|%>
+    <li style="border:1px solid #333;margin-bottom:30px;background-color:#f9f7f7">
+      <div style="padding:30px;display:flex;justify-content:space-between;">
+        <div><%=cat.name%></div>
+        <div><a style="background-color:#9659ff;padding:10px;color:white;text-decoration:none;" href=<%=cat_url(cat.id)%>>Show this cat</a></div>
+      </div>
+    </li>
+  <%end%>
+</ul>

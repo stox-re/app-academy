@@ -1,0 +1,25 @@
+<h1>Showing <%=@cat.name%></h1>
+
+<a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%=cats_url%>>Back to cats</a>
+
+<table style="margin:0;margin-top:30px;">
+    <thead style="background-color:#9659ff;color:#fff;">
+        <tr>
+            <th style="padding:10px;" colspan="2"><%=@cat.name%></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding:10px;border:1px solid #333;">Sex</td>
+            <td style="padding:10px;border:1px solid #333;"><%=@cat.sex%></td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border:1px solid #333;">Color</td>
+            <td style="padding:10px;border:1px solid #333;"><%=@cat.color%></td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border:1px solid #333;">Description</td>
+            <td style="padding:10px;border:1px solid #333;"><%=@cat.description%></td>
+        </tr>
+    </tbody>
+</table>

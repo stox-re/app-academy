@@ -1,0 +1,30 @@
+<h1>Add a new cat</h1>
+<a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%=cats_url%>>Back to cats</a>
+
+<form action="<%= cats_url %>" method="post" style="margin-top:30px;">
+
+    <label for="name">Name</label>
+    <input id="name" type="text" name="cat[name]"><br>
+
+    <label for="birth-date">Birth Date</label>
+    <input id="birth-date" type="date" name="cat[birth_date]"><br>
+
+    <p>Please select your cat's sex:</p>
+    <input type="radio" id="male" name="cat[sex]" value="M">
+    <label for="male">M</label>
+    <input type="radio" id="female" name="cat[sex]" value="F">
+    <label for="female">F</label><br><br>
+
+    <label for="category">Color</label>
+    <select id="category" name="cat[color]">
+      <option disabled selected>--- Please select a color ---</option>
+      <%Cat.colours.each do |colour|%>
+        <option value="<%= colour %>"><%= colour %></option>
+      <%end%>
+    </select><br>
+
+    <label for="description"><br>
+    <textarea id="description" name="cat[description]"></textarea><br>
+
+    <input type="submit" value="Add cat">
+</form>

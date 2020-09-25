@@ -81,7 +81,7 @@ end
     <textarea id="description" name="book[description]"></textarea>
 
     <input type="submit" value="Add book to library">
-</form
+</form>
 
 #------------------Updating------------------
 # In controller
