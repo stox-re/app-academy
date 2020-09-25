@@ -6,7 +6,10 @@
     <li style="border:1px solid #333;margin-bottom:30px;background-color:#f9f7f7">
       <div style="padding:30px;display:flex;justify-content:space-between;">
         <div><%=cat.name%></div>
-        <div><a style="background-color:#9659ff;padding:10px;color:white;text-decoration:none;" href=<%=cat_url(cat.id)%>>Show this cat</a></div>
+        <div>
+          <a style="background-color:#9659ff;padding:10px;color:white;text-decoration:none;" href=<%=edit_cat_url(cat.id)%>>Edit</a>
+          <a style="background-color:#9659ff;padding:10px;color:white;text-decoration:none;" href=<%=cat_url(cat.id)%>>Show this cat</a>
+          </div>
       </div>
     </li>
   <%end%>

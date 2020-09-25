@@ -1,4 +1,4 @@
-<h1>Add a new cat</h1>
+<h1>Editing <%= @cat.name %></h1>
 <a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%=cats_url%>>Back to cats</a>
 
-<%= render "form", action: :new %>
+<%= render "form", action: :edit, cat: @cat %>

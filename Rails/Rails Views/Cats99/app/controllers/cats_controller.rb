@@ -1,36 +1,50 @@
 class CatsController < ApplicationController
   def index
-      @cats = Cat.all
+      @cats = Cat.order(:id)
       render :index
-  end
-
-  def create
-    new_cat = Cat.new(cat_params)
-    if new_cat.save
-      redirect_to cat_url(new_cat.id)
-    else
-      render json: new_cat.errors.full_messages, status: :unprocessable_entity
-    end
   end
 
   def show
     @cat = Cat.find_by_id(params[:id])
-    render :show
+    if @cat == nil
+      is_nil_message
+    else
+      render :show
+    end
   end
 
   def new
+    @cat = Cat.new
     render :new
   end
 
-  def update
-    user = User.find_by_id(params[:id])
-    if user == nil
+  def create
+    @cat = Cat.new(cat_params)
+    if @cat.save
+      redirect_to cat_url(@cat.id)
+    else
+      render json: @cat.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @cat = Cat.find_by_id(params[:id])
+    if @cat == nil
       is_nil_message
     else
-      if user.update(user_params)
-        render json: user
+      render :edit
+    end
+  end
+
+  def update
+    @cat = Cat.find_by_id(params[:id])
+    if @cat == nil
+      is_nil_message
+    else
+      if @cat.update(cat_params)
+        redirect_to cat_url(@cat.id)
       else
-        render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: @cat.errors.full_messages }, status: :unprocessable_entity
       end
     end
   end
