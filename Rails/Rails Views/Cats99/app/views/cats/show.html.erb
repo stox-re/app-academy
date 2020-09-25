@@ -1,66 +1,72 @@
-<h1>Showing <%=@cat.name%></h1>
+<%= render "header" %>
+<div class="center">
+  <div style="margin:50px;">
+    <h1>Showing <%=@cat.name%></h1>
+    <a class="btn" href=<%=cats_url%>>Back to cats</a>
+  </div>
 
-<a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%=cats_url%>>Back to cats</a>
+    <img class="img" src="<%= asset_path( 'cat.jpg' ) %>">
 
-<table style="margin:0;margin-top:30px;">
-    <thead style="background-color:#9659ff;color:#fff;">
-        <tr>
-            <th style="padding:10px;" colspan="2"><%=@cat.name%></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">Id</td>
-            <td style="padding:10px;border:1px solid #333;"><%=@cat.id%></td>
-        </tr>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">Sex</td>
-            <td style="padding:10px;border:1px solid #333;"><%=@cat.sex%></td>
-        </tr>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">Color</td>
-            <td style="padding:10px;border:1px solid #333;"><%=@cat.color%></td>
-        </tr>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">Description</td>
-            <td style="padding:10px;border:1px solid #333;"><%=@cat.description%></td>
-        </tr>
-    </tbody>
-</table>
+    <table class="show-table">
+        <thead>
+            <tr>
+                <th style="padding:10px;" colspan="2"><%=@cat.name%></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td><%=@cat.id%></td>
+            </tr>
+            <tr>
+                <td>Sex</td>
+                <td><%=@cat.sex%></td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td><%=@cat.color%></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><%=@cat.age%></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><%=@cat.description%></td>
+            </tr>
+        </tbody>
+    </table>
 
+    <% @cat_rental_requests.each do |rental_request| %>
+      <table style="margin:0 auto;margin-top:30px;margin-bottom:10px;">
+          <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : "background-color:#9659ff;color:#fff" %>">
+              <tr>
+                  <th style="padding:10px;" colspan="2">Rental Request <%= rental_request.id %></th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>Start Date</td>
+                <td><%= rental_request.start_date %></td>
+            </tr>
+            <tr>
+                <td>End Date</td>
+                <td><%= rental_request.end_date %></td>
+            </tr>
+            <tr>
+                <td>Approved</td>
+                <td><%= rental_request.status %></td>
+            </tr>
+          </tbody>
+      </table>
 
-
-<% @cat_rental_requests.each do |rental_request| %>
-  <table style="margin:0;margin-top:30px;margin-bottom:10px;">
-      <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : "background-color:#9659ff;color:#fff" %>">
-          <tr>
-              <th style="padding:10px;" colspan="2">Rental Request <%= rental_request.id %></th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">Start Date</td>
-            <td style="padding:10px;border:1px solid #333;"><%= rental_request.start_date %></td>
-        </tr>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">End Date</td>
-            <td style="padding:10px;border:1px solid #333;"><%= rental_request.end_date %></td>
-        </tr>
-        <tr>
-            <td style="padding:10px;border:1px solid #333;">Approved</td>
-            <td style="padding:10px;border:1px solid #333;"><%= rental_request.status %></td>
-        </tr>
-      </tbody>
-  </table>
-  <% if rental_request.status == "PENDING" %>
-    <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/approve"  method="POST">
-      <input style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" type="submit" value="Approve" />
-    </form>
-   <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/deny"   method="POST">
-      <input style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;display:inline-block;" type="submit" value="Deny" />
-    </form>
-  <% end %>
-<% end %>
-
-
-
+      <% if rental_request.status == "PENDING" %>
+        <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/approve"  method="POST">
+          <input class="btn" type="submit" value="Approve" />
+        </form>
+      <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/deny"   method="POST">
+          <input class="btn" type="submit" value="Deny" />
+        </form>
+      <% end %>
+    <% end %>
+</div>

@@ -1,17 +1,24 @@
-<h1>All the cats to rent</h1>
-<a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%= new_cat_url %>>Add a new cat &#x2b;</a>
-<a style="padding:10px;background-color:#9659ff;text-decoration:none;color:white;margin-bottom:20px;" href=<%= new_cat_rental_request_url %>>Add a new rental request &#x2b;</a>
+<%= render "header" %>
 
-<ul style="list-style:none;margin:0;padding:0;margin-top:30px;width:50%;">
-  <%@cats.each do |cat|%>
-    <li style="border:1px solid #333;margin-bottom:30px;background-color:#f9f7f7">
-      <div style="padding:30px;display:flex;justify-content:space-between;">
-        <div><%=cat.name%></div>
-        <div>
-          <a style="background-color:#9659ff;padding:10px;color:white;text-decoration:none;" href=<%=edit_cat_url(cat.id)%>>Edit</a>
-          <a style="background-color:#9659ff;padding:10px;color:white;text-decoration:none;" href=<%=cat_url(cat.id)%>>Show this cat</a>
-          </div>
+<div class="center">
+  <div style="margin:50px;">
+    <h1>Cat Rentals</h1>
+    <a class="btn" href=<%= new_cat_url %>>Add a new cat &#x2b;</a>
+    <a class="btn" href=<%= new_cat_rental_request_url %>>Add a new rental request &#x2b;</a>
+  </div>
+
+  <div class="index-box">
+    <%@cats.each do |cat|%>
+      <div class="cat-box">
+        <div style="padding:30px;">
+          <h2><%=cat.name%></h2>
+          <img class="img" src="<%= asset_path( 'kitten.jpg' ) %>">
+          <div>
+            <a class="btn" href=<%=edit_cat_url(cat.id)%>>Edit</a>
+            <a class="btn" href=<%=cat_url(cat.id)%>>Show this cat</a>
+            </div>
+        </div>
       </div>
-    </li>
-  <%end%>
-</ul>
+    <%end%>
+  </div>
+</div>
