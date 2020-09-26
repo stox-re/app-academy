@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   def password=(pw)
     @password = pw
-    self.password_digest = BCrypt::Password.new(pw)
+    self.password_digest = BCrypt::Password.create(pw)
   end
 
   def is_password?(pw)
@@ -43,9 +43,9 @@ class User < ApplicationRecord
   end
 
   def self.find_by_credentials(username, password)
-    user_check = User.where({username: username})
+    user_check = User.where({username: username}).first
     return nil if user_check.nil?
-    return user_check if user_check.is_password(password)
+    return user_check if user_check.is_password?(password)
     return nil
   end
 end

@@ -9,6 +9,26 @@
   </head>
 
   <body style="margin:0;padding:0;">
+    <nav>
+      <h2 class="logo">99 Cats</h2>
+      <div>
+        <% if current_user != nil %>
+          <h2 class="menu-link"><%= current_user.username %></h2>
+
+          <form style="display:inline-block;" action="<%= session_url %>" method="POST">
+            <input type="hidden"
+                  name="authenticity_token"
+                  value="<%= form_authenticity_token %>">
+            <input type="hidden" value="delete" name="_method" />
+            <input style="border:1px solid white;background-color:transparent;" class="menu-link" type="submit" value="Logout" />
+          </form>
+
+        <% else %>
+          <a class="menu-link" href="<%= new_session_url %>">Login</a>
+          <a class="menu-link" href="<%= new_user_url %>">Signup</a>
+        <% end%>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
