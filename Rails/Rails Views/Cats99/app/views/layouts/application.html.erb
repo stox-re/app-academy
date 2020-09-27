@@ -6,26 +6,27 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
   </head>
 
   <body style="margin:0;padding:0;">
     <nav>
-      <a style="text-decoration:none;" href="<%= cats_url %>"><h2 class="logo">99 Cats</h2></a>
+      <a style="text-decoration:none;" href="<%= cats_url %>"><h2 class="logo">99 Cats<span style="margin-left:10px;font-weight:100;">Cat Rentals</span></h2></a>
       <div>
         <% if current_user != nil %>
-          <h2 class="menu-link"><%= current_user.username %></h2>
+          <h2 class="menu-link username"><%= current_user.username %></h2>
 
-          <form style="display:inline-block;position:relative;top:-5px;" action="<%= session_url %>" method="POST">
+          <form class="logout" action="<%= session_url %>" method="POST">
             <input type="hidden"
                   name="authenticity_token"
                   value="<%= form_authenticity_token %>">
             <input type="hidden" value="delete" name="_method" />
-            <input style="border:1px solid white;background-color:transparent;" class="menu-link" type="submit" value="Logout" />
+            <input class="menu-link" type="submit" value="Logout" />
           </form>
 
         <% else %>
-          <a class="menu-link" style="text-decoration:none;border:1px solid white;position:relative;top:2px;" href="<%= new_session_url %>">Login</a>
-          <a class="menu-link" style="text-decoration:none;border:1px solid white;position:relative;top:2px;" href="<%= new_user_url %>">Signup</a>
+          <a class="menu-link login-signup" href="<%= new_session_url %>">Login</a>
+          <a class="menu-link login-signup" href="<%= new_user_url %>">Signup</a>
         <% end%>
       </div>
     </nav>

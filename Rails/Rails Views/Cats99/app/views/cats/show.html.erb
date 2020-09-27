@@ -1,5 +1,5 @@
-<div class="center">
-  <div style="margin:50px;">
+<div class="center padding-top">
+  <div>
     <h1>Showing <%=@cat.name%></h1>
     <a class="btn" href=<%=cats_url%>>Back to cats</a>
   </div>
@@ -35,11 +35,11 @@
             </tr>
         </tbody>
     </table>
-  <div style="display:flex;flex-wrap:wrap;padding:100px;">
+  <div style="display:flex;flex-wrap:wrap;padding:30px;justify-content:center;">
     <% @cat_rental_requests.each do |rental_request| %>
     <div style="display:relative;">
-      <table style="margin:0 auto;margin-top:30px;margin-bottom:10px;">
-          <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : "background-color:#9659ff;color:#fff" %>">
+      <table style="margin:0 auto;margin-top:10px;margin-bottom:30px;">
+          <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : (rental_request.status == "PENDING"? "background-color:#2c2c2c;" : "background-color:red;color:#fff") %>">
               <tr>
                   <th style="padding:10px;" colspan="2">Rental Request <%= rental_request.id %></th>
               </tr>
