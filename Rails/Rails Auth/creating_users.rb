@@ -196,6 +196,7 @@ end
 # Setting the session in ApplicationController
 class ApplicationController < ActionController::Base
   helper_method :current_user # This makes current_user available in all views
+
   def login!(user)
     @current_user = user
     session[:session_token] = user.session_token
