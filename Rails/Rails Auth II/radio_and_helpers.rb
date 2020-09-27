@@ -25,4 +25,19 @@ module ApplicationHelper
   end
 end
 
-<%= cat_link(cat) %>
+<%= cat_link(cat) #%>
+
+# app/helpers/application_helper.rb
+module ApplicationHelper
+  def highlight(text)
+    "<strong class=\"highlight\">#{html_escape(text)}</strong>".html_safe
+  end
+
+  def picture_for(user)
+    html = '<div class="user-picture">'
+    html += "<img src=\"#{user.picture_url}\" alt=\"#{htmp_escape(user.name)}\">"
+    html += '</div>'
+
+    html.html_safe
+  end
+end

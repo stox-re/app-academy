@@ -1,6 +1,7 @@
 <% action_url = (action == :new) ? cats_url : cat_url(@cat.id) %>
 
 <form action="<%= action_url %>" method="post" style="margin-top:30px;">
+    <%= auth_token %>
 
     <% if action == :edit %>
       <input type="hidden" name="_method" value="patch">

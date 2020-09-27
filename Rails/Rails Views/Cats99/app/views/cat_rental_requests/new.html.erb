@@ -5,6 +5,7 @@
     </div>
 
     <form action="<%= cat_rental_requests_url %>" method="post" style="margin-top:30px;">
+      <%= auth_token %>
       <label for="start-date">Start Date</label>
       <input id="start-date" type="date" name="cat_rental_request[start_date]"><br><br>
 
