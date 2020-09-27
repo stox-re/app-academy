@@ -1,4 +1,10 @@
 class CatsController < ApplicationController
+  before_action :redirect_users_who_are_not_logged_in, only: [:new, :create, :edit, :update]
+
+  before_action only: [:edit, :update] do
+    redirect_to cats_url unless current_user.cats.find_by(id: params[:id])
+  end
+
   def index
       @cats = Cat.order(:id)
       render :index
@@ -6,6 +12,12 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find_by_id(params[:id])
+    if current_user != nil && current_user.cats.find_by(id: params[:id])
+      @owns_this_cat = true
+    else
+      @owns_this_cat = false
+    end
+
     @cat_rental_requests = CatRentalRequest.where({cat_id: params[:id]}).order(:start_date)
     @cat_rental_requests.each do |request|
       puts request
@@ -24,6 +36,8 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(cat_params)
+    @cat.owner = current_user
+
     if @cat.save
       redirect_to cat_url(@cat.id)
     else

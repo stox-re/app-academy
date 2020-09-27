@@ -59,13 +59,16 @@
           </tbody>
       </table>
 
-      <% if rental_request.status == "PENDING" %>
-        <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/approve"  method="POST">
-          <input class="btn" type="submit" value="Approve" />
-        </form>
-      <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/deny"   method="POST">
-          <input class="btn" type="submit" value="Deny" />
-        </form>
+      <% if @owns_this_cat %>
+        <% if rental_request.status == "PENDING" %>
+          <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/approve"  method="POST">
+            <input class="btn" type="submit" value="Approve" />
+          </form>
+        <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/deny"   method="POST">
+            <input class="btn" type="submit" value="Deny" />
+          </form>
+        <% end %>
       <% end %>
+
     <% end %>
 </div>

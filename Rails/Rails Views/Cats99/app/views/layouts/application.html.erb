@@ -10,7 +10,7 @@
 
   <body style="margin:0;padding:0;">
     <nav>
-      <h2 class="logo">99 Cats</h2>
+      <a href="<%= cats_url %>"><h2 class="logo">99 Cats</h2></a>
       <div>
         <% if current_user != nil %>
           <h2 class="menu-link"><%= current_user.username %></h2>

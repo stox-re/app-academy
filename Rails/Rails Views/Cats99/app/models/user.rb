@@ -19,6 +19,12 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many(:cats, {
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Cat
+  })
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)
   end

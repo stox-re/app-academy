@@ -18,10 +18,7 @@ class Cat < ApplicationRecord
     %w(black white grey red)
   end
 
-  def age
-    time_ago_in_words(self.birth_date.to_datetime)
-  end
-
+  validates :user_id, presence: true
   validates :birth_date, presence: true
   validates :color, presence: true, inclusion: { in: self.colours, message: "%{value} is not a valid color" }
   validates :name, presence: true
@@ -34,4 +31,14 @@ class Cat < ApplicationRecord
     class_name: :CatRentalRequest,
     dependent: :destroy
   })
+
+  belongs_to(:owner, {
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :User
+  })
+
+  def age
+    time_ago_in_words(self.birth_date.to_datetime)
+  end
 end

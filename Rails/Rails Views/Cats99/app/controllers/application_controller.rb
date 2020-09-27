@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
   def redirect_users_who_are_logged_in
     redirect_to cats_url if current_user
   end
+
+  def redirect_users_who_are_not_logged_in
+    redirect_to cats_url if current_user == nil
+  end
   def is_nil_message
     render json: { errors: ['User does not exist'] }, status: :unprocessable_entity
   end

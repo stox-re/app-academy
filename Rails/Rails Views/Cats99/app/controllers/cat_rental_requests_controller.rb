@@ -1,4 +1,15 @@
 class CatRentalRequestsController < ApplicationController
+  before_action only: [:approve, :deny] do
+    if current_user == nil
+      redirect_to cats_url
+    else
+      check_rental_request = CatRentalRequest.find_by_id(params[:id])
+      if !current_user.cats.find_by(id: check_rental_request.cat_id)
+        redirect_to cats_url
+      end
+    end
+  end
+
   def new
     @cats = Cat.order(:id)
     render :new
@@ -21,7 +32,7 @@ class CatRentalRequestsController < ApplicationController
     if @cat_rental_request.save
       redirect_to cat_url(@cat_rental_request.cat_id)
     else
-      render json: @cat.errors.full_messages, status: :unprocessable_entity
+      render json: @cat_rental_request.errors.full_messages, status: :unprocessable_entity
     end
   end
 
