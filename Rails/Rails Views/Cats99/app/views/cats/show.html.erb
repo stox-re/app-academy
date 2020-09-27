@@ -35,7 +35,7 @@
             </tr>
         </tbody>
     </table>
-
+  <div style="display:flex;flex-wrap:wrap;padding:100px;">
     <% @cat_rental_requests.each do |rental_request| %>
       <table style="margin:0 auto;margin-top:30px;margin-bottom:10px;">
           <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : "background-color:#9659ff;color:#fff" %>">
@@ -44,6 +44,13 @@
               </tr>
           </thead>
           <tbody>
+            <% if rental_request.renter != nil %>
+              <tr>
+                <td>Renter</td>
+                <td><%= rental_request.renter.username %></td>
+              </tr>
+            <% end %>
+
             <tr>
                 <td>Start Date</td>
                 <td><%= rental_request.start_date %></td>
@@ -69,6 +76,6 @@
           </form>
         <% end %>
       <% end %>
-
     <% end %>
+  </div>
 </div>

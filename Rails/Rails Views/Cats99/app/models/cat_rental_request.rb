@@ -9,6 +9,7 @@
 #  status     :string           default("PENDING"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 class CatRentalRequest < ApplicationRecord
   include ActionView::Helpers::DateHelper
@@ -17,6 +18,7 @@ class CatRentalRequest < ApplicationRecord
     %w(PENDING APPROVED DENIED)
   end
 
+  validates :user_id, presence: true
   validates :cat_id, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
@@ -27,6 +29,12 @@ class CatRentalRequest < ApplicationRecord
     primary_key: :id,
     foreign_key: :cat_id,
     class_name: :Cat
+  })
+
+  belongs_to(:renter, {
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :User
   })
 
   def overlapping_requests

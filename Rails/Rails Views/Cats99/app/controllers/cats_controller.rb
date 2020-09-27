@@ -12,16 +12,9 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find_by_id(params[:id])
-    if current_user != nil && current_user.cats.find_by(id: params[:id])
-      @owns_this_cat = true
-    else
-      @owns_this_cat = false
-    end
-
+    @owns_this_cat = (current_user != nil && current_user.cats.find_by(id: params[:id])) ? true : false
     @cat_rental_requests = CatRentalRequest.where({cat_id: params[:id]}).order(:start_date)
-    @cat_rental_requests.each do |request|
-      puts request
-    end
+
     if @cat == nil
       is_nil_message
     else

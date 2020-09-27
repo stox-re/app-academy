@@ -1,8 +1,10 @@
 <div class="center">
   <div style="margin:50px;">
     <h1>Cat Rentals</h1>
-    <a class="btn" href=<%= new_cat_url %>>Add a new cat &#x2b;</a>
-    <a class="btn" href=<%= new_cat_rental_request_url %>>Add a new rental request &#x2b;</a>
+    <% if current_user != nil %>
+      <a class="btn" href=<%= new_cat_url %>>Add a new cat &#x2b;</a>
+      <a class="btn" href=<%= new_cat_rental_request_url %>>Add a new rental request &#x2b;</a>
+    <% end %>
   </div>
 
   <div class="index-box">
