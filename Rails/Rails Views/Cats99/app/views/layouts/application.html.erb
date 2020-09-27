@@ -10,12 +10,12 @@
 
   <body style="margin:0;padding:0;">
     <nav>
-      <a href="<%= cats_url %>"><h2 class="logo">99 Cats</h2></a>
+      <a style="text-decoration:none;" href="<%= cats_url %>"><h2 class="logo">99 Cats</h2></a>
       <div>
         <% if current_user != nil %>
           <h2 class="menu-link"><%= current_user.username %></h2>
 
-          <form style="display:inline-block;" action="<%= session_url %>" method="POST">
+          <form style="display:inline-block;position:relative;top:-5px;" action="<%= session_url %>" method="POST">
             <input type="hidden"
                   name="authenticity_token"
                   value="<%= form_authenticity_token %>">
@@ -24,8 +24,8 @@
           </form>
 
         <% else %>
-          <a class="menu-link" href="<%= new_session_url %>">Login</a>
-          <a class="menu-link" href="<%= new_user_url %>">Signup</a>
+          <a class="menu-link" style="text-decoration:none;border:1px solid white;position:relative;top:2px;" href="<%= new_session_url %>">Login</a>
+          <a class="menu-link" style="text-decoration:none;border:1px solid white;position:relative;top:2px;" href="<%= new_user_url %>">Signup</a>
         <% end%>
       </div>
     </nav>

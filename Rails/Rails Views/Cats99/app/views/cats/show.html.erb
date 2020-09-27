@@ -37,6 +37,7 @@
     </table>
   <div style="display:flex;flex-wrap:wrap;padding:100px;">
     <% @cat_rental_requests.each do |rental_request| %>
+    <div style="display:relative;">
       <table style="margin:0 auto;margin-top:30px;margin-bottom:10px;">
           <thead style="<%= rental_request.status == "APPROVED" ? "background-color:green;color:white;" : "background-color:#9659ff;color:#fff" %>">
               <tr>
@@ -71,11 +72,12 @@
           <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/approve"  method="POST">
             <input class="btn" type="submit" value="Approve" />
           </form>
-        <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/deny"   method="POST">
+          <form style="display:inline;" action="/cat_rental_requests/<%= rental_request.id %>/deny"   method="POST">
             <input class="btn" type="submit" value="Deny" />
           </form>
         <% end %>
       <% end %>
+    </div>
     <% end %>
   </div>
 </div>
