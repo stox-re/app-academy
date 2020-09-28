@@ -1,0 +1,20 @@
+<div class="center padding-top box">
+  <h2 class="purple"><%= @albumn.title %> by <%= @albumn.band.name %></h2>
+  <p class="box white sm-padding-top"><%= @albumn.year %> <%= @albumn.is_live ? " live " : " in studio" %></h2>
+  <%= render 'shared/errors' %>
+  <h2 class="padding-top purple"></h2>
+
+  <div class="box padding-top">
+  <a class="menu-link margin-top inline-block" href="<%= edit_albumn_url(@albumn.id) %>">Edit albumn</a>
+    <form action="<%= albumn_url(@albumn.id) %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+      <input type="hidden" value="delete" name="_method" />
+      <input class="menu-link delete-band bg-red" type="submit" value="Delete albumn" />
+    </form>
+  </div>
+  <a class="menu-link margin-top inline-block back-btn" href="<%= band_url(@albumn.band_id) %>">Back to <%= @albumn.band.name %></a>
+
+</div>

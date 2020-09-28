@@ -1,0 +1,33 @@
+<div class="box center padding-top">
+  <h2 class="purple">New Albumn</h2>
+  <%= render 'shared/errors' %>
+  <form class="form-width padding-top flex columns" action="<%= albumns_url %>" method="POST">
+    <%= auth_token %>
+    <div class="flex space-between margin-bottom align-center">
+      <label for="band_id">Band</label>
+      <select id="band_id" name="albumn[band_id]">
+        <option disabled>--- Please select the band ---</option>
+        <%@bands.each do |band|%>
+          <option <%= (band.id == @band.id ) ? "selected" : ""%> value="<%= band.id %>"><%= band.name%></option>
+        <%end%>
+      </select>
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <label for="albumn_title">Title</label>
+      <input type="text" name="albumn[title]" id="albumn_title">
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <label for="albumn_year">Year</label>
+      <input type="date" name="albumn[year]" id="albumn_year">
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <input type="radio" id="is_live" name="albumn[is_live]" value="true" style="width:inherit;">
+      <label for="is_live">This is a live recording</label>
+
+      <input type="radio" id="is_studio" name="albumn[is_live]" value="false" style="width:inherit;" checked>
+      <label for="is_studio">This is a studio recording</label>
+    </div>
+    <input class="menu-link" type="submit" value="Add new albumn">
+  </form>
+  <a class="menu-link margin-top inline-block back-btn" href="<%= band_url(@band.id) %>">Back to <%= @band.name %></a>
+</div>

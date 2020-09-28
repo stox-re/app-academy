@@ -29,8 +29,9 @@ span, article, footer, time, small {
   font-family: 'Raleway', sans-serif;
   background-color:black;
 }
-input{
+input, select{
   background-color:white;
+  color:#2c2c2c;
   padding:10px;
   width:70%;
 }
@@ -42,8 +43,17 @@ h1, h2, header{
   font-family: 'Bungee Inline', cursive;
   color: #FDDB61;
 }
-.bands li{
+.bands li, .albumns li{
   margin-bottom:10px;
+  padding:10px;
+  background-color:gray;
+  color: black;
+  width:50%;
+  margin:0 auto;
+  margin-bottom:10px;
+}
+.bands li:hover, .albumns li:hover{
+  background-color:white;
 }
 .align-center{
   align-items: center;
@@ -91,7 +101,7 @@ form, form div{
 ul{
   list-style: none;
 }
-.box, label, h2, nav, .box ul, .box li{
+.box, label, h2, nav, .box ul{
   background-color:#2c2c2c;
 }
 input[type=submit]{
@@ -146,12 +156,21 @@ nav{
   background-color:#fc0f2f;
   color:white;
 }
+.bg-purple{
+  background-color: #8c5eff;
+}
+.back-btn{
+  display:block;width:200px;margin:0 auto;margin-top:30px;
+}
 .center{
   margin:0 auto;
   text-align: center;
 }
 .padding-top{
   padding-top:30px;
+}
+.sm-padding-top{
+  padding-top:10px;
 }
 @media only screen and (max-width: 960px) {
   .container{

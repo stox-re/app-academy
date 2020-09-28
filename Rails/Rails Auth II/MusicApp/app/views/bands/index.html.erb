@@ -3,7 +3,7 @@
   <h2 class="padding-top purple"></h2>
   <ul class="white bands margin-bottom">
   <% @bands.each do |band| %>
-    <li><a class="box" href="<%= band_url(band.id) %>"><%= band.name %></a></li>
+    <a class="box" href="<%= band_url(band.id) %>"><li><%= band.name %></li></a>
   <% end %>
   </ul>
   <a class="menu-link margin-top inline-block" href="<%= new_band_url %>">Add a new band</a>

@@ -1,0 +1,26 @@
+<div class="box center padding-top">
+  <h2 class="purple">Edit Albumn</h2>
+  <%= render 'shared/errors' %>
+  <form class="form-width padding-top flex columns" action="<%= albumn_url %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <%= auth_token %>
+
+    <div class="flex space-between margin-bottom align-center">
+      <label for="albumn_title">Title</label>
+      <input type="text" name="albumn[title]" id="albumn_title" value="<%= @albumn.title %>">
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <label for="albumn_year">Year</label>
+      <input type="date" name="albumn[year]" id="albumn_year" value="<%= @albumn.year %>">
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <input type="radio" id="is_live" name="albumn[is_live]" value="true" style="width:inherit;" <%= @albumn.is_live ? "checked" : "" %>>
+      <label for="is_live">This is a live recording</label>
+
+      <input type="radio" id="is_studio" name="albumn[is_live]" value="false" style="width:inherit;" <%= !@albumn.is_live ? "checked" : "" %>>
+      <label for="is_studio">This is a studio recording</label>
+    </div>
+    <input class="menu-link" type="submit" value="Update">
+  </form>
+  <a class="menu-link margin-top inline-block back-btn" href="<%= albumn_url(@albumn.id) %>">Back to <%= @albumn.title %></a>
+</div>

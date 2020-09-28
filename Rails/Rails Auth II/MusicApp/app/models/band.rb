@@ -9,4 +9,11 @@
 #
 class Band < ApplicationRecord
   validates :name, presence: true
+
+  has_many(:albumns, {
+    primary_key: :id,
+    foreign_key: :band_id,
+    class_name: :Albumn,
+    dependent: :destroy
+  })
 end

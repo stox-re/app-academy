@@ -1,15 +1,24 @@
 <div class="center padding-top box">
   <h2 class="purple"><%= @band.name %></h2>
   <%= render 'shared/errors' %>
-  <h2 class="padding-top purple"></h2>
-  <form action="<%= band_url(@band.id) %>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>">
-    <input type="hidden" value="delete" name="_method" />
-    <input class="menu-link delete-band bg-red" type="submit" value="Delete band" />
-  </form>
-  <a class="menu-link margin-top inline-block bg-purple" href="<%= edit_band_url(@band.id) %>">Edit band</a>
-  <a class="menu-link margin-top inline-block" href="<%= bands_url %>">Back to bands</a>
+  <h3 class="white"> Albumns</h3>
+  <ul class="albumns box">
+    <% @band.albumns.each do |albumn| %>
+      <a href="<%= albumn_url(albumn.id) %>"><li><%= albumn.title %></li></a>
+    <% end %>
+  </ul>
+
+  <div class="box padding-top">
+    <a class="menu-link margin-top inline-block" href="<%= new_band_albumn_url(@band.id) %>">Add Albumn</a>
+    <a class="menu-link margin-top inline-block" href="<%= edit_band_url(@band.id) %>">Edit Band Name</a>
+    <form action="<%= band_url(@band.id) %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+      <input type="hidden" value="delete" name="_method" />
+      <input class="menu-link delete-band bg-red" type="submit" value="Delete band" />
+    </form>
+  </div>
+  <a class="menu-link margin-top inline-block back-btn" href="<%= bands_url %>">Back to bands</a>
 </div>
