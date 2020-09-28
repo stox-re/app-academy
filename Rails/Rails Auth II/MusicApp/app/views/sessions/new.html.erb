@@ -1,0 +1,13 @@
+<div class="center padding-top">
+  <h1>Login user</h1>
+  <form action="<%= session_url %>" method="POST">
+    <%= auth_token %>
+    <label for="user_email">Email</label>
+    <input type="text" name="user[email]" id="user_email">
+    <br><br>
+    <label for="user_password">Password</label>
+    <input type="password" name="user[password]" id="user_password">
+    <br><br>
+    <input type="submit" value="Login">
+  </form>
+</div>
