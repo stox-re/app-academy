@@ -13,7 +13,7 @@
   <body>
     <div class="container">
       <div class="header padding-top">
-        <h1>Music App</h1>
+        <a class="box" href="<%= bands_url %>"><h1>Music App</h1></a>
         <nav class="flex justify-center padding-top">
         <% if logged_in? %>
           <form class="logout" action="<%= session_url %>" method="POST">

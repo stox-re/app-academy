@@ -1,0 +1,15 @@
+<div class="center padding-top box">
+  <h2 class="purple"><%= @band.name %></h2>
+  <%= render 'shared/errors' %>
+  <h2 class="padding-top purple"></h2>
+  <form action="<%= band_url(@band.id) %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+    <input type="hidden" value="delete" name="_method" />
+    <input class="menu-link delete-band bg-red" type="submit" value="Delete band" />
+  </form>
+  <a class="menu-link margin-top inline-block bg-purple" href="<%= edit_band_url(@band.id) %>">Edit band</a>
+  <a class="menu-link margin-top inline-block" href="<%= bands_url %>">Back to bands</a>
+</div>

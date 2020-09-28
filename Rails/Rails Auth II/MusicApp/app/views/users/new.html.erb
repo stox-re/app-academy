@@ -3,11 +3,11 @@
   <%= render 'shared/errors' %>
   <form class="form-width padding-top flex columns" action="<%= users_url %>" method="POST">
     <%= auth_token %>
-    <div class="flex space-between margin-bottom">
+    <div class="flex space-between margin-bottom align-center">
       <label for="user_email">Email</label>
       <input type="text" name="user[email]" id="user_email">
     </div>
-    <div class="flex space-between margin-bottom">
+    <div class="flex space-between margin-bottom align-center">
       <label for="user_password">Password</label>
       <input type="password" name="user[password]" id="user_password">
     </div>

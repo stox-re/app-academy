@@ -1,0 +1,10 @@
+<div class="center padding-top box">
+  <h2 class="purple">All the bands</h2>
+  <h2 class="padding-top purple"></h2>
+  <ul class="white bands margin-bottom">
+  <% @bands.each do |band| %>
+    <li><a class="box" href="<%= band_url(band.id) %>"><%= band.name %></a></li>
+  <% end %>
+  </ul>
+  <a class="menu-link margin-top inline-block" href="<%= new_band_url %>">Add a new band</a>
+</div>

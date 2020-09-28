@@ -42,9 +42,27 @@ h1, h2, header{
   font-family: 'Bungee Inline', cursive;
   color: #FDDB61;
 }
+.bands li{
+  margin-bottom:10px;
+}
+.align-center{
+  align-items: center;
+}
+input.delete-band[type=submit]{
+  width:200px;
+}
+.white{
+  color:white;
+}
 h1{
   font-size:4em;
   display: contents;
+}
+.margin-bottom{
+  margin-bottom: 60px;
+}
+.inline-block{
+  display:inline-block;
 }
 h2{
   font-size:2em;
@@ -124,10 +142,19 @@ nav{
 .red{
   color:#fc0f2f;
 }
+.bg-red{
+  background-color:#fc0f2f;
+  color:white;
+}
 .center{
   margin:0 auto;
   text-align: center;
 }
 .padding-top{
   padding-top:30px;
+}
+@media only screen and (max-width: 960px) {
+  .container{
+    max-width:100%;
+  }
 }
