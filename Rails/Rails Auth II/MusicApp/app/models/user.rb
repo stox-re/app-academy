@@ -23,7 +23,7 @@ class User < ApplicationRecord
     user_check = User.find_by({email: email})
     return nil if user_check == nil
     return user_check if user_check.is_password(password)
-    return nil
+    return false
   end
 
   def self.generate_session_token

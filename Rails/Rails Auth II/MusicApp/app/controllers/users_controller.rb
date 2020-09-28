@@ -14,7 +14,8 @@ class UsersController < ApplicationController
     if @user.save
       login_user!(@user.email, @user.password)
     else
-      render json: @user.errors.full_messages
+      flash[:errors] = @user.errors.full_messages
+      redirect_to new_user_url
     end
   end
 end

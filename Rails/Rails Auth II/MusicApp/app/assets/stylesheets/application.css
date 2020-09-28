@@ -13,3 +13,121 @@
  *= require_tree .
  *= require_self
  */
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  font-family: 'Raleway', sans-serif;
+  background-color:black;
+}
+input{
+  background-color:white;
+  padding:10px;
+  width:70%;
+}
+input[type=submit]{
+  width:100%;
+  cursor:pointer;
+}
+h1, h2, header{
+  font-family: 'Bungee Inline', cursive;
+  color: #FDDB61;
+}
+h1{
+  font-size:4em;
+  display: contents;
+}
+h2{
+  font-size:2em;
+}
+.flex{
+  display:flex;
+}
+.columns{
+  flex-direction: column;
+}
+.margin-bottom{
+  margin-bottom:20px;
+}
+.form-width{
+  width:400px;
+  margin:0 auto;
+}
+form label{
+  color:white;
+}
+form, form div{
+  text-align:left;
+  display:contents;
+  background-color:#2c2c2c;
+}
+ul{
+  list-style: none;
+}
+.box, label, h2, nav, .box ul, .box li{
+  background-color:#2c2c2c;
+}
+input[type=submit]{
+  text-align:center;
+  font-size:1.2em;
+}
+.space-between{
+  justify-content: space-between;
+}
+.justify-center{
+  justify-content: center;
+}
+.menu-link{
+  border-radius:5px;
+  padding:10px;
+  color:#2c2c2c;
+  background-color:#FDDB61;
+  font-size:1.2em;
+}
+.margins{
+  margin-right:10px;
+}
+.menu-link:hover{
+  opacity:0.9;
+}
+nav{
+  width:100%;
+}
+.container{
+  width:960px;
+  margin:0 auto;
+  border-right:3px solid gray;
+  border-left:3px solid gray;
+  height:100vh;
+  background-color:#2c2c2c;
+  z-index: 1;
+}
+.header{
+  text-align: center;
+  background-color:#2c2c2c;
+}
+.logout, input.logout[type=submit]{
+  width:100px;
+}
+.purple{
+  color:#8c5eff;
+}
+.red{
+  color:#fc0f2f;
+}
+.center{
+  margin:0 auto;
+  text-align: center;
+}
+.padding-top{
+  padding-top:30px;
+}

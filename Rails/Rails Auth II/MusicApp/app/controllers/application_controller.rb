@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
   def login_user!(email, password)
     user_check = User.find_by_credentials(email, password)
     if user_check == nil
-      is_nil_message
+      flash[:errors] = ["User does not exist"]
+      redirect_to new_session_url
+    elsif user_check == false
+      flash[:errors] = ["Password incorrect"]
+      redirect_to new_session_url
     else
       log_in_user!(user_check)
       redirect_to user_url(current_user.id)

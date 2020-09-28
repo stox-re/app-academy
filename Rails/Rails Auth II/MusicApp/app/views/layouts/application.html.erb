@@ -7,23 +7,30 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <nav>
-    <% if logged_in? %>
-      <form class="logout" action="<%= session_url %>" method="POST">
-        <input type="hidden"
-            name="authenticity_token"
-            value="<%= form_authenticity_token %>">
-        <input type="hidden" value="delete" name="_method" />
-        <input class="menu-link" type="submit" value="Logout" />
-      </form>
-    <% else %>
-      <a href="<%= new_session_url %>">Login</a>
-      <a href="<%= new_user_url %>">Signup</a>
-    <% end %>
-    </nav>
-    <%= yield %>
+    <div class="container">
+      <div class="header padding-top">
+        <h1>Music App</h1>
+        <nav class="flex justify-center padding-top">
+        <% if logged_in? %>
+          <form class="logout" action="<%= session_url %>" method="POST">
+            <input type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>">
+            <input type="hidden" value="delete" name="_method" />
+            <input class="menu-link logout" type="submit" value="Logout" />
+          </form>
+        <% else %>
+          <a class="menu-link margins" href="<%= new_session_url %>">Login</a>
+          <a class="menu-link margins" href="<%= new_user_url %>">Signup</a>
+        <% end %>
+        </nav>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
