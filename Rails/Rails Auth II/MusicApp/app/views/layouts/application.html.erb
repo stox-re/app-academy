@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <nav>
+    <% if logged_in? %>
+      <form class="logout" action="<%= session_url %>" method="POST">
+        <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+        <input type="hidden" value="delete" name="_method" />
+        <input class="menu-link" type="submit" value="Logout" />
+      </form>
+    <% else %>
+      <a href="<%= new_session_url %>">Login</a>
+      <a href="<%= new_user_url %>">Signup</a>
+    <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
