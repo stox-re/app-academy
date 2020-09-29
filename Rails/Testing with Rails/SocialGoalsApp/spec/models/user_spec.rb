@@ -6,10 +6,6 @@ RSpec.describe User, type: :model do
 
   describe "validations" do
     it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:password_digest) }
-    it { should validate_uniqueness_of(:session_token) }
-    it { should validate_uniqueness_of(:activated) }
-    it { should validate_uniqueness_of(:activation_token) }
     it { should validate_length_of(:password).is_at_least(6) }
   end
 
@@ -21,15 +17,21 @@ RSpec.describe User, type: :model do
 
   describe "class methods" do
     describe "::find_by_credentials" do
+      it "should return false if the user pass is wrong" do
+        user.save
+        user_check = User.find_by_credentials("test@test.com", "nottesting")
+        expect(user_check).to be false
+      end
+
       it "should return nil if the user is not found" do
         user.save
-        user_check = User.find_by({name: "test@test.com", password: "nottesting"})
+        user_check = User.find_by_credentials("nottest@test.com", "nottesting")
         expect(user_check).to be_nil
       end
 
       it "should return the user if it is found" do
-        user.save
-        user_check = User.find_by({name: "test@test.com", password: "testing"})
+        user.save!
+        user_check = User.find_by_credentials("test@test.com", "testing")
         expect(user_check).to eq(user)
       end
     end
@@ -54,14 +56,14 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe "#set_activate" do
+    describe "#set_activated!" do
       it "should set the activated boolean to true" do
-        user.set_activate
+        user.set_activated!
         expect(user.activated).to be true
       end
     end
 
-    describe "#is_password" do
+    describe "#is_password?" do
       it "should return false if pass is wrong" do
         expect(user.is_password?("nottesting")).to be false
       end
