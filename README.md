@@ -19,4 +19,5 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [URL Shortener](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record/URLShortener) - A URL Shortener app in Rails which also tracks visits
 * [Polls App](https://github.com/stockermans/app-academy/tree/master/SQL/Active%20Record%20II/PollsApp) - Rails database setup and use of ActiveRecord for a survey polls app
 * [Art Share API](https://github.com/stockermans/app-academy/tree/master/Rails/Routes%20and%20Controllers/Art%20Share%20API) - An API for art sharing, with users, artworks and comments
-* [99 Cats](https://github.com/stockermans/app-academy/tree/master/Rails/Rails%20Views/Cats99) - A rails app to create and rent cats with users.
+* [99 Cats](https://github.com/stockermans/app-academy/tree/master/Rails/Rails%20Views/Cats99) - A rails app to create and rent cats with users
+* [Music App](https://github.com/stockermans/app-academy/tree/master/Rails/Rails%20Auth%20II/MusicApp) - A music tracking app with email activations for users
