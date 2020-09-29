@@ -3,7 +3,12 @@ Rails.application.routes.draw do
     resources :albumns, only: :new
   end
 
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show] do
+    collection do
+      get "activate"
+    end
+  end
+
   resources :albumns, only: [:create, :edit, :show, :update, :destroy] do
     resources :tracks, only: :new
   end

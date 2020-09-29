@@ -1,10 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
-  def require_current_user!
-
-  end
-
   def logged_in?
     current_user != nil
   end
@@ -26,6 +22,9 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_url
     elsif user_check == false
       flash[:errors] = ["Password incorrect"]
+      redirect_to new_session_url
+    elsif user_check.activated == false
+      flash[:errors] = ["This account is not yet activated, please check your email."]
       redirect_to new_session_url
     else
       log_in_user!(user_check)
