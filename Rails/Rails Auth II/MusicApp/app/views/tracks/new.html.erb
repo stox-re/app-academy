@@ -26,7 +26,9 @@
       <input type="radio" id="is_not_bonus" name="track[is_bonus]" value="false" style="width:inherit;" checked>
       <label for="is_not_bonus">This is a regular track</label>
     </div>
-    <input class="menu-link" type="submit" value="Add new albumn">
+    <label for="track_lyrics"></label>
+    <textarea id="track_lyrics" name="track[lyrics]" placeholder="Enter your lyrics here (optional)"></textarea>
+    <input class="menu-link" type="submit" value="Add new track">
   </form>
   <a class="menu-link margin-top inline-block back-btn" href="<%= albumn_url(@albumn.id) %>">Back to <%= @albumn.title %></a>
 </div>

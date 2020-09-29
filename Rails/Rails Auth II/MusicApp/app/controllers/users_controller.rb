@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :redirect_users_who_are_not_logged_in, only: [:show]
+  before_action :require_current_user!, only: [:show]
 
   def new
     render :new

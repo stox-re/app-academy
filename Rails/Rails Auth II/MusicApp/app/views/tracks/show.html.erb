@@ -2,7 +2,10 @@
   <h2 class="purple padding-top"><%= @track.title %> by <%= @track.albumn.band.name %></h2>
   <p class="box white sm-padding-top">Order: <%= @track.ord %> <%= @track.is_bonus ? " Bonus Track " : "" %></h2>
   <%= render 'shared/errors' %>
-  <h2 class="padding-top purple"></h2>
+
+  <pre class="white box">
+    <%= ugly_lyrics(@track.lyrics ) %>
+  </pre>
 
   <div class="box padding-top">
     <a class="menu-link margin-top inline-block" href="<%= edit_track_url(@track.id) %>">Edit this track</a>

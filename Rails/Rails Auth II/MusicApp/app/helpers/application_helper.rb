@@ -7,4 +7,13 @@ module ApplicationHelper
     html += "/>"
     html.html_safe
   end
+
+  def ugly_lyrics(lyrics)
+    lyrics_with_formatting = ""
+    lyrics.lines.each do |line|
+      lyrics_with_formatting += "&#9835; #{html_escape(line)}"
+    end
+    "<pre>#{lyrics_with_formatting}</pre>".html_safe
+  end
+
 end

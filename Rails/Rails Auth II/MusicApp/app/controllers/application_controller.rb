@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
+  def require_current_user!
+
+  end
+
   def logged_in?
     current_user != nil
   end
@@ -31,11 +35,11 @@ class ApplicationController < ActionController::Base
 
   def redirect_users_who_are_logged
     if logged_in?
-      redirect_to user_url
+      redirect_to bands_url
     end
   end
 
-  def redirect_users_who_are_not_logged_in
+  def require_current_user!
     redirect_to new_user_url if !logged_in?
   end
 end

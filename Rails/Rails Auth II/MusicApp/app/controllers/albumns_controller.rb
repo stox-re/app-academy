@@ -1,4 +1,6 @@
 class AlbumnsController < ApplicationController
+  before_action :require_current_user!
+
   def new
     @bands = Band.order(:id)
     @band = Band.find_by({id: params[:band_id]})

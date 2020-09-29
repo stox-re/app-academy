@@ -27,6 +27,7 @@
       <input type="radio" id="is_not_bonus" name="track[is_bonus]" value="false" style="width:inherit;" <%= !@track.is_bonus ? "checked" : ""%>>
       <label for="is_not_bonus">This is a regular track</label>
     </div>
+    <textarea id="track_lyrics" name="track[lyrics]"><%= @track.lyrics %></textarea>
     <input class="menu-link" type="submit" value="Edit this track">
   </form>
   <a class="menu-link margin-top inline-block back-btn" href="<%= albumn_url(@albumn.id) %>">Back to <%= @albumn.title %></a>

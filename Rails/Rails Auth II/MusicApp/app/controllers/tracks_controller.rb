@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_action :require_current_user!
+
   def new
     @albumn = Albumn.find_by({id: params[:albumn_id]})
     @albumns = Albumn.where({band_id: @albumn.band_id})

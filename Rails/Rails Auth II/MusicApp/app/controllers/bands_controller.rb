@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_action :require_current_user!
+
   def index
     @bands = Band.order(:id)
     render :index

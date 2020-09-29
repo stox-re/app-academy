@@ -16,6 +16,7 @@
         <a class="box" href="<%= bands_url %>"><h1>Music App</h1></a>
         <nav class="flex justify-center padding-top">
         <% if logged_in? %>
+          <a class="menu-link margins" href="<%= user_url(current_user) %>">Profile</a>
           <form class="logout" action="<%= session_url %>" method="POST">
             <input type="hidden"
                 name="authenticity_token"

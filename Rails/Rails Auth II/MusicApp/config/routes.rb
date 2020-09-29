@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :tracks, only: [:create, :edit, :show, :update, :destroy]
   resource :session, only: [:create, :destroy, :new]
 
-  root to: redirect("/bands")
+  root to: redirect("/session/new")
 end
