@@ -1,0 +1,33 @@
+<div class="box center padding-top">
+  <h2 class="purple">Edit Track</h2>
+  <%= render 'shared/errors' %>
+  <form class="form-width padding-top flex columns" action="<%= track_url %>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="flex space-between margin-bottom align-center">
+      <label for="band_id">Albumn</label>
+      <select id="band_id" name="track[albumn_id]">
+        <option disabled>--- Please select the albumn ---</option>
+        <%@albumns.each do |albumn|%>
+          <option <%= (albumn.id == @albumn.id ) ? "selected" : ""%> value="<%= albumn.id %>"><%= albumn.title%></option>
+        <%end%>
+      </select>
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <label for="track_title">Title</label>
+      <input type="text" name="track[title]" id="track_title" value="<%= @track.title %>">
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <label for="track_ord">Order</label>
+      <input type="number" name="track[ord]" id="track_ord" value="<%= @track.ord %>">
+    </div>
+    <div class="flex space-between margin-bottom align-center">
+      <input type="radio" id="is_bonus" name="track[is_bonus]" value="true" style="width:inherit;" <%= @track.is_bonus ? "checked" : ""%>>
+      <label for="is_bonus">This is a bonus track</label>
+      <input type="radio" id="is_not_bonus" name="track[is_bonus]" value="false" style="width:inherit;" <%= !@track.is_bonus ? "checked" : ""%>>
+      <label for="is_not_bonus">This is a regular track</label>
+    </div>
+    <input class="menu-link" type="submit" value="Edit this track">
+  </form>
+  <a class="menu-link margin-top inline-block back-btn" href="<%= albumn_url(@albumn.id) %>">Back to <%= @albumn.title %></a>
+</div>

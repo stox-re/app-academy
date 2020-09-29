@@ -2,8 +2,6 @@ class AlbumnsController < ApplicationController
   def new
     @bands = Band.order(:id)
     @band = Band.find_by({id: params[:band_id]})
-    puts "THE BAND"
-    puts @band
     render :new
   end
 
@@ -19,6 +17,7 @@ class AlbumnsController < ApplicationController
 
   def show
     @albumn = Albumn.find_by({id: params[:id]})
+    @tracks = Track.where({albumn_id: @albumn.id}).order(:ord)
     render :show
   end
 

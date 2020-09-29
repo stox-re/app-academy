@@ -16,4 +16,10 @@ class Band < ApplicationRecord
     class_name: :Albumn,
     dependent: :destroy
   })
+
+  has_many(:tracks, {
+    primary_key: :id,
+    through: :albumns,
+    dependent: :destroy
+  })
 end

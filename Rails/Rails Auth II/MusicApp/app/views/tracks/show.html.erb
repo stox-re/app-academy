@@ -1,0 +1,20 @@
+<div class="center padding-top box">
+  <h2 class="purple padding-top"><%= @track.title %> by <%= @track.albumn.band.name %></h2>
+  <p class="box white sm-padding-top">Order: <%= @track.ord %> <%= @track.is_bonus ? " Bonus Track " : "" %></h2>
+  <%= render 'shared/errors' %>
+  <h2 class="padding-top purple"></h2>
+
+  <div class="box padding-top">
+    <a class="menu-link margin-top inline-block" href="<%= edit_track_url(@track.id) %>">Edit this track</a>
+    <form action="<%= track_url(@track.id) %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+      <input type="hidden" value="delete" name="_method" />
+      <input class="menu-link delete-band bg-red" type="submit" value="Delete track" />
+    </form>
+  </div>
+
+  <a class="menu-link margin-top inline-block back-btn" href="<%= albumn_url(@track.albumn.id) %>">Back to <%= @track.albumn.title %></a>
+</div>

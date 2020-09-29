@@ -1,10 +1,15 @@
 <div class="center padding-top box">
-  <h2 class="purple"><%= @albumn.title %> by <%= @albumn.band.name %></h2>
+  <h2 class="purple padding-top"><%= @albumn.title %> by <%= @albumn.band.name %></h2>
   <p class="box white sm-padding-top"><%= @albumn.year %> <%= @albumn.is_live ? " live " : " in studio" %></h2>
   <%= render 'shared/errors' %>
-  <h2 class="padding-top purple"></h2>
-
+  <h3 class="white">Tracks</h3>
+  <ul class="albumns box">
+    <% @tracks.each do |track| %>
+      <a href="<%= track_url(track.id) %>"><li><%= track.ord %> <%= track.title %></li></a>
+    <% end %>
+  </ul>
   <div class="box padding-top">
+  <a class="menu-link margin-top inline-block" href="<%= new_albumn_track_url(@albumn.id) %>">Add Track</a>
   <a class="menu-link margin-top inline-block" href="<%= edit_albumn_url(@albumn.id) %>">Edit albumn</a>
     <form action="<%= albumn_url(@albumn.id) %>" method="POST">
       <input type="hidden" name="_method" value="DELETE">
@@ -16,5 +21,4 @@
     </form>
   </div>
   <a class="menu-link margin-top inline-block back-btn" href="<%= band_url(@albumn.band_id) %>">Back to <%= @albumn.band.name %></a>
-
 </div>
