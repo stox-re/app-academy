@@ -7,26 +7,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <div class="cb">
+    <div class="nav cb">
       <% if logged_in? %>
         <form class="fr" class="logout" action="<%= session_url %>" method="POST">
         <input type="hidden"
           name="authenticity_token"
           value="<%= form_authenticity_token %>">
         <input type="hidden" value="delete" name="_method" />
-        <input type="submit" value="Logout" />
+        <input class="logout-btn" type="submit" value="Logout" />
       </form>
-      <a class="fr" href="<%= user_url(current_user) %>">My Profile</a>
+      <a class="fr mr" href="<%= user_url(current_user) %>">My Profile</a>
     <% else %>
       <a class="fr" href="<%= new_session_url %>">Login</a>
-      <a class="fr" href="<%= new_user_url %>">Signup</a>
+      <a class="fr mr" href="<%= new_user_url %>">Signup</a>
     <% end %>
-      <a href="<%= goals_url %>">Public goals</a>
+      <a href="<%= goals_url %>">Goals Board</a>
   </div>
-
-    <%= yield %>
+    <div class="wrap">
+      <%= yield %>
+    </div>
   </body>
 </html>

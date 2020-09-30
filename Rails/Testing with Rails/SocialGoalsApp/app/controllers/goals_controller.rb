@@ -7,6 +7,11 @@ class GoalsController < ApplicationController
     render :index
   end
 
+  def goal_comment
+    @goals = Goal.all
+    render :new_goal_comment
+  end
+
   def new
     render :new
   end
@@ -18,6 +23,7 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find_by({id: params[:id]})
+    @goal_comments = GoalComment.where({goal_id: @goal.id})
     if @goal.is_public
       render :show
     elsif @goal.user_id == current_user.id

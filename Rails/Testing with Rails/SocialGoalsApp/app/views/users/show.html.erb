@@ -11,7 +11,7 @@
 <ul>
   <% @user_comments.each do |user_comment| %>
     <li>
-      <%= user_comment.author.email %> | <%= user_comment.created_at %> | <%= user_comment.body %>
+      <%= user_comment.author.email %> | <%= user_comment.created_at.strftime("%a %H:%M") %> | <%= user_comment.body %>
       <% if user_comment.author == current_user %>
         <form action="<%= user_comment_url(user_comment.id) %>" method="POST">
           <input type="hidden" name="_method" value="DELETE">

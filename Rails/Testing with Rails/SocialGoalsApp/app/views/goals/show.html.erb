@@ -14,3 +14,22 @@
   </form>
 <% end %>
 
+<h2>Profile Comments</h2>
+<ul>
+  <% @goal_comments.each do |goal_comment| %>
+    <li>
+      <%= goal_comment.author.email %> | <%= goal_comment.created_at.to_date %> | <%= goal_comment.body %>
+      <% if goal_comment.author == current_user %>
+        <form action="<%= goal_comment_url(goal_comment.id) %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <%= auth_token %>
+          <input type="hidden" value="delete" name="_method" />
+          <input type="submit" value="Delete comment" />
+        </form>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<a href="<%= goal_comment_goal_url(@goal.id) %>">Comment on this goal</a>
+

@@ -1,23 +1,117 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  background-color:inherit;
+  font-family: Roboto;
+}
+
+h2 {
+  padding:50px 50px 25px 50px;
+}
+
+.flex{
+  display:flex;
+  justify-content: space-between;
+}
+
+.flex-grow{
+  flex-grow: 5;
+}
+
+.flex-grow-sm{
+  flex-grow: 1;
+}
 
 
- .fr{
-   float:right;
- }
- .cb:after{
+.goals, .users{
+  list-style: none;
+}
+
+.goals a, .users a {
+  display:block;
+  background-color:white;
+}
+
+.goals li, .users li{
+  padding:20px 0 20px 20px;
+  height:100%;
+  margin:0 25px 25px 25px;
+}
+
+.goals li, .users li, .goals a, .users a{
+  border-radius: 10px;;
+}
+
+.goals a{
+  width:90%;
+}
+
+
+.users li{
+  width:100%;
+}
+.goals a:hover, .users a:hover{
+  background-color:lightgray;
+}
+.wrap{
+  background-color:#f0f7ff;
+  min-height:100vh;
+  padding:10px 100px 10px 100px;
+}
+
+.fr{
+  float:right;
+}
+
+.cb:after{
   clear:both;
- }
+}
+
+.date {
+  color:steelblue;
+  font-size:0.8em;
+}
+.nav{
+  background-color:steelblue;
+  color:white;
+  padding:20px;
+  font-size:1.2em;
+}
+
+.mr{
+  margin-right:25px;
+}
+
+.nav a:hover, .logout-btn:hover{
+  color:lightgray;
+  cursor: pointer;
+}
+
+.logout-btn{
+  font-size:1em;
+}
+
+.link{
+  background-color: steelblue;
+  color:white;
+  border-radius: 10px;
+  padding:20px;
+}
+
+.link:hover{
+  opacity:0.8;
+}
+
+.mt{
+  margin-top:25px;
+}

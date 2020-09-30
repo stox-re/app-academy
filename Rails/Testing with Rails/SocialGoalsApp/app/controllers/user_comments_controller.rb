@@ -1,5 +1,5 @@
 class UserCommentsController < ApplicationController
-  before_action :require_current_user!, only: [:new, :create, :destroy]
+  before_action :require_current_user!, only: [:create, :destroy]
 
   def create
     @comment = UserComment.new({

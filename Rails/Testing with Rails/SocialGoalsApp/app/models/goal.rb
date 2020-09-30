@@ -15,6 +15,13 @@ class Goal < ApplicationRecord
   validates :description, presence: true
   validates :user_id, presence: true
 
+  has_many(:comments, {
+    primary_key: :id,
+    foreign_key: :goal_id,
+    class_name: :GoalComment,
+    dependent: :destroy
+  })
+
   def set_public
     self.is_public = true
     self.save!

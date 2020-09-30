@@ -24,14 +24,21 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   after_initialize :ensure_activation_token
 
-  has_many(:authored_comments, {
+  has_many(:authored_user_comments, {
     primary_key: :id,
     foreign_key: :author_id,
     class_name: :UserComment,
     dependent: :destroy
   })
 
-  has_many(:comments, {
+  has_many(:authored_goal_comments, {
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :GoalComment,
+    dependent: :destroy
+  })
+
+  has_many(:user_comments, {
     primary_key: :id,
     foreign_key: :for_user_id,
     class_name: :UserComment,

@@ -1,16 +1,30 @@
-<h1>Public goals</h1>
-<ul>
-  <% @public_goals.each do |goal| %>
-    <a href="<%= goal_url(goal.id) %>"><li><%= goal.is_public %> | <%= goal.title %></li></a>
-  <% end %>
-</ul>
-<% if logged_in? %>
-  <a href="<%= new_goal_url %>">New goal</a>
-<% end %>
+<div class="flex">
+  <div class="flex-grow">
+    <h2>Public goals</h2>
+    <ul class="goals">
+      <% @public_goals.each do |goal| %>
+        <a href="<%= goal_url(goal.id) %>">
+          <li class="cb">
+            <%= goal.title %>
+            <div class="fr date"><%= goal.created_at.strftime("%a %H:%M")%></div>
+          </li>
+        </a>
+      <% end %>
+    </ul>
+  </div>
 
-<h2>Users</h2>
-<ul>
-  <% @users.each do |user| %>
-    <a href="<%= user_url(user.id) %>"><li><%= user.email %></li></a>
-  <% end %>
-</ul>
+  <div class="flex-grow-sm">
+    <h2>Users</h2>
+    <ul class="users">
+      <% @users.each do |user| %>
+        <a href="<%= user_url(user.id) %>"><li><%= user.email %></li></a>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<% if logged_in? %>
+  <div class="mt">
+    <a class="link" href="<%= new_goal_url %>">New goal</a>
+  </div>
+<% end %>
