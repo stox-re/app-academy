@@ -1,8 +1,9 @@
 class GoalsController < ApplicationController
-  before_action :require_current_user!, only: [:show, :new]
+  before_action :require_current_user!, only: [:new, :create, :update, :destroy]
 
   def index
-    @public_goals = Goal.where({is_public: true})
+    @public_goals = Goal.where({is_public: true}).order(updated_at: :desc)
+    @users = User.order(:id)
     render :index
   end
 

@@ -1,0 +1,22 @@
+<h1>New comment on user</h1>
+<%= render 'shared/errors' %>
+
+<form action="<%= user_comments_url %>" method="POST">
+  <%= auth_token %>
+
+  <div>
+    <label for="for_user">For user</label>
+    <select id="for_user" name="user_comment[for_user_id]">
+      <option disabled>--- Please select a user ---</option>
+      <%@users.each do |user|%>
+        <option <%= (user.id.to_s == params[:id].to_s ) ? "selected" : ""%> value="<%= user.id %>"><%= user.email%></option>
+      <%end%>
+    </select>
+  </div>
+
+    <div>
+      <label for="comment_body">Body</label>
+      <textarea id="comment_body" name="user_comment[body]"></textarea>
+    </div>
+  <input type="submit" value="Add User Comment">
+</form>

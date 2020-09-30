@@ -2,15 +2,13 @@
 <p><%= @goal.created_at %></p>
 <p><%= @goal.description %></p>
 
-<p><%= @goal.is_public %></p>
-<% if current_user.id == @goal.user_id %>
+<p><%= @goal.is_public ? "Public" : "Private" %></p>
+<% if logged_in? && current_user.id == @goal.user_id %>
   <a href="<%= edit_goal_url %>">Edit goal</a>
   <a href="<%= new_goal_url %>">New goal</a>
   <form action="<%= goal_url(@goal.id) %>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>">
+    <%= auth_token %>
     <input type="hidden" value="delete" name="_method" />
     <input type="submit" value="Delete goal" />
   </form>

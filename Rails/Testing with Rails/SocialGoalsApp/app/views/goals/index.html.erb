@@ -1,8 +1,16 @@
 <h1>Public goals</h1>
 <ul>
   <% @public_goals.each do |goal| %>
-    <a href="<%= goal_url(goal.id) %>"><li> <%= goal.title %></li></a>
+    <a href="<%= goal_url(goal.id) %>"><li><%= goal.is_public %> | <%= goal.title %></li></a>
   <% end %>
 </ul>
+<% if logged_in? %>
+  <a href="<%= new_goal_url %>">New goal</a>
+<% end %>
 
-<a href="<%= new_goal_url %>">New goal</a>
+<h2>Users</h2>
+<ul>
+  <% @users.each do |user| %>
+    <a href="<%= user_url(user.id) %>"><li><%= user.email %></li></a>
+  <% end %>
+</ul>

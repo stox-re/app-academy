@@ -24,6 +24,20 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   after_initialize :ensure_activation_token
 
+  has_many(:authored_comments, {
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :UserComment,
+    dependent: :destroy
+  })
+
+  has_many(:comments, {
+    primary_key: :id,
+    foreign_key: :for_user_id,
+    class_name: :UserComment,
+    dependent: :destroy
+  })
+
   def self.find_by_credentials(email, password)
     user_check = User.find_by({email: email})
     return nil if user_check == nil

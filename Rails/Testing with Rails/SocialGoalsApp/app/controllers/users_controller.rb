@@ -1,12 +1,25 @@
 class UsersController < ApplicationController
-  before_action :require_current_user!, only: [:show]
-
   def new
     render :new
   end
 
+  def user_comment
+    @users = User.all
+    render :new_user_comment
+  end
+
   def show
-    @goals = Goal.where({user_id: current_user.id})
+    @user = User.find_by({id: params[:id]})
+    @user_comments = UserComment.where({for_user_id: params[:id]})
+    if logged_in?
+      if params[:id].to_i == current_user.id.to_i
+        @goals = Goal.where({user_id: params[:id]})
+      else
+        @goals = Goal.where({user_id: params[:id], is_public: true})
+      end
+    else
+      @goals = Goal.where({user_id: params[:id], is_public: true})
+    end
     render :show
   end
 
