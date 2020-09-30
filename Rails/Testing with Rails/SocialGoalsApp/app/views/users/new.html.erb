@@ -1,15 +1,19 @@
-<h1>New User</h1>
+<h2>New User</h2>
 
 <%= render 'shared/errors' %>
 
 <form action="<%= users_url %>" method="POST">
   <%= auth_token %>
 
-  <label for="user_email">Email</label>
-  <input type="text" name="user[email]" id="user_email">
+  <div class="mt">
+    <label for="user_email">Email</label><br>
+    <input class="mt" type="text" name="user[email]" id="user_email">
+  </div>
 
-  <label for="user_password">Password</label>
-  <input type="password" name="user[password]" id="user_password">
+  <div class="mt">
+    <label for="user_password">Password</label><br>
+    <input class="mt" type="password" name="user[password]" id="user_password">
+  </div>
 
-  <input type="submit" value="Sign up">
+  <input class="btn font-em mt" type="submit" value="Sign up">
 </form>
