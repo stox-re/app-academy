@@ -47,7 +47,6 @@ class AlbumnsController < ApplicationController
       flash[:errors] = @band.errors.full_messages
       redirect_to albumn_url(@albumn.id)
     end
-
   end
 
   private

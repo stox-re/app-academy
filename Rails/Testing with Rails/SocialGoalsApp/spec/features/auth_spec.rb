@@ -1,14 +1,14 @@
 require 'spec_helper'
 require 'rails_helper'
 
-feature 'the signup process' do
-  scenario 'has a new user page' do
+feature "the signup process" do
+  scenario "has a new user page" do
     visit "/users/new"
     expect(page).to have_button "Sign up"
   end
 
-  feature 'signing up a user' do
-    scenario 'shows username on the homepage after signup' do
+  feature "signing up a user" do
+    scenario "shows username on the homepage after signup" do
       visit "/users/new"
       email = Faker::Internet.email
       fill_in "Email", with: email
@@ -19,8 +19,8 @@ feature 'the signup process' do
   end
 end
 
-feature 'logging in' do
-  scenario 'shows username on the homepage after login' do
+feature "logging in" do
+  scenario "shows username on the homepage after login" do
       user = User.new({email: "test@testing.com", password: "testing"})
       user.save!
       visit "/session/new"
@@ -31,13 +31,13 @@ feature 'logging in' do
   end
 end
 
-feature 'logging out' do
+feature "logging out" do
   scenario 'begins with a logged out state' do
     visit "/"
     expect(page).to have_button "Login"
   end
 
-  scenario 'doesn\'t show username on the homepage after logout' do
+  scenario "doesn\'t show username on the homepage after logout" do
       user = User.new({email: "test@testing.com", password: "testing"})
       user.save!
       visit "/session/new"
