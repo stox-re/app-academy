@@ -1,0 +1,86 @@
+/*
+
+  SCSS and SASS
+
+  Most widely used pre-processors.
+
+*/
+/* SCSS example */
+
+$spacing: 0;
+
+nav {
+  ul {
+    margin: $spacing;
+    padding: $spacing;
+    list-style: none;
+  }
+  li { display: inline-block; }
+}
+
+/* SASS example */
+/*
+$spacing: 0
+
+nav
+  ul
+    margin: $spacing
+    padding: $spacing
+    list-style: none
+  li
+    display: inline-block
+
+/* These are ruby based, whereas LESS is JS based */
+/*
+
+@base: #f938ab;
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+}
+
+/*
+  Bootstrap is the most widely used framework (twitter)
+  Good for getting projects off the ground fast
+
+  Foundation is built by a design agency called ZURB
+
+  Material design, google's visual styler
+
+  Material UI - react components implementation of google's design
+*/
+
+/* Media queries */
+@media screen and (min-width: 480px) {
+  /* Selectors and their styles to apply if condition passes */
+}
+
+/* AND and OR */
+@media (min-width: 480px) and (max-width: 980px) {
+  /* Selectors and their styles to apply when 480px <= screen_width <= 980px,
+     perhaps a good range for tablets */
+}
+@media (max-width: 600px), (min-width: 800px) {
+  /* Selectors and their styles to apply
+     when screen width is <= 600px or >= 800px */
+}
+
+/*
+  Mobile first is making queries default for a small screen,
+  then using min-width to give styles for larger screens
+*/
+.column {
+  width: 100%;
+}
+
+@media (min-width: 760px) {
+  .column {
+    float: left;
+    width: 50%;
+  }
+}
+
+/* Don't forget meta tag */
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+/* For using sass */

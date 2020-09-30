@@ -5,7 +5,7 @@
       <% @public_goals.each do |goal| %>
         <a href="<%= goal_url(goal.id) %>">
           <li class="cb">
-            <%= star %><%= goal.title %>
+            <%= star %><span class="steelblue"><%= goal.author.email %></span> - <%= goal.title %>
             <div class="fr date"><%= goal.created_at.strftime("%a %H:%M")%></div>
           </li>
         </a>
