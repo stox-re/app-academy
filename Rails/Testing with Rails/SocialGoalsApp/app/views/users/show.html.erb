@@ -1,30 +1,41 @@
-<h1>Profile for: <%= @user.email %></h1>
+<h2 class="underline">Profile of <span><%= @user.email %><span></h2>
 
-<h2>Goals</h2>
-<ul>
+<h2 class="sm-padding-top">Goals</h2>
+<ul class="goals">
   <% @goals.each do |goal| %>
-    <a href="<%= goal_url(goal.id) %>"><li><%= goal.is_public ? "Public" : "Private" %> | <%= goal.title %></li></a>
+    <a class="full" href="<%= goal_url(goal.id) %>">
+      <li>
+        <%= goal.is_public ? star : priv_star %><span class="steelblue"><%= goal.is_public ? "Public" : "Private" %></span> - <%= goal.title %>
+        <div class="fr date"><%= goal.created_at.strftime("%a %H:%M")%></div>
+      </li>
+    </a>
   <% end %>
 </ul>
 
 <h2>Profile Comments</h2>
-<ul>
+<ul class="comments">
   <% @user_comments.each do |user_comment| %>
-    <li>
-      <%= user_comment.author.email %> | <%= user_comment.created_at.strftime("%a %H:%M") %> | <%= user_comment.body %>
+    <li class="relative">
+    &#x1F464;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="steelblue"><%= user_comment.author.email %></span> -
+      <div class="fr date mr"><%= user_comment.created_at.strftime("%a %H:%M")%></div>
+      <%= user_comment.body %>
       <% if user_comment.author == current_user %>
-        <form action="<%= user_comment_url(user_comment.id) %>" method="POST">
+        <form class="delete-form" action="<%= user_comment_url(user_comment.id) %>" method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <%= auth_token %>
           <input type="hidden" value="delete" name="_method" />
-          <input type="submit" value="Delete comment" />
+          <input class="delete-btn" type="submit" value="Delete comment" />
         </form>
       <% end %>
     </li>
   <% end %>
 </ul>
 
+
 <% if logged_in? %>
-  <a href="<%= new_goal_url %>">New goal</a>
-  <a href="<%= user_comment_user_url(@user.id) %>">Comment on user</a>
+  <div class="pt mb">
+    <a class="link" href="<%= new_goal_url %>">New goal</a>
+    <a class="link" href="<%= user_comment_user_url(@user.id) %>">Comment on user</a>
+  </div>
 <% end %>

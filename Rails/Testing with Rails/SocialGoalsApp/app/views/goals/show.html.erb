@@ -1,35 +1,40 @@
-<h1><%= @goal.title %></h1>
-<p><%= @goal.created_at %></p>
-<p><%= @goal.description %></p>
+<h2 class="underline"><%= star_no_space %><%= @goal.title %></h2>
+<div class="goal mb-sm">
+  <div class="fr date"><%= @goal.created_at.strftime("%a %H:%M")%></div>
+  <p><%= @goal.description %></p>
+</div>
 
-<p><%= @goal.is_public ? "Public" : "Private" %></p>
 <% if logged_in? && current_user.id == @goal.user_id %>
-  <a href="<%= edit_goal_url %>">Edit goal</a>
-  <a href="<%= new_goal_url %>">New goal</a>
-  <form action="<%= goal_url(@goal.id) %>" method="POST">
+  <a class="link" href="<%= edit_goal_url %>">Edit goal</a>
+  <a class="link" href="<%= new_goal_url %>">New goal</a>
+  <form class="delete-form" action="<%= goal_url(@goal.id) %>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <%= auth_token %>
     <input type="hidden" value="delete" name="_method" />
-    <input type="submit" value="Delete goal" />
+    <input class="font-em link" type="submit" value="Delete goal" />
   </form>
 <% end %>
 
 <h2>Profile Comments</h2>
-<ul>
+<ul class="comments relative">
   <% @goal_comments.each do |goal_comment| %>
-    <li>
-      <%= goal_comment.author.email %> | <%= goal_comment.created_at.to_date %> | <%= goal_comment.body %>
+    <li class="relative">
+      &#x1F464;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="steelblue"><%= goal_comment.author.email %></span> -
+      <div class="fr date mr"><%= goal_comment.created_at.strftime("%a %H:%M")%></div>
+      <%= goal_comment.body %>
       <% if goal_comment.author == current_user %>
-        <form action="<%= goal_comment_url(goal_comment.id) %>" method="POST">
+        <form class="delete-form" action="<%= goal_comment_url(goal_comment.id) %>" method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <%= auth_token %>
           <input type="hidden" value="delete" name="_method" />
-          <input type="submit" value="Delete comment" />
+          <input class="delete-btn" type="submit" value="Delete comment" />
         </form>
       <% end %>
     </li>
   <% end %>
 </ul>
-
-<a href="<%= goal_comment_goal_url(@goal.id) %>">Comment on this goal</a>
+<div class="pt-sm mb">
+  <a class="link" href="<%= goal_comment_goal_url(@goal.id) %>">Comment on this goal</a>
+</div>
 

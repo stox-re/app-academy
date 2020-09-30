@@ -14,9 +14,16 @@ span, article, footer, time, small {
   background-color:inherit;
   font-family: Roboto;
 }
+.underline{
+  text-decoration: underline;
+}
 
 h2 {
-  padding:50px 50px 25px 50px;
+  padding:50px 0 25px 0;
+}
+
+.sm-padding-top{
+  padding-top:25px;
 }
 
 .flex{
@@ -32,8 +39,11 @@ h2 {
   flex-grow: 1;
 }
 
+.steelblue{
+  color:steelblue;
+}
 
-.goals, .users{
+.goals, .users, .comments{
   list-style: none;
 }
 
@@ -42,13 +52,29 @@ h2 {
   background-color:white;
 }
 
-.goals li, .users li{
-  padding:20px 0 20px 20px;
-  height:100%;
-  margin:0 25px 25px 25px;
+.errors{
+  background-color:white;
+  padding:20px;
+  list-style: none;
+  color:red;
+  border-radius: 10px;
 }
 
-.goals li, .users li, .goals a, .users a{
+.comments li.relative{
+  display:relative;
+}
+
+.comments li{
+  display:block;
+  background-color: white;
+}
+.goals li, .comments li{
+  padding:20px 20px 20px 20px;
+  height:100%;
+  margin:0 0 25px 0;
+}
+
+.goals li, .users li, .goals a, .users a, .comments li{
   border-radius: 10px;;
 }
 
@@ -56,13 +82,21 @@ h2 {
   width:90%;
 }
 
-
-.users li{
+.goals a.full{
   width:100%;
 }
+
+.users li, .comments li{
+  width:100%;
+  padding:20px 0px 20px 0;
+  margin:0 0 25px 0;
+  text-indent: 25px;
+}
+
 .goals a:hover, .users a:hover{
   background-color:lightgray;
 }
+
 .wrap{
   background-color:#f0f7ff;
   min-height:100vh;
@@ -85,11 +119,76 @@ h2 {
   background-color:steelblue;
   color:white;
   padding:20px;
-  font-size:1.2em;
+  font-size:1.4em;
+  padding-left:100px;
+  padding-right:100px;
+}
+
+.relative{
+  display:relative;
+}
+
+.delete-btn{
+  cursor: pointer;
+  color:red;
+}
+
+.delete-btn:hover{
+  opacity:0.8;
 }
 
 .mr{
   margin-right:25px;
+}
+
+.delete-form{
+  display:inline-block;
+}
+
+input[type=text], select, input[type=password] {
+  background-color:white;
+  padding:15px;
+  width:300px;
+  border-radius:10px;
+}
+
+label{
+  text-decoration: underline;
+}
+
+textarea{
+  width:300px;
+  height:300px;
+  background-color:white;
+  padding:25px;
+  border-radius: 10px;
+}
+
+.font-em{
+  font-size:1em;
+}
+
+.goal{
+  background-color:white;
+  padding:20px;
+  margin-top:25px;
+  border-radius:10px;
+}
+
+.mb-sm{
+  margin-bottom:25px;
+}
+
+.mb{
+  margin-bottom:100px;
+}
+
+.pt{
+  padding-top:50px;
+}
+
+.pt-sm{
+  padding-top:25px;
 }
 
 .nav a:hover, .logout-btn:hover{
@@ -99,19 +198,35 @@ h2 {
 
 .logout-btn{
   font-size:1em;
+  border:1px solid transparent;
 }
 
-.link{
+.link, .btn{
   background-color: steelblue;
   color:white;
   border-radius: 10px;
   padding:20px;
+  cursor:pointer;
 }
 
-.link:hover{
+.link:hover, .btn:hover{
   opacity:0.8;
 }
 
 .mt{
   margin-top:25px;
+}
+
+input, textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  border: 1px solid #DDDDDD;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
 }

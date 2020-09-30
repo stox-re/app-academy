@@ -1,12 +1,12 @@
-<h1>New comment on this goal</h1>
+<h2>New comment on this goal</h2>
 <%= render 'shared/errors' %>
 
 <form action="<%= goal_comments_url %>" method="POST">
   <%= auth_token %>
 
   <div>
-    <label for="for_goal">For goal</label>
-    <select id="for_goal" name="goal_comment[goal_id]">
+    <label for="for_goal">For goal</label><br>
+    <select class="mt" id="for_goal" name="goal_comment[goal_id]">
       <option disabled>--- Please select a user ---</option>
       <%@goals.each do |goal|%>
         <option <%= (goal.id.to_s == params[:id].to_s ) ? "selected" : ""%> value="<%= goal.id %>"><%= goal.title%></option>
@@ -14,9 +14,9 @@
     </select>
   </div>
 
-    <div>
-      <label for="goal_body">Body</label>
-      <textarea id="goal_body" name="goal_comment[body]"></textarea>
+    <div class="mt">
+      <label for="goal_body">Body</label><br>
+      <textarea class="mt" id="goal_body" name="goal_comment[body]"></textarea>
     </div>
-  <input type="submit" value="Add comment on goal">
+  <input class="btn mt font-em" type="submit" value="Add comment on goal">
 </form>
