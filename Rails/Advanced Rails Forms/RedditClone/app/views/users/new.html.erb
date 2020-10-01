@@ -1,0 +1,16 @@
+<div>
+  <h2>Create a new user</h2>
+  <%= render 'shared/errors' %>
+  <form action="<%= users_url %>" method="POST">
+    <%= auth_token %>
+    <div>
+      <label for="user_email">Email</label>
+      <input type="text" name="user[email]" id="user_email">
+    </div>
+    <div>
+      <label for="user_password">Password</label>
+      <input type="password" name="user[password]" id="user_password">
+    </div>
+    <input type="submit" value="Signup">
+  </form>
+</div>
