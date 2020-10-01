@@ -80,7 +80,13 @@ nav
   }
 }
 
-/* Don't forget meta tag */
+/* Don't forget meta tag
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 /* For using sass */
+
+.clearfix {
+  content: "";
+  display: block;
+  clear: both;
+}
