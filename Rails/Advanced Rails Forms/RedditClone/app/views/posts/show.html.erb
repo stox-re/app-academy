@@ -2,6 +2,10 @@
 <p>Link: <%= @post.url%> </p>
 <p>Content: <%= @post.content %></p>
 
+<% if @thumbnail != nil && @thumbnail.images != nil && @thumbnail.images.first != nil%>
+  <img src="<%= @thumbnail.images.first.src.to_s%>">
+<% end %>
+
 <% if @post.author == current_user %>
   <a href="<%= edit_post_url(@post) %>">Edit your post</a>
   <form action="<%= post_url(@post.id) %>" method="POST">

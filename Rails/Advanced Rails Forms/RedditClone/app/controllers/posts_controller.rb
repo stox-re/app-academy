@@ -13,6 +13,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by({id: params[:id]})
+    if @post.url != nil
+      @thumbnail = LinkThumbnailer.generate(@post.url)
+    end
     render :show
   end
 
