@@ -1,0 +1,86 @@
+.content-wrapper {
+  padding-top:30px;
+  padding-bottom:50px;
+  border-bottom:3px solid $light-gray;
+  margin-bottom:30px;
+}
+
+.sub-title {
+  color: $gray;
+  font-weight: bold;
+}
+
+.main-list-style {
+  list-style: disc;
+  margin-left: 10px;
+}
+
+.main-list-style li {
+  padding:10px 0 10px 0;
+}
+
+.sub-link {
+  color: $blue;
+  text-decoration: underline;
+}
+
+a.sub-link:hover {
+  color: $dark-blue;
+  cursor: pointer;
+}
+
+section {
+  padding:10px 0 10px 0;
+}
+
+.sub-section {
+  border-bottom: 1px solid $light-gray;
+}
+
+.sub-p {
+  padding: 10px 0 0px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.small-list-style {
+  font-weight: bold;
+  list-style: disc;
+  padding-left:15px;
+}
+
+.small-list-style li {
+  padding: 0 0 5px 0;
+}
+
+.small-p {
+  padding: 5px 0 5px 0;
+}
+
+.sm-img {
+  padding-top:10px;
+}
+
+input {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid $gray;
+}
+
+.signup {
+  position: absolute;
+  right: 0;
+}
+
+.very-small {
+  padding-top:5px;
+  text-align: center;
+  font-size: 11px;
+  color: $gray;
+}
