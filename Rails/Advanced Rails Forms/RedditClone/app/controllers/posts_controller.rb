@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   before_action :require_current_user!, only: [:new, :create, :edit, :update, :destroy]
 
+  def index
+    @posts = Post.all.order(updated_at: :desc)
+    render :index
+  end
+
   def new
     @subs = Sub.all
     render :new
@@ -12,22 +17,19 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @sub = Sub.find_by({id: params[:id]})
-    if current_user == @sub.moderator
+    @subs = Sub.all
+    @post = Post.find_by({id: params[:id]})
+    if current_user == @post.author
       render :edit
     else
-      not_a_moderator_process(@sub)
+      not_your_post_process(@post)
     end
   end
 
   def create
-    @post = Post.new({
-      title: params[:post][:title],
-      url: params[:post][:url],
-      content: params[:post][:content],
-      sub_id: params[:post][:sub_id],
-      author_id: current_user.id
-    })
+    params_to_pass = post_params
+    params_to_pass[:author_id] = current_user.id
+    @post = Post.new(params_to_pass)
     if @post.save
       redirect_to post_url(@post)
     else
@@ -37,17 +39,33 @@ class PostsController < ApplicationController
   end
 
   def update
-    @sub = Sub.find_by({id: params[:id]})
-    if current_user == @sub.moderator
-      if @sub.update(sub_params)
-        redirect_to sub_url(@sub.id)
+    @post = Post.find_by({id: params[:id]})
+    if current_user == @post.author
+      if @post.update(post_params)
+        redirect_to post_url(@post)
       else
-        flash[:errors] = @sub.errors.full_messages
-        redirect_to edit_sub_url(@sub.id)
+        flash[:errors] = @post.errors.full_messages
+        redirect_to edit_post_url(@sub)
       end
     else
-      not_a_moderator_process(@sub)
+      not_your_post_process(@post)
     end
+  end
+
+  def destroy
+    @post = Post.find_by(id: params[:id])
+    if @post.destroy!
+      redirect_to sub_url(@post.sub_id)
+    else
+      flash[:errors] = @post.errors.full_messages
+      redirect_to post_url(@post)
+    end
+  end
+
+
+  def not_your_post_process(post)
+    flash[:errors] = ["This is not your post to edit"]
+    redirect_to post_url(post)
   end
 
   def post_params

@@ -1,1 +1,8 @@
 <h2>Showing <%= current_user.email %></h2>
+
+<h3>You are a moderator of: </h3>
+<ul>
+  <% @moderated_subs.each do |sub| %>
+  <li><a href="<%= sub_url(sub.id) %>"><%= sub.title %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,7 @@
+<h2>Hot Posts</h2>
+
+<ul>
+<% @posts.each do |post| %>
+  <li><a href="<%= post_url(post.id) %>"><%= post.sub.title %> | <%= post.title %> | <%= post.updated_at.strftime("%a %H:%M")%></a></li>
+<% end %>
+</ul>

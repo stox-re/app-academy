@@ -11,5 +11,8 @@
 <%= render 'shared/errors' %>
 <% if current_user == @sub.moderator %>
   <a href="<%= edit_sub_url(@sub) %>">Edit this sub-forum</a>
+<% end %>
+
+<% if logged_in? %>
   <a href="<%= new_post_url %>">Write a post</a>
 <% end %>

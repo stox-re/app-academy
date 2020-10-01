@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @moderated_subs = Sub.where({moderator_id: current_user.id})
     render :show
   end
 
