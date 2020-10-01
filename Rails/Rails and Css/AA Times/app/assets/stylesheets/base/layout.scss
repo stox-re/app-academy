@@ -18,7 +18,7 @@ button {
 	color: $lightest-gray;
 	font-weight: 700;
 	padding: 6px 10px 6px 10px;
-	border-radius: 3px;
+	border-radius: 2px;
 	transition: 0.3s;
 	font-family: $sans-serif;
 	text-transform: uppercase;
@@ -49,4 +49,8 @@ hr {
 .hr-top {
 	height: 2px;
 	margin-bottom: 1px;
+}
+
+.hidden {
+  display: none;
 }

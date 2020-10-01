@@ -1,8 +1,9 @@
 .main-nav {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px;
   align-items: center;
+  border-bottom:1px solid $light-gray
 }
 
 .left-nav > ul,
@@ -30,12 +31,13 @@
   font-size:18px;
   padding:6px 10px 6px 10px;
   cursor:pointer;
+  position: relative;
 }
 
 .left-nav > ul > li:hover,
 .right-nav > ul > li:last-of-type:hover {
   background-color: $light-gray;
-  border-radius:3px;
+  border-radius:2px;
 }
 
 .left-nav span {
