@@ -24,6 +24,12 @@ class User < ApplicationRecord
     class_name: :Sub
   })
 
+  has_many(:posts, {
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :Post
+  })
+
   def self.find_by_credentials(email, password)
     user_check = User.find_by({email: email})
     return nil if user_check == nil

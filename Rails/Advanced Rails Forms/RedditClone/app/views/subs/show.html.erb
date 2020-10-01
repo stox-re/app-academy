@@ -1,6 +1,15 @@
 <h2>Showing <%= @sub.title %></h2>
+<p>Moderator: <%= @sub.moderator.email %></p>
 <p><%= @sub.description %></p>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></li>
+  <% end %>
+</ul>
+
 <%= render 'shared/errors' %>
 <% if current_user == @sub.moderator %>
   <a href="<%= edit_sub_url(@sub) %>">Edit this sub-forum</a>
+  <a href="<%= new_post_url %>">Write a post</a>
 <% end %>

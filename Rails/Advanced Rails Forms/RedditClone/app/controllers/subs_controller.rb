@@ -26,6 +26,7 @@ class SubsController < ApplicationController
 
   def show
     @sub = Sub.find_by({id: params[:id]})
+    @posts = Post.where({sub_id: @sub.id})
     render :show
   end
 
