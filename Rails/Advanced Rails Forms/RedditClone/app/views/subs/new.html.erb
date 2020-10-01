@@ -1,0 +1,17 @@
+<h2>New sub</h2>
+
+<div>
+  <%= render 'shared/errors' %>
+  <form action="<%= subs_url %>" method="POST">
+    <%= auth_token %>
+    <div>
+      <label for="sub_title">Title</label>
+      <input type="text" name="sub[title]" id="sub_title">
+    </div>
+   <div>
+      <label for="sub_description">Description</label>
+      <textarea name="sub[description]" id="sub_description"></textarea>
+    </div>
+    <input type="submit" value="Create Sub-forum">
+  </form>
+</div>

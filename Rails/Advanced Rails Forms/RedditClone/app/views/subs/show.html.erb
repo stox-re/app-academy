@@ -1,0 +1,6 @@
+<h2>Showing <%= @sub.title %></h2>
+<p><%= @sub.description %></p>
+<%= render 'shared/errors' %>
+<% if current_user == @sub.moderator %>
+  <a href="<%= edit_sub_url(@sub) %>">Edit this sub-forum</a>
+<% end %>
