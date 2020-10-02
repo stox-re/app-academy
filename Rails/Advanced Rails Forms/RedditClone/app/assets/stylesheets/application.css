@@ -1,5 +1,6 @@
 :root {
   --blue:#0d51e6;
+  --red:#f72828;
 }
 
 html, body, header, nav, h1, a,
@@ -76,6 +77,12 @@ nav ul {
   padding-bottom:10px;
 }
 
+.big-title {
+  font-size:20px;
+  color:#2c2c2c;
+  padding-bottom:10px;
+}
+
 .posts li {
   background-color: white;
   padding:30px;
@@ -87,14 +94,21 @@ nav ul {
 .posts, .subs {
   list-style: none;
 }
+
+.inline-block, .button.inline-block {
+  display:inline-block;
+}
+
 .subs {
   background-color:white;
   border-radius:5px;
   box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  margin-left:20px;
   padding-bottom:10px;
 }
 
+.index.subs {
+  margin-left: 20px;
+}
 .subs li {
   padding:10px;
   margin-bottom:10px;
@@ -129,4 +143,65 @@ nav ul {
 
 .col-1-3 {
   width: 33%;
+}
+
+.errors {
+  padding: 10px 0 10px 0;
+  list-style: none;
+  position: absolute;
+  top:65px;
+  width:100%;
+  text-align: center;
+}
+.errors li {
+  background-color: var(--red);
+  color:white;
+  padding:5px;
+}
+
+.form-box {
+  background-color:white;
+  border-radius:5px;
+  box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  padding: 20px;
+  width:600px;
+}
+
+input, textarea{
+  background-color:lightgray;
+  padding:10px;
+  border-radius: 5px;
+  margin-bottom:10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  height:200px;
+  resize: none;
+}
+
+.button {
+  background-color: var(--blue);
+  padding: 5px 20px 5px 20px;
+  border-radius: 3px;
+  color: white;
+  display: block;
+  cursor:pointer;
+  font-size:1em;
+}
+
+.button:hover {
+  opacity:0.9;
+}
+
+.moderator {
+  padding: 20px 10px 20px 10px;
+}
+
+.sub-buttons {
+  padding: 0 5px 0 5px;
 }

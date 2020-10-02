@@ -1,16 +1,16 @@
-<div>
-  <h2>Login user</h2>
-  <%= render 'shared/errors' %>
+<h2 class="big-title">Login user</h2>
+
+<div class="form-box">
   <form action="<%= session_url %>" method="POST">
     <%= auth_token %>
-    <div>
+    <div class="flex-column">
       <label for="user_email">Email</label>
       <input type="text" name="user[email]" id="user_email">
     </div>
-    <div>
+    <div class="flex-column">
       <label for="user_password">Password</label>
       <input type="password" name="user[password]" id="user_password">
     </div>
-    <input type="submit" value="Login">
+    <input class="button" type="submit" value="Login">
   </form>
 </div>

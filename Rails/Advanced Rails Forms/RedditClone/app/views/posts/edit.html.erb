@@ -1,7 +1,6 @@
 <h2>Edit post</h2>
 
 <div>
-  <%= render 'shared/errors' %>
   <form action="<%= post_url(@post.id) %>" method="POST">
     <input type="hidden" name="_method" value="PUT">
     <%= auth_token %>

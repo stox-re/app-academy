@@ -1,18 +1,23 @@
-<h2>Showing <%= @sub.title %></h2>
-<p>Moderator: <%= @sub.moderator.email %></p>
-<p><%= @sub.description %></p>
+<h2 class="big-title">Showing <%= @sub.title %></h2>
+<div class="col col-1-3">
+  <div class="subs">
+    <h5 class="small-title"><%= @sub.description %></h5>
+    <p class="moderator">Moderator: <%= @sub.moderator.email %></p>
+    <div class="sub-buttons">
+      <%= render 'shared/errors' %>
+      <% if current_user == @sub.moderator %>
+        <a class="button inline-block" href="<%= edit_sub_url(@sub) %>">Edit</a>
+      <% end %>
 
-<ul>
+      <% if logged_in? %>
+        <a class="button inline-block" style href="<%= new_post_url %>">Write a post</a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<ul class="posts">
   <% @posts.each do |post| %>
     <li><a href="<%= post_url(post) %>"><%= post.title %></li>
   <% end %>
 </ul>
-
-<%= render 'shared/errors' %>
-<% if current_user == @sub.moderator %>
-  <a href="<%= edit_sub_url(@sub) %>">Edit this sub-forum</a>
-<% end %>
-
-<% if logged_in? %>
-  <a href="<%= new_post_url %>">Write a post</a>
-<% end %>
