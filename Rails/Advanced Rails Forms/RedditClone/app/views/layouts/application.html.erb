@@ -10,22 +10,9 @@
   </head>
 
   <body>
-
-    <% if logged_in? %>
-        <a href="<%= user_url(current_user) %>">Profile</a>
-        <form style="display:inline-block;" action="<%= session_url %>" method="POST">
-          <%= auth_token %>
-          <input type="hidden" value="delete" name="_method" />
-          <input type="submit" value="Logout" />
-        </form>
-        <a href="<%= new_sub_url %>">New sub</a>
-      <% else %>
-        <a href="<%= new_session_url %>">Login</a>
-        <a href="<%= new_user_url %>">Signup</a>
-      <% end %>
-      <a href="<%= subs_url %>">All subforums</a>
-      <a href="<%= posts_url %>">All Posts</a>
-
-    <%= yield %>
+    <%= render 'shared/nav' %>
+    <section class="wrapper">
+      <%= yield %>
+    </section>
   </body>
 </html>

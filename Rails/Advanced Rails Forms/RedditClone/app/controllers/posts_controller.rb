@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(updated_at: :desc)
+    @subs = Sub.all.order(created_at: :desc)
     render :index
   end
 
@@ -13,9 +14,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by({id: params[:id]})
-    if @post.url != nil
-      @thumbnail = LinkThumbnailer.generate(@post.url)
-    end
     render :show
   end
 

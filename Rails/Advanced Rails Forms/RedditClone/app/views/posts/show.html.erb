@@ -1,10 +1,6 @@
 <h2><%= @post.title %> in <%= @post.sub.title %></h2>
-<p>Link: <%= @post.url%> </p>
+<a class="link" href="<%= @post.url %>"><%= @post.url%> </a>
 <p>Content: <%= @post.content %></p>
-
-<% if @thumbnail != nil && @thumbnail.images != nil && @thumbnail.images.first != nil%>
-  <img src="<%= @thumbnail.images.first.src.to_s%>">
-<% end %>
 
 <% if @post.author == current_user %>
   <a href="<%= edit_post_url(@post) %>">Edit your post</a>
