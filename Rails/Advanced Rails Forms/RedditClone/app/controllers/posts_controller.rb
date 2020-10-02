@@ -4,12 +4,38 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(updated_at: :desc)
     @subs = Sub.all.order(created_at: :desc)
+    @post_and_votes = {}
+    @posts.each do |post|
+      @post_and_votes[post] = Vote.where({post_id: post.id}).first
+    end
     render :index
   end
 
   def new_comment
     @post = Post.find_by({id: params[:id]})
     render :new_comment
+  end
+
+  def upvote
+    @vote = Vote.find_by({post_id: params[:id]})
+    if @vote == nil
+      new_vote = Vote.new({post_id: params[:id]})
+      new_vote.upvote
+    else
+      @vote.upvote
+    end
+    redirect_to posts_url
+  end
+
+  def downvote
+    @vote = Vote.find_by({post_id: params[:id]})
+    if @vote == nil
+      new_vote = Vote.new({post_id: params[:id]})
+      new_vote.downvote
+    else
+      @vote.downvote
+    end
+    redirect_to posts_url
   end
 
   def new

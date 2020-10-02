@@ -1,27 +1,40 @@
-<h2><%= @post.title %> in
-  <% @post.subs.each do |sub| %>
-    <%= sub.title %>
-  <% end %>
-  </h2>
-<a class="link" href="<%= @post.url %>"><%= @post.url%> </a>
-<p>Content: <%= @post.content %></p>
-<p>Author: <%= @post.author.email %></p>
+<h2 class="big-title"><%= @post.title %></h2>
+<div class="form-box">
+    <figure class="author"><%= @post.author.email %> wrote <figure class="date"><%= @post.updated_at.strftime("%a %H:%M")%></figure></figure>
+  <section class="fr">
+    <% @post.subs.each_with_index do |sub, index| %>
+      <a class="sub-url" href="<%= sub_url(sub) %>"><%= sub.title %></a><%= index != @post.subs.length-1 ? "," : nil %>
+    <% end %>
+  </section>
+  <section class="post-link">
+    <a class="link" href="<%= @post.url %>"><%= @post.url%> </a>
+  </section>
+  <article><%= @post.content %></article>
 
-<div class="comments">
-  <ul>
+
+  <div class="below-comments">
+    <% if logged_in?%>
+      <a class="button inline-block" href="<%= new_comment_post_url(@post.id) %>">Comment</a>
+    <% end %>
+  <% if @post.author == current_user %>
+    <a class="button inline-block" href="<%= edit_post_url(@post) %>">Edit your post</a>
+    <form class="inline-block" action="<%= post_url(@post.id) %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <%= auth_token %>
+      <input type="hidden" value="delete" name="_method" />
+      <input class="button bg-red inline-block" type="submit" value="Delete post" />
+    </form>
+  <% end %>
+  </div>
+</div>
+
+
+  <ul class="comments">
     <% @post.comments.each do |comment| %>
-    <li><%= comment.author.email %> | <%= comment.body %> </li>
+    <li class="comments form-box" style="margin-top:10px;">
+      <figure class="author"><%= comment.author.email %> wrote <figure class="date"><%= comment.updated_at.strftime("%a %H:%M")%></figure></figure>
+      <article><%= comment.body %></article>
+      </li>
     <% end %>
   </ul>
 </div>
-<% if @post.author == current_user %>
-  <a href="<%= edit_post_url(@post) %>">Edit your post</a>
-  <form action="<%= post_url(@post.id) %>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <%= auth_token %>
-    <input type="hidden" value="delete" name="_method" />
-    <input class="menu-link delete-band bg-red" type="submit" value="Delete post" />
-  </form>
-<% end %>
-
-<a href="<%= new_comment_post_url(@post.id) %>">Comment on this post</a>

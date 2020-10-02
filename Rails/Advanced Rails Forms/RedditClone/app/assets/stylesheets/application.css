@@ -179,7 +179,15 @@ input, textarea{
   background-color:lightgray;
   padding:10px;
   border-radius: 5px;
-  margin-bottom:10px;
+  margin-bottom:2px;
+}
+
+.flex {
+  display:flex;
+}
+
+.flex-column.voting {
+  padding-bottom:0;
 }
 
 .flex-column {
@@ -206,6 +214,8 @@ textarea {
 .button.logout {
   background-color: lightgray;
   color:#2c2c2c;
+  font-size:1em;
+  font-family: sans-serif;
 }
 .button:hover {
   opacity:0.9;
@@ -254,4 +264,51 @@ textarea {
 .posted-in-forums {
   padding-top:10px;
   float:left;
+}
+
+.comments {
+  list-style: none;
+}
+
+.author {
+  color: gray;
+  font-size:0.9em;
+  padding-bottom:5px;
+}
+
+.fr {
+  float:right;
+}
+
+.post-link {
+  padding-bottom:10px;
+}
+
+.below-comments {
+  padding-top:10px;
+}
+
+.bg-red {
+  background-color: var(--red);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+.voting {
+  float:left;
+  font-size:30px;
+  margin-right:30px;
+}
+
+input[type=submit] {
+  font-family: ForkAwesome;
+}
+
+.vote-count {
+  text-align:center;
+  border:1px solid gray;
+  border-radius: 5px;
+  margin-bottom:2px;
 }
