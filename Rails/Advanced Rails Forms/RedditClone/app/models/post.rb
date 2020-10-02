@@ -13,7 +13,6 @@
 class Post < ApplicationRecord
   validates :title, presence: true, uniqueness: true
   validates :author_id, presence: true
-  validates :subs, presence: true
 
   belongs_to(:author, {
     primary_key: :id,
@@ -32,4 +31,10 @@ class Post < ApplicationRecord
     through: :post_subs,
     source: :sub
   )
+
+  has_many(:comments, {
+    primary_key: :id,
+    foreign_key: :post_id,
+    class_name: :Comment
+  })
 end

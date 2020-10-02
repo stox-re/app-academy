@@ -1,0 +1,19 @@
+<h2 class="big-title">New Comment on "<%= @post.title %>"</h2>
+
+<div class="form-box">
+  <form action="<%= comments_url %>" method="POST">
+    <%= auth_token %>
+    <div class="flex-column">
+      <label for="comment_post_id">Post to comment on</label>
+      <select id="comment_post_id" name="comment[post_id]">
+        <option disabled>--- Post to comment on ---</option>
+          <option selected value="<%= @post.id %>"><%= @post.title %></option>
+      </select>
+    </div>
+    <div class="flex-column">
+      <label for="comment_body">Body</label>
+      <textarea name="comment[body]" id="comment_body"></textarea>
+    </div>
+    <input class="button" type="submit" value="Create Post">
+  </form>
+</div>

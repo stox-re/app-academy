@@ -30,6 +30,12 @@ class User < ApplicationRecord
     class_name: :Post
   })
 
+  has_many(:comments, {
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :Comment
+  })
+
   def self.find_by_credentials(email, password)
     user_check = User.find_by({email: email})
     return nil if user_check == nil

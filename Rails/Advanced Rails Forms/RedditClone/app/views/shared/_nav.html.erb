@@ -1,19 +1,23 @@
 <nav>
   <ul class="logo-list">
-    <li><a href="<%= posts_url %>">All Posts</a></li>
+    <li><img class="logo-img" src="../assets/logo.jpg"></li>
+    <li><a href="<%= posts_url %>">RedditClone</a></li>
   </ul>
   <ul class="buttons">
     <% if logged_in? %>
+      <li><a href="<%= posts_url %>">All Posts</a></li>
       <li><a href="<%= new_sub_url %>">New sub</a></li>
+      <li><a href="<%= new_post_url %>">New post</a></li>
       <li><a href="<%= user_url(current_user) %>">Profile</a></li>
       <li>
-        <form style="display:inline-block;" action="<%= session_url %>" method="POST">
+        <form style="display:inline-block;margin-top:10px;" action="<%= session_url %>" method="POST">
           <%= auth_token %>
           <input type="hidden" value="delete" name="_method" />
-          <input type="submit" value="Logout" />
+          <input class="button logout" type="submit" value="Logout" />
         </form>
       </li>
     <% else %>
+      <li><a href="<%= posts_url %>">All Posts</a></li>
       <li><a href="<%= new_session_url %>">Login</a></li>
       <li><a href="<%= new_user_url %>">Signup</a></li>
     <% end %>

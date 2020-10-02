@@ -1,7 +1,19 @@
-<h2><%= @post.title %> in <%= @post.sub.title %></h2>
+<h2><%= @post.title %> in
+  <% @post.subs.each do |sub| %>
+    <%= sub.title %>
+  <% end %>
+  </h2>
 <a class="link" href="<%= @post.url %>"><%= @post.url%> </a>
 <p>Content: <%= @post.content %></p>
+<p>Author: <%= @post.author.email %></p>
 
+<div class="comments">
+  <ul>
+    <% @post.comments.each do |comment| %>
+    <li><%= comment.author.email %> | <%= comment.body %> </li>
+    <% end %>
+  </ul>
+</div>
 <% if @post.author == current_user %>
   <a href="<%= edit_post_url(@post) %>">Edit your post</a>
   <form action="<%= post_url(@post.id) %>" method="POST">
@@ -11,3 +23,5 @@
     <input class="menu-link delete-band bg-red" type="submit" value="Delete post" />
   </form>
 <% end %>
+
+<a href="<%= new_comment_post_url(@post.id) %>">Comment on this post</a>

@@ -13,13 +13,23 @@ post1 = Post.create!(
   author_id: user2.id,
   title: "A cat with a computer keyboard",
   url: "https://tenor.com/search/cat-on-computer-gifs",
-  content: "Check out this cat on a computer",
-  sub_ids: [sub1.id, sub2.id]
+  content: "Check out this cat on a computer"
 )
+subpost1 = PostSub.create!({
+  post_id: post1.id,
+  sub_id: sub1.id
+})
+subpost2 = PostSub.create!({
+  post_id: post1.id,
+  sub_id: sub3.id
+})
 post2 = Post.create!(
   author_id: user1.id,
   title: "Macbook air's are great",
   url: "https://www.apple.com/macbook-air/",
-  content: "Check out this cat on a computer",
-  sub_ids: [sub1.id]
+  content: "Check out this cat on a computer"
 )
+subpost3 = PostSub.create!({
+  post_id: post2.id,
+  sub_id: sub1.id
+})

@@ -7,6 +7,11 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def new_comment
+    @post = Post.find_by({id: params[:id]})
+    render :new_comment
+  end
+
   def new
     @subs = Sub.all
     render :new
@@ -32,6 +37,9 @@ class PostsController < ApplicationController
     params_to_pass[:author_id] = current_user.id
     @post = Post.new(params_to_pass)
     if @post.save
+      params[:post][:sub_ids].each do |sub_id|
+        PostSub.create({sub_id: sub_id.to_i, post_id: @post.id })
+      end
       redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
@@ -56,7 +64,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find_by(id: params[:id])
     if @post.destroy!
-      redirect_to sub_url(@post.sub_id)
+      redirect_to posts_url
     else
       flash[:errors] = @post.errors.full_messages
       redirect_to post_url(@post)
@@ -70,6 +78,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content, sub_ids: [])
+    params.require(:post).permit(:title, :url, :content)
   end
 end

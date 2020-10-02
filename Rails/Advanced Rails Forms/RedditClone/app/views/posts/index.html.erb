@@ -3,7 +3,18 @@
 <div class="col col-2-3">
   <ul class="posts">
     <% @posts.each do |post| %>
-      <li><a href="<%= post_url(post.id) %>"><%= post.sub.title %> | <%= post.title %> | <%= post.updated_at.strftime("%a %H:%M")%></a></li>
+      <li class="cf">
+          <figure class="date"><%= post.updated_at.strftime("%a %H:%M")%></figure>
+          <a class="post-title" href="<%= post_url(post.id) %>"><%= post.title %></a>
+          <figure><a href="<%= user_url(post.author.id)%>"><%= post.author.email %></a></figure>
+          <figure class="posted-in-forums">
+            Posted in:
+            <% post.subs.each_with_index do |sub, index| %>
+              <a class="sub-url" href="<%= sub_url(sub) %>"><%= sub.title %></a><%= index != post.subs.length-1 ? "," : nil %>
+            <% end %>
+          </figure>
+        </a>
+      </li>
     <% end %>
   </ul>
 </div>
