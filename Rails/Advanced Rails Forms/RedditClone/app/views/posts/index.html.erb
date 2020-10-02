@@ -20,9 +20,9 @@
             </div>
           </div>
           <div class="cf">
+            <figure class="author"><%= post.author.email %> wrote <figure class="date"><%= post.updated_at.strftime("%a %H:%M")%></figure></figure>
             <figure class="date"><%= post.updated_at.strftime("%a %H:%M")%></figure>
             <a class="post-title" href="<%= post_url(post.id) %>"><%= post.title %></a>
-            <figure><a href="<%= user_url(post.author.id)%>"><%= post.author.email %></a></figure>
             <figure class="posted-in-forums">
               Posted in:
               <% post.subs.each_with_index do |sub, index| %>

@@ -167,6 +167,10 @@ nav ul {
   padding:5px;
 }
 
+.form-box.post {
+  padding-bottom:50px;
+}
+
 .form-box {
   background-color:white;
   border-radius:5px;

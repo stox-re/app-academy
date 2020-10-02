@@ -1,6 +1,21 @@
 <h2 class="big-title"><%= @post.title %></h2>
-<div class="form-box">
-    <figure class="author"><%= @post.author.email %> wrote <figure class="date"><%= @post.updated_at.strftime("%a %H:%M")%></figure></figure>
+<div class="form-box post">
+  <div class="flex-column voting">
+    <div class="vote-count"><%= @post_and_votes[@post] == nil ? "0" : @post_and_votes[@post].value %></div>
+    <div>
+      <form class="inline-block" action="<%= upvote_post_url(@post.id) %>" method="POST">
+        <%= auth_token %>
+        <input class="button bg-blue inline-block" type="submit" value="&#xf0aa;" />
+      </form>
+    </div>
+    <div>
+      <form class="inline-block" action="<%= downvote_post_url(@post.id) %>" method="POST">
+        <%= auth_token %>
+        <input class="button bg-red inline-block" type="submit" value="&#xf0ab;" />
+      </form>
+    </div>
+  </div>
+  <figure class="author"><%= @post.author.email %> wrote <figure class="date"><%= @post.updated_at.strftime("%a %H:%M")%></figure></figure>
   <section class="fr">
     <% @post.subs.each_with_index do |sub, index| %>
       <a class="sub-url" href="<%= sub_url(sub) %>"><%= sub.title %></a><%= index != @post.subs.length-1 ? "," : nil %>

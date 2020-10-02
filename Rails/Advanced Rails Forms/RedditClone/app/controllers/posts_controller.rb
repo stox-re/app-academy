@@ -45,6 +45,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by({id: params[:id]})
+    @post_and_votes = {}
+    @post_and_votes[@post] = Vote.where({post_id: @post.id}).first
     render :show
   end
 
