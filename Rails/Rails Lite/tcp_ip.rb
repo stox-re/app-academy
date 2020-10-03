@@ -12,7 +12,7 @@
 # The term "packet" refers to a formatted unit of data that contains,
 # along with its payload, control information: data for delivering the payload.
 
-# TCP
+# TCP - Transmission Control Protocol
 # TCP is a higher-level protocol running on top of IP.
 # It provides applications with information delivered by IP,
 # but provides additional work by ensuring that the information is reliable, ordered, and error-checked.
@@ -36,3 +36,5 @@
 # DNS
 # HTTP
 # SSH
+
+# TCP: Sending segments, and returning read receipts
