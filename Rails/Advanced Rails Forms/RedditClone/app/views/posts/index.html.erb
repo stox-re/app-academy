@@ -21,7 +21,6 @@
           </div>
           <div class="cf">
             <figure class="author"><%= post.author.email %> wrote <figure class="date"><%= post.updated_at.strftime("%a %H:%M")%></figure></figure>
-            <figure class="date"><%= post.updated_at.strftime("%a %H:%M")%></figure>
             <a class="post-title" href="<%= post_url(post.id) %>"><%= post.title %></a>
             <figure class="posted-in-forums">
               Posted in:
