@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create, :destroy]
 
-  root to: redirect("/subs")
+  root to: redirect("/posts")
 end
