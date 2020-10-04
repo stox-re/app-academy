@@ -24,7 +24,7 @@ class ControllerBase
       raise "Already built response" if @already_built_response
       @res.status = 302
       @res["Location"] = url
-      @session.store_session(@res)
+      session.store_session(@res)
       @already_built_response = true
   end
 
@@ -35,7 +35,7 @@ class ControllerBase
     raise "Already built response" if @already_built_response
     @res["Content-Type"] = content_type
     @res.write(content)
-    @session.store_session(@res)
+    session.store_session(@res)
     @already_built_response = true
   end
 
@@ -57,6 +57,8 @@ class ControllerBase
 
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
+    self.send(name)
+    render if !@already_built_response
   end
 end
 
