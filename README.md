@@ -23,5 +23,5 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Music App](https://github.com/stockermans/app-academy/tree/master/Rails/Rails%20Auth%20II/MusicApp) - A music tracking app with email activations for users
 * [Social Goals App](https://github.com/stockermans/app-academy/tree/master/Rails/Testing%20with%20Rails/SocialGoalsApp) - An app that allows users to create and manage goals with a commenting system.
 * [Reddit Clone App](https://github.com/stockermans/app-academy/tree/master/Rails/Advanced%20Rails%20Forms/RedditClone) - A reddit clone app supporting users to create posts across different sub-threads and voting.
-
+* [Reversi Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/Reversi) - A reversi (CLI) game in JavaScript
 
