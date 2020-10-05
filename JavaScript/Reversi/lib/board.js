@@ -107,8 +107,15 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
  * color being flipped.
  */
 Board.prototype.validMove = function (pos, color) {
-  if (this.isOccupied(pos)) {
-
+  if (this.isOccupied(pos)) { return false; }
+  else {
+    for (let i = 0; i < Board.DIRS.length; i++) {
+      let dir = Board.DIRS[i];
+      if (this._positionsToFlip(pos, color, dir).length > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 };
 
@@ -119,6 +126,20 @@ Board.prototype.validMove = function (pos, color) {
  * Throws an error if the position represents an invalid move.
  */
 Board.prototype.placePiece = function (pos, color) {
+  if (this.isValidPos(pos) && this.validMove(pos, color)) {
+    this.grid[pos[0]][pos[1]] = new Piece(color);
+
+    Board.DIRS.forEach((dir) => {
+      let flippable = this._positionsToFlip(pos, color, dir);
+      if (flippable.length > 0) {
+        flippable.forEach((locationToFlip) => {
+          this.grid[locationToFlip[0]][locationToFlip[1]].flip();
+        });
+      }
+    });
+  } else {
+    throw new Error("This is an invalid move.");
+  }
 };
 
 /**
@@ -126,12 +147,25 @@ Board.prototype.placePiece = function (pos, color) {
  * the Board for a given color.
  */
 Board.prototype.validMoves = function (color) {
+  let allValidMoves = [];
+
+  for (let i = 0; i < this.grid.length; i++) {
+    for (let k = 0; k < this.grid.length; k++) {
+      let pos = [i, k];
+      if (this.validMove(pos, color)) {
+        allValidMoves.push(pos);
+      }
+    }
+  }
+
+  return allValidMoves;
 };
 
 /**
  * Checks if there are any valid moves for the given color.
  */
 Board.prototype.hasMove = function (color) {
+  return (this.validMoves(color).length > 0);
 };
 
 
@@ -141,6 +175,9 @@ Board.prototype.hasMove = function (color) {
  * the black player are out of moves.
  */
 Board.prototype.isOver = function () {
+  let blackMoves = this.validMoves("black");
+  let whiteMoves = this.validMoves("white");
+  return !(blackMoves.length > 0 && whiteMoves.length > 0);
 };
 
 
@@ -150,6 +187,26 @@ Board.prototype.isOver = function () {
  * Prints a string representation of the Board to the console.
  */
 Board.prototype.print = function () {
+  let border = [0, 1, 2, 3, 4, 5, 6, 7];
+  let borderBuilder = "  ";
+  for (let i = 0; i < border.length; i++) {
+    borderBuilder += border[i] + " ";
+  }
+  console.log(borderBuilder);
+  console.log("-----------------  ");
+
+  for (let j = 0; j < this.grid.length; j++) {
+    let rowBuilder = border[j] + " ";
+    for (let k = 0; k < this.grid.length; k++){
+      if (typeof this.grid[j][k] == 'undefined') {
+        rowBuilder += "_ "
+      } else {
+        rowBuilder += this.grid[j][k].toString() + " ";
+      }
+    }
+    console.log(rowBuilder);
+  }
+  console.log("");
 };
 
 
