@@ -10,7 +10,8 @@ function Asteroid(pos, game) {
     vel: Utils.randomVec(10),
     radius: this.RADIUS,
     color: this.COLOR,
-    game: game
+    game: game,
+    isWrappable: true
   });
 }
 

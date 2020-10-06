@@ -4,12 +4,18 @@ function MovingObject (incoming) {
   this.radius = incoming.radius;
   this.color = incoming.color;
   this.game = incoming.game;
+  this.isWrappable = incoming.isWrappable;
 }
 
 MovingObject.prototype.move = function() {
   this.position[0] += this.velocity[0];
   this.position[1] += this.velocity[1];
-  this.position = this.game.wrap(this.position);
+  console.log("This is wrappable: " + this.isWrappable)
+  if (this.game.isOutOfBounds(this.position) && !this.isWrappable) {
+    this.game.remove(this);
+  } else {
+    this.position = this.game.wrap(this.position);
+  }
 };
 
 MovingObject.prototype.draw = function(ctx) {
