@@ -15,8 +15,27 @@ Game.prototype.step = function() {
 
 Game.prototype.addAsteroids = function() {
   for (let i = 0; i < this.NUM_ASTEROIDS; i++) {
-    this.asteroids.push(new Asteroid(this.randomPosition()));
+    this.asteroids.push(new Asteroid(this.randomPosition(), this));
   }
+};
+
+Game.prototype.wrap = function(pos) {
+  let x = pos[0], y = pos[1];
+  let newX = pos[0];
+  let newY = pos[1];
+
+  if (x <= 0) {
+    newX = this.DIM_X;
+  } else if (x >= this.DIM_X) {
+    newX = 0;
+  }
+  if (y <= 0) {
+    y = this.DIM_Y;
+  } else if (y >= this.DIM_Y) {
+    newY = 0;
+  }
+
+  return [newX, newY];
 };
 
 Game.prototype.randomPosition = function() {

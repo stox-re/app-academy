@@ -3,11 +3,13 @@ function MovingObject (incoming) {
   this.velocity = incoming.vel;
   this.radius = incoming.radius;
   this.color = incoming.color;
+  this.game = incoming.game;
 }
 
 MovingObject.prototype.move = function() {
   this.position[0] += this.velocity[0];
   this.position[1] += this.velocity[1];
+  this.position = this.game.wrap(this.position);
 };
 
 MovingObject.prototype.draw = function(ctx) {

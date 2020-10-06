@@ -1,7 +1,7 @@
 const MovingObject = require("./moving_object.js");
 const Utils = require("./utils.js");
 
-function Asteroid(pos) {
+function Asteroid(pos, game) {
   this.COLOR = "red";
   this.RADIUS = "20";
 
@@ -9,7 +9,8 @@ function Asteroid(pos) {
     pos: [pos[0], pos[1]],
     vel: Utils.randomVec(10),
     radius: this.RADIUS,
-    color: this.COLOR
+    color: this.COLOR,
+    game: game
   });
 }
 
