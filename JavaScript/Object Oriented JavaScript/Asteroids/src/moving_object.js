@@ -6,10 +6,13 @@ function MovingObject (incoming) {
 }
 
 MovingObject.prototype.move = function() {
-
+  this.position[0] += this.velocity[0];
+  this.position[1] += this.velocity[1];
 };
 
 MovingObject.prototype.draw = function(ctx) {
+  console.log(`Moving object drawing with: ${ctx}`)
+  console.log(this.position);
   ctx.beginPath();
   ctx.arc(this.position[0], this.position[1], this.radius, 0, 2 * Math.PI);
   ctx.fillStyle = this.color;
