@@ -9,7 +9,7 @@ function GameView () {
 
 GameView.prototype.start = function() {
   window.setInterval(() => {
-    this.game.moveObjects();
+    this.game.step();
     this.game.draw(this.ctx);
   }, this.GAME_SPEED);
 };

@@ -13,8 +13,6 @@ MovingObject.prototype.move = function() {
 };
 
 MovingObject.prototype.draw = function(ctx) {
-  console.log(`Moving object drawing with: ${ctx}`)
-  console.log(this.position);
   ctx.beginPath();
   ctx.arc(this.position[0], this.position[1], this.radius, 0, 2 * Math.PI);
   ctx.fillStyle = this.color;
@@ -22,7 +20,17 @@ MovingObject.prototype.draw = function(ctx) {
 };
 
 MovingObject.prototype.isCollidedWith = function(otherMovingObject) {
+  let xDiff = otherMovingObject.position[0] - this.position[0];
+  let yDiff = otherMovingObject.position[1] - this.position[1];
 
+  let hypot = Math.hypot(xDiff, yDiff) ** 2;
+  let radiuses = otherMovingObject.radius + this.radius;
+
+  if (hypot <= radiuses) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 module.exports = MovingObject;

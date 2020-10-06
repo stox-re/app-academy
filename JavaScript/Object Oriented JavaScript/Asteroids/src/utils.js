@@ -1,7 +1,7 @@
 const Utils = {
   inherits: function(childClass, parentClass) {
     childClass.prototype = Object.create(parentClass.prototype);
-    //childClass.prototype.constructor = childClass;
+    childClass.prototype.constructor = childClass;
   },
   // Return a randomly oriented vector with the given length.
   randomVec(length) {

@@ -16,4 +16,16 @@ function Asteroid(pos, game) {
 
 Utils.inherits(Asteroid, MovingObject);
 
+Asteroid.prototype.isHere = function() {
+  alert("Is here");
+};
+
+Asteroid.prototype.collideWith = function(otherObject) {
+  if (otherObject instanceof Ship && this.isCollidedWith(otherObject)) {
+    otherObject.relocate();
+  }
+};
+
+
+
 module.exports = Asteroid;

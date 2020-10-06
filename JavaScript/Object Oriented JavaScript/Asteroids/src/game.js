@@ -1,4 +1,5 @@
 const Asteroid = require("./asteroid.js");
+const Ship = require("./ship.js");
 const Utils = require("./utils.js");
 
 function Game() {
@@ -7,10 +8,20 @@ function Game() {
   this.NUM_ASTEROIDS = 10;
   this.asteroids = [];
   this.addAsteroids();
+  this.ship = new Ship([250,250], this);
 }
 
 Game.prototype.step = function() {
+  this.moveObjects();
+  this.checkCollisions();
+};
 
+Game.prototype.remove = function(asteroid) {
+  this.asteroids.forEach((asteroidFound, index) => {
+    if (asteroid == asteroidFound) {
+      this.asteroids.splice(index, 1);
+    }
+  });
 };
 
 Game.prototype.addAsteroids = function() {
@@ -49,15 +60,28 @@ Game.prototype.moveObjects = function() {
 };
 
 Game.prototype.checkCollisions = function() {
-
+  this.asteroids.forEach((asteroid, index) => {
+    this.asteroids.forEach((asteroidAgain, indexAgain) => {
+      if (indexAgain > index) {
+        if (asteroid.isCollidedWith(asteroidAgain)) {
+          //this.remove(asteroid);
+          ///this.remove(asteroidAgain);
+        }
+      }
+    });
+  });
+  this.asteroids.forEach((asteroid) => {
+    asteroid.collideWith(this.ship);
+  });
 };
 
 Game.prototype.draw = function(ctx) {
   ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+  this.ship.draw(ctx);
   this.asteroids.forEach((asteroid, index) => {
-    console.log(`Drawing asteroid: ${index}`)
     asteroid.draw(ctx);
   });
+
 };
 
 module.exports = Game;
