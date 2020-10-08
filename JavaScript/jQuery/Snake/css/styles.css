@@ -1,0 +1,24 @@
+body, ul, li {
+  padding:0;
+  margin:0;
+}
+ul {
+  list-style: none;
+  display: flex;
+  width: fit-content;
+}
+.tile {
+  border: 1px solid gray;
+  padding:10px;
+}
+
+.snake {
+  background-color:blue;
+}
+
+#game {
+  margin:0 auto;
+  display: block;
+  width:500px;
+  margin-top:100px;
+}
