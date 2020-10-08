@@ -5,12 +5,8 @@ class Coord {
     return [x,y];
   }
 
-  equals() {
-
-  }
-
-  isOpposite() {
-
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 }
 

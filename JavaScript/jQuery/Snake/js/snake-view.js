@@ -5,10 +5,10 @@ class SnakeView {
   constructor(htmlElement) {
     const that = this;
 
+    this.size = 20;
     this.el = htmlElement;
-    this.board = new Board(20);
     this.keyListener(this);
-    this.renderBoard();
+    this.startFromBeginning();
 
     setInterval(function() {
       that.step();
@@ -17,6 +17,7 @@ class SnakeView {
 
   keyListener(bindThis) {
     const that = this;
+
     $(window).on('keydown', function(event) {
       if (event.keyCode == 38) {
         that.board.snake.turn('N');
@@ -42,28 +43,45 @@ class SnakeView {
     return found;
   }
 
+  appleFound(coordinates) {
+    return (this.board.apple.position[0] == coordinates[0] && this.board.apple.position[1] == coordinates[1]);
+  }
+
   renderBoard() {
     let boardBuilder = '';
 
     for (let i = 0; i < this.board.grid.length; i++) {
       boardBuilder += '<ul>'
       this.board.grid[i].forEach((element, index) => {
-        if (this.snakeFound([i, index]) === true) {
+        if (this.snakeFound([i, index])) {
           boardBuilder += '<li class="tile snake"></li>';
+        } else if (this.appleFound([i, index])){
+          boardBuilder += '<li class="tile apple"></li>';
         } else {
           boardBuilder += '<li class="tile"></li>';
         }
       });
       boardBuilder += '</ul>';
     }
+
     this.el.innerHTML = boardBuilder;
   }
 
   step() {
     this.board.snake.move();
+    if (this.board.outOfBounds(this.board.snake.segments[0])) {
+      this.startFromBeginning();
+    }
+    if (this.board.snakeCollidesWithApple()) {
+      this.board.newApple();
+    }
     this.renderBoard();
   }
 
+  startFromBeginning() {
+    this.board = new Board(this.size);
+    this.renderBoard();
+  }
 }
 
 module.exports = SnakeView;
