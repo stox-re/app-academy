@@ -33,13 +33,19 @@ class UsersController < ApplicationController
   end
 
   def search
+    puts "In search controller"
+    puts params
+
     if params[:query].present?
       @users = User.where('username ~ ?', params[:query])
     else
       @users = User.none
     end
 
-    render :search
+    respond_to do |format|
+      format.html { render :search }
+      format.json { render :search }
+    end
   end
 
   protected

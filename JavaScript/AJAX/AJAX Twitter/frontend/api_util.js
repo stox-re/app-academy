@@ -13,6 +13,18 @@ const APIUtil = {
       type: 'DELETE',
       dataType: 'json'
     })
+  },
+
+  searchUsers: (queryVal) => {
+    console.log("Calling search users");
+    let data = { query: queryVal };
+    console.log(data);
+    return $.ajax({
+      url: `/users/search`,
+      type: 'GET',
+      dataType: 'json',
+      data: data
+    })
   }
 };
 

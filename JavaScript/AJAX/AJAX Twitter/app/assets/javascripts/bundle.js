@@ -108,6 +108,18 @@ const APIUtil = {
       type: 'DELETE',
       dataType: 'json'
     })
+  },
+
+  searchUsers: (queryVal) => {
+    console.log("Calling search users");
+    let data = { query: queryVal };
+    console.log(data);
+    return $.ajax({
+      url: `/users/search`,
+      type: 'GET',
+      dataType: 'json',
+      data: data
+    })
   }
 };
 
@@ -174,14 +186,60 @@ module.exports = FollowToggle;
 /***/ (function(module, exports, __webpack_require__) {
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const UsersSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
 
 $(() => {
   let followButtons = $('.follow-toggle');
+  let navSearches = $('.users-search');
 
   $.each(followButtons, (index, followButton) => {
     new FollowToggle(followButton)
   });
+
+  $.each(navSearches, (index, searchNav) => {
+    new UsersSearch(searchNav);
+  });
 })
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+
+class UsersSearch {
+  constructor(el) {
+    this.el = el;
+    this.input = $(this.el).find('input')[0];
+    this.ul = $(this.el).find('ul')[0];
+    this.handleInput();
+  }
+
+  handleInput() {
+    let self = this;
+    $(self.input).on('input', function() {
+      APIUtil.searchUsers($(self.input).val()).then(self.render.bind(self))
+    })
+  }
+
+  render(data) {
+    this.ul.innerHTML = '';
+    let liBuilder = '';
+
+    data.forEach((user, index) => {
+      liBuilder += `<li><a href="/users/${user.id}">${user.username}</a></li>`;
+    });
+
+    this.ul.innerHTML = liBuilder;
+  }
+}
+
+module.exports = UsersSearch;
 
 /***/ })
 
