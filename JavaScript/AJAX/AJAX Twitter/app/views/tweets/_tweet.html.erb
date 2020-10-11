@@ -1,6 +1,5 @@
 <%= tweet.content %>
--- <a href="<%= user_url(tweet.user.id) %>"><%= tweet.user.username %></a>
--- <%= tweet.created_at %>
+<a href="<%= user_url(tweet.user.id) %>">- <%= tweet.user.username %></a>- <%= tweet.created_at.strftime("%a %H:%M") %>
 
 <% if tweet.mentioned_users.length > 0 %>
   <ul>

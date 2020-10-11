@@ -4,28 +4,35 @@
     <title>AjaxTwitter</title>
     <%= csrf_meta_tags %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <ul>
-      <li><a href="<%= feed_url %>">Feed</a></li>
-      <li><a href="<%= search_users_url %>">User Search</a></li>
-    </ul>
+    <nav class="menu">
+      <h2>AJAX Twitter</h2>
+      <ul>
+        <li><a href="<%= feed_url %>">Feed</a></li>
+        <li><a href="<%= search_users_url %>">Search</a></li>
+        <li>
 
-    <% if current_user %>
-      <form action="/session" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input
-          type="hidden"
-          name="authenticity_token"
-          value="<%= form_authenticity_token %>">
+        <% if current_user %>
+          <form action="/session" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input
+              type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
 
-        <input type="submit" value="Logout!">
-      </form>
-    <% end %>
-    
+            <input type="submit" value="Logout!">
+          </form>
+        <% end %>
+        </li>
+      </ul>
+
+    </nav>
     <%= yield %>
   </body>
 </html>

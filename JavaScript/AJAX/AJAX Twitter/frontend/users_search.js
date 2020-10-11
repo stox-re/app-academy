@@ -11,12 +11,15 @@ class UsersSearch {
 
   handleInput() {
     let self = this;
+    console.log("Search input");
     $(self.input).on('input', function() {
       APIUtil.searchUsers($(self.input).val()).then(self.render.bind(self))
     })
   }
 
   render(data) {
+    console.log("Rendering data");
+    console.log(data);
     this.ul.innerHTML = '';
     let liBuilder = '';
 

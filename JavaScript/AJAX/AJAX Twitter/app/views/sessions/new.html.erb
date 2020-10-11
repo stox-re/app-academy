@@ -1,28 +1,34 @@
-<h1>Log in!</h1>
+<section class="center">
+  <h1>Log in!</h1>
 
-<ul>
-<% if flash.now[:errors] %>
-  <% flash.now[:errors].each do |error| %>
-    <li><%= error %></li>
+  <ul>
+  <% if flash.now[:errors] %>
+    <% flash.now[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
   <% end %>
-<% end %>
-</ul>
+  </ul>
 
-<form action="/session" method="POST">
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
+  <form action="/session" method="POST">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
 
-  <label for="user_username">Username</label>
-  <input type="text" name="user[username]" id="user_username">
-  <br>
+    <div class="input-section">
+      <label for="user_username">Username</label>
+      <input type="text" name="user[username]" id="user_username">
+    </div>
 
-  <label for="user_password">Password</label>
-  <input type="password" name="user[password]" id="user_password">
-  <br>
-
-  <input type="submit" value="Log in!">
-</form>
-
-<a href="<%= new_user_url %>">New User</a>
+    <div class="input-section">
+      <label for="user_password">Password</label>
+      <input type="password" name="user[password]" id="user_password">
+    </div>
+    <div class="input-section text-center">
+      <input type="submit" value="Log in!">
+    </div>
+  </form>
+  <div class="input-section">
+    <a href="<%= new_user_url %>">Don't have an account? Sign up here</a>
+  </div>
+</section>

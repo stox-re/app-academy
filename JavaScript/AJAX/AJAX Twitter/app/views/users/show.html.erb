@@ -1,24 +1,27 @@
-<h1><%= @user.username %></h1>
+<section class="center">
 
-<%= render 'follows/form', user: @user %>
+  <h1><%= @user.username %></h1>
 
-<b>Tweets</b>
-<ul>
-  <% @user.tweets.each do |tweet| %>
-    <li><%= render 'tweets/tweet', tweet: tweet %></li>
-  <% end %>
-</ul>
+  <%= render 'follows/form', user: @user %>
 
-<b>Followers</b>
-<ul>
-  <% @user.followers.each do |follower| %>
-    <li><%= follower.username %></li>
-  <% end %>
-</ul>
+  <b>Tweets</b>
+  <ul class="tweets">
+    <% @user.tweets.each do |tweet| %>
+      <li><%= render 'tweets/tweet', tweet: tweet %></li>
+    <% end %>
+  </ul>
 
-<b>Followees</b>
-<ul>
-  <% @user.followees.each do |followee| %>
-    <li><%= followee.username %></li>
-  <% end %>
-</ul>
+  <b>Followers</b>
+  <ul class="followers">
+    <% @user.followers.each do |follower| %>
+      <li><%= follower.username %></li>
+    <% end %>
+  </ul>
+
+  <b>Followees</b>
+  <ul class="followees">
+    <% @user.followees.each do |followee| %>
+      <li><%= followee.username %></li>
+    <% end %>
+  </ul>
+</section>
