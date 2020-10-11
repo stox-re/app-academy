@@ -49,6 +49,7 @@ class SnakeView {
 
   renderBoard() {
     let boardBuilder = '';
+    boardBuilder += `<section class="apples-eaten">Apples Eaten: ${this.board.appleEatenCount}</section>`;
 
     for (let i = 0; i < this.board.grid.length; i++) {
       boardBuilder += '<ul>'
@@ -69,10 +70,12 @@ class SnakeView {
 
   step() {
     this.board.snake.move();
-    if (this.board.outOfBounds(this.board.snake.segments[0])) {
+    if (this.board.outOfBounds(this.board.snake.segments[0]) || this.board.snakeCollidesWithSelf()) {
       this.startFromBeginning();
     }
     if (this.board.snakeCollidesWithApple()) {
+      this.board.appleEatenCount += 1;
+      this.board.snake.grow();
       this.board.newApple();
     }
     this.renderBoard();

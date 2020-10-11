@@ -8,6 +8,7 @@ class Board {
     this.apple = new Apple(size);
     this.grid = [];
     this.build();
+    this.appleEatenCount = 0;
   }
 
   build() {
@@ -27,6 +28,18 @@ class Board {
 
   snakeCollidesWithApple() {
     return (this.snake.segments[0][0] == this.apple.position[0] && this.snake.segments[0][1] == this.apple.position[1])
+  }
+
+  snakeCollidesWithSelf() {
+    let isCollided = false;
+    this.snake.segments.forEach((segment, index) => {
+      if (index > 0) {
+        if (this.snake.segments[0][0] == segment[0] && this.snake.segments[0][1] == segment[1]) {
+          isCollided = true;
+        }
+      }
+    });
+    return isCollided;
   }
 
   outOfBounds(position) {

@@ -6,6 +6,9 @@ class Snake {
     this.direction = "S"
     this.segments = [[10,10]];
     this.coord = new Coord();
+    this.isGrowing = false;
+    this.savedGrowingLocation;
+    this.countGrowing = 0;
   }
 
   directionSwitch() {
@@ -23,9 +26,21 @@ class Snake {
 
   move() {
     let directionCoord = this.directionSwitch();
-    this.segments.forEach((segment, index) => {
-      this.segments[index] = this.coord.plus(segment, directionCoord);
-    });
+
+    this.segments.unshift(this.coord.plus(this.segments[0], directionCoord));
+    if (this.isGrowing && this.countGrowing < 2) {
+      this.segments.push(this.savedGrowingLocation);
+      this.countGrowing += 1;
+    } else {
+      this.countGrowing = 0;
+      this.isGrowing = false;
+    }
+    this.segments.pop();
+  }
+
+  grow() {
+    this.isGrowing = true;
+    this.savedGrowingLocation = this.segments[0];
   }
 
   turn(direction) {

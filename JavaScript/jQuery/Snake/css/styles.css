@@ -26,3 +26,12 @@ ul {
 .apple {
   background-color: red;
 }
+
+.apples-eaten {
+  width:418px;
+  padding:10px 10px 10px 10px;
+  margin-bottom:5px;
+  border:1px solid gray;
+  background-color:gray;
+  color:white;
+}
