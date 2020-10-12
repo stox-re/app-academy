@@ -60,8 +60,8 @@ class User < ApplicationRecord
       .order('tweets.created_at DESC')
       .distinct
 
-    # TODO: How can we use limit/max_created_at here??
-
+    @tweets = @tweets.limit(limit) if limit != nil
+    @tweets = @tweets.where('tweets.created_at < ?', max_created_at) if max_created_at != nil
     @tweets
   end
 

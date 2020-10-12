@@ -72,7 +72,7 @@ body {
   padding:30px;
 }
 
-h2, h1 {
+h2, h1, .fetch-more {
   font-family: 'Fredoka One';
   color:#1da1f2;
 }
@@ -167,4 +167,12 @@ textarea {
 .tweet-compose select {
   width: 50%;
   margin-bottom: 15px;
+}
+
+.fetch-more {
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  margin-bottom:30px;
 }

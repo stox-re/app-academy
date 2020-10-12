@@ -32,6 +32,21 @@ const APIUtil = {
       dataType: 'json',
       data: queryData
     })
+  },
+
+  fetchFeed: (data) => {
+    let dataToSend = { max_created_at: data };
+
+    if (data == '') {
+      dataToSend = '';
+    }
+
+    return $.ajax({
+      url: '/feed',
+      type: 'GET',
+      dataType: 'json',
+      data: dataToSend
+    })
   }
 };
 
