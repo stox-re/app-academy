@@ -111,14 +111,36 @@ const APIUtil = {
   },
 
   searchUsers: (queryVal) => {
-    console.log("Calling search users");
     let data = { query: queryVal };
-    console.log(data);
     return $.ajax({
-      url: `/users/search`,
+      url: '/users/search',
       type: 'GET',
       dataType: 'json',
       data: data
+    })
+  },
+
+  createTweet: (queryData) => {
+    return $.ajax({
+      url: '/tweets',
+      type: 'POST',
+      dataType: 'json',
+      data: queryData
+    })
+  },
+
+  fetchFeed: (data) => {
+    let dataToSend = { max_created_at: data };
+
+    if (data == '') {
+      dataToSend = '';
+    }
+
+    return $.ajax({
+      url: '/feed',
+      type: 'GET',
+      dataType: 'json',
+      data: dataToSend
     })
   }
 };
@@ -178,6 +200,114 @@ module.exports = FollowToggle;
 
 /***/ }),
 
+/***/ "./frontend/infinite_tweets.js":
+/*!*************************************!*\
+  !*** ./frontend/infinite_tweets.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+
+class InfiniteTweets {
+  constructor() {
+    this.fetchMore = $('.fetch-more');
+    this.fetchMoreListener();
+    this.maxCreatedAt = null;
+    this.fetchTweets()
+  }
+
+  fetchMoreListener() {
+    const self = this;
+
+    self.fetchMore.on('click', function() {
+      self.fetchTweets()
+    });
+  }
+
+  fetchTweets() {
+    APIUtil.fetchFeed(this.maxCreatedAt == null ? '' : this.maxCreatedAt).then(this.insertTweets.bind(this));
+  }
+
+  insertTweets(data) {
+    data.forEach((item, index) => {
+      let date = new Date(Date.parse(item.updated_at));
+      let dateString = `${date.getDate()} / ${date.getMonth()}`;
+      $("#feed").append(`<li>${item.content} <a href="/users/${item.user.id}">- ${item.user.username} -</a> ${dateString}</li>`)
+      if (index == data.length - 1) {
+        this.maxCreatedAt = item.created_at;
+      }
+    });
+
+    if (data.length < 20) {
+      this.fetchMore.text('No more tweets to fetch.');
+    }
+  }
+}
+
+module.exports = InfiniteTweets;
+
+/***/ }),
+
+/***/ "./frontend/tweet_compose.js":
+/*!***********************************!*\
+  !*** ./frontend/tweet_compose.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+
+class TweetCompose {
+  constructor(el) {
+    this.el = el;
+    this.input = $(this.el).find(':submit')[0];
+    this.charsLeft = $(this.el).find('.chars-left')[0];
+    this.handleInput();
+    this.charHandler();
+  }
+
+  charHandler() {
+    const self = this;
+    let textarea = $($(self.el).find('textarea')[0]);
+
+    textarea.on('input', function(){
+      console.log(textarea.val().length);
+      self.charsLeft.innerHTML = 140 - textarea.val().length;
+    });
+  }
+
+  handleInput() {
+    const self = this;
+
+    $(self.el).on('submit', function(evt) {
+      evt.preventDefault();
+      let jsonObj = $(self.el).serializeJSON();
+      APIUtil.createTweet(jsonObj).then(self.handleSuccess.bind(self));
+      self.disableInputs(true);
+    });
+  }
+
+  disableInputs(enabled) {
+    $(this.el).find(':input').each((index, item) => {
+      $(item).prop('disabled', enabled);
+    });
+  }
+
+  handleSuccess(data) {
+    this.disableInputs(false);
+    $(this.el).trigger('reset');
+    let date = new Date(Date.parse(data.updated_at));
+    let dateString = `${date.getDate()} / ${date.getMonth()}`;
+    $("#feed").prepend(`<li>${data.content} <a href="/users/${data.user.id}">- ${data.user.username} -</a> ${dateString}</li>`)
+    this.charsLeft.innerHTML = '';
+  }
+}
+
+module.exports = TweetCompose;
+
+/***/ }),
+
 /***/ "./frontend/twitter.js":
 /*!*****************************!*\
   !*** ./frontend/twitter.js ***!
@@ -187,10 +317,13 @@ module.exports = FollowToggle;
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
 const UsersSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
+const TweetCompose = __webpack_require__(/*! ./tweet_compose.js */ "./frontend/tweet_compose.js");
+const InfiniteTweets = __webpack_require__(/*! ./infinite_tweets.js */ "./frontend/infinite_tweets.js");
 
 $(() => {
   let followButtons = $('.follow-toggle');
   let navSearches = $('.users-search');
+  let tweetComposes = $('.tweet-compose');
 
   $.each(followButtons, (index, followButton) => {
     new FollowToggle(followButton)
@@ -199,6 +332,12 @@ $(() => {
   $.each(navSearches, (index, searchNav) => {
     new UsersSearch(searchNav);
   });
+
+  $.each(tweetComposes, (index, tweetCompose) => {
+    new TweetCompose(tweetCompose);
+  });
+
+  new InfiniteTweets();
 })
 
 /***/ }),
@@ -211,6 +350,7 @@ $(() => {
 /***/ (function(module, exports, __webpack_require__) {
 
 const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
 
 class UsersSearch {
   constructor(el) {
@@ -232,10 +372,15 @@ class UsersSearch {
     let liBuilder = '';
 
     data.forEach((user, index) => {
-      liBuilder += `<li><a href="/users/${user.id}">${user.username}</a></li>`;
+      let newButton = `<button class="follow-toggle" data-user-id="${user.id}" data-initial-follow-state="${user.followed}">${user.followed ? "Unfollow!" : "Follow!"}</button>`;
+      liBuilder += `<li><a href="/users/${user.id}">${user.username}</a>${newButton}</li>`;
     });
 
     this.ul.innerHTML = liBuilder;
+    let followButtons = $(this.ul).find('.follow-toggle');
+    $.each(followButtons, (index, followButton) => {
+      new FollowToggle(followButton)
+    });
   }
 }
 

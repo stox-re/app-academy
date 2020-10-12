@@ -26,3 +26,4 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Reversi Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/Reversi) - A reversi (CLI) game in JavaScript
 * [Asteroids Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/Object%20Oriented%20JavaScript/Asteroids) - An asteroids game with canvas and prototype inheritance
 * [Snake Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/jQuery/Snake) - A snake game written in JavaScript with jQuery
+* [AJAX Twitter](https://github.com/stockermans/app-academy/tree/master/JavaScript/AJAX/AJAX%20Twitter) - A modifed twitter clone rails app to support AJAX calls with jquery.
