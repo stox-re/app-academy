@@ -21,9 +21,9 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Art Share API](https://github.com/stockermans/app-academy/tree/master/Rails/Routes%20and%20Controllers/Art%20Share%20API) - An API for art sharing, with users, artworks and comments
 * [99 Cats](https://github.com/stockermans/app-academy/tree/master/Rails/Rails%20Views/Cats99) - A rails app to create and rent cats with users
 * [Music App](https://github.com/stockermans/app-academy/tree/master/Rails/Rails%20Auth%20II/MusicApp) - A music tracking app with email activations for users
-* [Social Goals App](https://github.com/stockermans/app-academy/tree/master/Rails/Testing%20with%20Rails/SocialGoalsApp) - An app that allows users to create and manage goals with a commenting system.
+* [Social Goals App](https://github.com/stockermans/app-academy/tree/master/Rails/Testing%20with%20Rails/SocialGoalsApp) - An app that allows users to create and manage goals with a commenting system
 * [Reddit Clone App](https://github.com/stockermans/app-academy/tree/master/Rails/Advanced%20Rails%20Forms/RedditClone) - A reddit clone app allowing users to create posts and voting.
 * [Reversi Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/Reversi) - A reversi (CLI) game in JavaScript
 * [Asteroids Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/Object%20Oriented%20JavaScript/Asteroids) - An asteroids game with canvas and prototype inheritance
 * [Snake Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/jQuery/Snake) - A snake game written in JavaScript with jQuery
-* [AJAX Twitter](https://github.com/stockermans/app-academy/tree/master/JavaScript/AJAX/AJAX%20Twitter) - A modifed twitter clone rails app to support AJAX calls with jquery.
+* [AJAX Twitter](https://github.com/stockermans/app-academy/tree/master/JavaScript/AJAX/AJAX%20Twitter) - A modifed twitter clone rails app to support AJAX calls with jquery
