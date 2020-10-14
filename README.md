@@ -28,3 +28,4 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Snake Game](https://github.com/stockermans/app-academy/tree/master/JavaScript/jQuery/Snake) - A snake game written in JavaScript with jQuery
 * [AJAX Twitter](https://github.com/stockermans/app-academy/tree/master/JavaScript/AJAX/AJAX%20Twitter) - A modifed twitter clone rails app to support AJAX calls with jquery
 * [jQuery Lite](https://github.com/stockermans/app-academy/tree/master/JavaScript/JavaScript%20DOM%20API/jQuery%20Lite) - Vanilla JavaScript function $l(), a version of jQuery's $() function
+* [Mail](https://github.com/stockermans/app-academy/tree/master/JavaScript/JavaScript%20DOM%20API/Mail) - Single page mail app with composing messages and saving drafts
