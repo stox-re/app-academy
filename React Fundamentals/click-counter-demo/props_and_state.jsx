@@ -10,7 +10,9 @@ class WordInput extends React.Component {
   }
 
   updateWord(event) {
-    this.setState({ word: event.currentTarget.value });
+    this.setState({ word: event.currentTarget.value }, () => {
+      console.log(this.state.word);
+    });
   }
 
   render() {
@@ -30,4 +32,6 @@ export default WordInput;
   it should not be called during a render(),
   as that would trigger an infinite loop.
   Here, setState() works because this.updateWord is called by user-input after the element is rendered.
+
+  this.setState() takes an optional callback since it is run async
 */
