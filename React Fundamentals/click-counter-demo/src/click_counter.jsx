@@ -8,6 +8,10 @@ class ClickCounter extends React.Component {
       count: 0,
       previousCounts: []
     };
+
+    // Instead of having .bind(this) on the onClick, we can do this:
+    this.click = this.click.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   click(event) {
@@ -31,9 +35,11 @@ class ClickCounter extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.click.bind(this)}>Click Me!</button>
+        {/*<button onClick={this.click.bind(this)}>Click Me!</button>*/}
+        <button onClick={this.click}>Click Me!</button>
         <span>{this.state.count}</span><br />
-        <button onClick={this.reset.bind(this)}>Reset</button>
+        {/*<button onClick={this.reset.bind(this)}>Reset</button>*/}
+        <button onClick={this.reset}>Reset</button>
         <Counts previousCounts={this.state.previousCounts} />
       </div>
     )
