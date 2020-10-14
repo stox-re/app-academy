@@ -6,7 +6,7 @@ const Sent = {
     let newUl = document.createElement('ul');
     newUl.classList.add('messages');
 
-    inboxMessages.forEach((currentMessage) => {
+    inboxMessages.reverse().forEach((currentMessage) => {
       newUl.appendChild(Sent.renderMessage(currentMessage));
     });
     return newUl;

@@ -22,6 +22,25 @@ let messages = {
     ]
 };
 
+class Message {
+  constructor(messageObj) {
+    this.from = messageObj.from || '';
+    this.to = messageObj.to || '';
+    this.subject = messageObj.subject || '';
+    this.body = messageObj.body || '';
+  }
+  thisMessage() {
+    return {
+      from: this.from,
+      to: this.to,
+      subject: this.subject,
+      body: this.body
+    }
+  }
+}
+
+let messageDraft = new Message({});
+
 const MessageStore = {
   getInboxMessages: function() {
     return messages.inbox
@@ -29,7 +48,21 @@ const MessageStore = {
 
   getSentMessages: function() {
     return messages.sent
+  },
+
+  getMessageDraft: function() {
+    return messageDraft;
+  },
+
+  sendDraft: function() {
+    messages.sent.push(messageDraft.thisMessage());
+    messageDraft = new Message({});
+  },
+
+  updateDraftField: function(field, value) {
+    messageDraft[field] = value;
   }
 };
+
 
 module.exports = MessageStore;
