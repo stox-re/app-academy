@@ -23,6 +23,43 @@ span, article, footer, time, small {
   border-radius: 5px;
 }
 
+.tabs {
+  font-family: Open-sans, sans-serif;
+  color:white;
+  border-radius: 5px;
+  padding:15px;
+}
+.tabs ul {
+  display: flex;
+  list-style: none;
+}
+
+.tabs ul li {
+  padding:10px;
+  border:1px solid rgb(173, 34, 253);
+  margin:5px 5px 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  color:rgb(173, 34, 253);
+}
+
+.tabs ul li:hover {
+  background-color:rgb(173, 34, 253);
+  color:white;
+}
+
+.tabs ul li.selected {
+  color: white;
+  background-color:rgb(173, 34, 253);
+}
+
+.tabs article {
+  padding:30px;
+  border:1px solid white;
+  border-radius: 5px;
+  background-color:rgb(173, 34, 253);
+}
+
 .time-clock {
   display: flex;
   justify-content: space-between;
@@ -33,15 +70,27 @@ span, article, footer, time, small {
   padding-bottom:10px;
 }
 
+.clock h1 {
+  font-size:1.3em;
+}
+
 .time {
-  font-size:2em;
+  font-size:1.3em;
   font-weight: 700;
 }
 
 @media screen and (min-width: 900px) {
+  .tabs {
+    max-width: 660px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
   .clock {
-    max-width:600px;
+    max-width: 600px;
     margin:0 auto;
     margin-top:30px;
+  }
+  .clock h1, .time {
+    font-size:2em;
   }
 }
