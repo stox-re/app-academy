@@ -34,7 +34,6 @@ class Weather extends React.Component {
     };
 
     request.onerror = function () {};
-
     request.send();
   }
 
