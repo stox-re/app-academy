@@ -29,6 +29,26 @@ span, article, footer, time, small {
   border-radius: 5px;
   padding:15px;
 }
+
+.weather {
+  background-color:rgb(243, 255, 77);
+  font-family: Open-sans, sans-serif;
+  padding:30px;
+  margin:15px;
+  color:black;
+  border-radius: 5px;
+}
+.weather-header {
+  display:flex;
+  align-items: center;
+}
+
+.weather ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
 .tabs ul {
   display: flex;
   list-style: none;
@@ -37,7 +57,7 @@ span, article, footer, time, small {
 .tabs ul li {
   padding:10px;
   border:1px solid rgb(173, 34, 253);
-  margin:5px 5px 5px 5px;
+  margin:5px 5px 5px 0px;
   border-radius: 5px;
   cursor: pointer;
   color:rgb(173, 34, 253);
@@ -70,7 +90,7 @@ span, article, footer, time, small {
   padding-bottom:10px;
 }
 
-.clock h1 {
+.clock h1, .weather h2 {
   font-size:1.3em;
 }
 
@@ -85,12 +105,12 @@ span, article, footer, time, small {
     margin: 0 auto;
     margin-top: 30px;
   }
-  .clock {
+  .clock, .weather {
     max-width: 600px;
     margin:0 auto;
     margin-top:30px;
   }
-  .clock h1, .time {
+  .clock h1, .time, .weather h2 {
     font-size:2em;
   }
 }

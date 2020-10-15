@@ -1,6 +1,7 @@
 import React from 'react';
 import Clock from './clock';
 import Tabs from './tabs';
+import Weather from './weather';
 
 const tabObjects = [
   {
@@ -22,6 +23,7 @@ const Root = () => {
     <div>
       <Clock />
       <Tabs tabObjects={tabObjects}/>
+      <Weather />
     </div>
   )
 }
