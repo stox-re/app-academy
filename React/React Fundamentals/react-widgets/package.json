@@ -17,6 +17,7 @@
     "babel-loader": "^8.1.0",
     "dotenv": "^8.2.0",
     "react": "^16.14.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.14.0",
     "webpack": "^5.1.1",
     "webpack-cli": "^4.0.0"

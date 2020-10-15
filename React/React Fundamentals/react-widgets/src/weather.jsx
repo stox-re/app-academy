@@ -28,7 +28,6 @@ class Weather extends React.Component {
         self.setState({
           weather: resp
         });
-        console.log(resp);
       } else {
         console.log(this);
       }
@@ -46,8 +45,8 @@ class Weather extends React.Component {
   render() {
     let weatherData = <h2>Loading weather...</h2>;
     let thisWeather = this.state.weather;
+
     if (typeof thisWeather != 'undefined') {
-      console.log(thisWeather);
       weatherData =
       <div>
         <div className='weather-header'>
@@ -56,8 +55,8 @@ class Weather extends React.Component {
         </div>
         <ul>
           <li>{thisWeather['weather'][0]['description']}</li>
-          <li>Feels like {thisWeather['main']['feels_like']}</li>
-          <li>Temperature of {thisWeather['main']['temp']}</li>
+          <li>Feels like {thisWeather['main']['feels_like']} °C</li>
+          <li>Temperature of {thisWeather['main']['temp']} °C</li>
         </ul>
       </div>;
     }

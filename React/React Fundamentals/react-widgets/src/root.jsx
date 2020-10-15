@@ -2,6 +2,7 @@ import React from 'react';
 import Clock from './clock';
 import Tabs from './tabs';
 import Weather from './weather';
+import Autocomplete from './autocomplete';
 
 const tabObjects = [
   {
@@ -18,12 +19,28 @@ const tabObjects = [
   },
 ];
 
+const listOfNames = [
+  "James",
+  "Daniel",
+  "Sarah",
+  "Michael",
+  "Fred",
+  "Timothy",
+  "Kira",
+  "Charlie",
+  "David",
+  "Jim",
+  "Dorthy",
+  "Tina"
+];
+
 const Root = () => {
   return (
     <div>
       <Clock />
       <Tabs tabObjects={tabObjects}/>
       <Weather />
+      <Autocomplete listOfNames={listOfNames}/>
     </div>
   )
 }

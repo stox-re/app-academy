@@ -14,6 +14,10 @@ span, article, footer, time, small {
   background-color:inherit;
 }
 
+body {
+  padding-bottom:50px;
+}
+
 .clock {
   background-color:rgb(253, 140, 34);
   font-family: Open-sans, sans-serif;
@@ -38,6 +42,16 @@ span, article, footer, time, small {
   color:black;
   border-radius: 5px;
 }
+
+.autocomplete {
+  background-color:rgb(255, 77, 255);
+  font-family: Open-sans, sans-serif;
+  padding:30px;
+  margin:15px;
+  color:white;
+  border-radius: 5px;
+}
+
 .weather-header {
   display:flex;
   align-items: center;
@@ -99,13 +113,32 @@ span, article, footer, time, small {
   font-weight: 700;
 }
 
+.autocomplete input {
+  background-color:white;
+  padding:10px;
+  color:black;
+}
+
+.autocomplete ul {
+  padding:15px;
+}
+
+.autocomplete ul li {
+  padding:5px;
+  cursor: pointer;
+}
+
+.autocomplete ul li:hover {
+  opacity: 0.9;
+}
+
 @media screen and (min-width: 900px) {
   .tabs {
     max-width: 660px;
     margin: 0 auto;
     margin-top: 30px;
   }
-  .clock, .weather {
+  .clock, .weather, .autocomplete {
     max-width: 600px;
     margin:0 auto;
     margin-top:30px;
