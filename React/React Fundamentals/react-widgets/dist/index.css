@@ -126,6 +126,7 @@ body {
 .autocomplete ul li {
   padding:5px;
   cursor: pointer;
+  background-color:transparent;
 }
 
 .autocomplete ul li:hover {

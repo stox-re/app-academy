@@ -1,0 +1,23 @@
+/* AutoComplete */
+
+.autocomplete-transition-enter {
+  opacity: 0.01;
+  transform: translateX(100%);
+}
+
+.autocomplete-transition-enter.autocomplete-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.autocomplete-transition-leave {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.autocomplete-transition-leave.autocomplete-transition-leave-active {
+  opacity: 0.01;
+  transform: translateX(100%);
+  transition: opacity 500ms, transform 500ms;
+}
