@@ -12,6 +12,14 @@ span, article, footer, time, small {
   text-decoration: inherit;
   vertical-align: inherit;
   background-color:inherit;
+  font-family: 'Open Sans';
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .tile {
@@ -23,10 +31,49 @@ span, article, footer, time, small {
   padding:10px;
   margin:1px;
   border-style: inset;
-  border-style: outset;
   border:1px solid gray;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.revealed {
+  border-style: outset;
+  background-color:gray;
 }
 
 .row {
   display: flex;
+}
+
+.modal {
+  position:fixed;
+  z-index:1;
+  height:100%;
+  width:100%;
+  background-color:#f7f7f7;
+  opacity:0.9;
+}
+
+.modal-display {
+  height:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.modal-display button {
+  padding:20px;
+  background-color: steelblue;
+  color:white;
+  border-radius: 10px;
+  margin-top:15px;
+  font-size:1.1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-display button:hover {
+  background-color:blue;
 }

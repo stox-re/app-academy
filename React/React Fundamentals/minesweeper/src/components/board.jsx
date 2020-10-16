@@ -16,7 +16,6 @@ class Board extends React.Component {
 
     return (
       <div>
-        <h1>Board</h1>
         {theseTiles}
       </div>
     );
