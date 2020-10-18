@@ -14,6 +14,7 @@ store.dispatch(addOrange);
 store.getState();
 store.dispatch(addApple);
 store.getState();
+
 const addLychee = { type: 'ADD_FRUIT', fruit: 'lychee' };
 store.dispatch(addLychee);
 store.getState();
