@@ -1,0 +1,31 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h1, h2, h3, h4, h5, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  background-color:inherit;
+  font-family: 'Varela Round';
+}
+
+button {
+  background-color:lightgoldenrodyellow;
+  font-size:1.1em;
+  color:black;
+  padding:10px;
+  margin:3px;
+  border:1px solid lightgray;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:rgb(255, 255, 185);
+}
