@@ -1,0 +1,119 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h1, h2, h3, h4, h5, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  font-family: 'Roboto';
+}
+
+#root {
+  font-size:1.1em;
+}
+
+.todo-container {
+  padding:10px;
+}
+
+body {
+  background-color:#f3f3f3;
+  color:black;
+}
+
+nav {
+  background-color:white;
+  width: 100%;
+  height:50px;
+  display: flex;
+  align-items: center;
+  background-color:#222;
+  color:white;
+  margin-bottom:30px;
+}
+
+nav h1 {
+  margin-left:10px;
+}
+
+.todo-item {
+  background-color: white;
+  padding:10px;
+  margin-bottom:5px;
+  border-radius: 3px;
+}
+
+.input-group {
+  margin-bottom:10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  margin-top:3px;
+  width:100%;
+  border-radius: 3px;
+  padding:15px 5px 15px 5px;
+  text-indent: 10px;
+  background-color:white;
+  box-sizing: border-box;
+}
+
+button {
+  padding:10px 30px 10px 30px;
+  background-color:yellow;
+  color:black;
+  margin-top:5px;
+  border:1px solid gray;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  color:gray;
+}
+
+.todo-list {
+  color:black;
+}
+
+.todo-form {
+  margin-top:30px;
+  padding-top:0px;
+  border-top:10px solid yellow;
+}
+.todo-form h3 {
+  padding:30px 0 30px 0;
+}
+
+.button-group {
+  float:right;
+}
+
+.todo-number {
+  float:right;
+  font-size:0.8em;
+  color:gray;
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
