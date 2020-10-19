@@ -136,3 +136,22 @@ input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   border: 1px solid rgba(81, 203, 238, 1);
 }
+
+.todo-detail-view {
+  width:auto;
+  background-color:lightgoldenrodyellow;
+  padding:10px;
+  margin-top:-5px;
+  margin-bottom:5px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.todo-item-open-details {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.todo-item-open-details:hover{
+  text-decoration: underline;
+}
