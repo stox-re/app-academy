@@ -25,7 +25,7 @@ class TodoListItem extends React.Component {
         <div>{this.props.todo.title} </div>
         <div>
           {this.props.todo.done ? '✔' : ''}
-          <button onClick={this.handleDoneClick.bind(this)}>Done</button>
+          <button onClick={this.handleDoneClick.bind(this)}>{this.props.todo.done ? 'Undo' : 'Done'}</button>
           <button className='remove' onClick={this.handleRemoveClick.bind(this)}>X</button>
         </div>
       </li>
