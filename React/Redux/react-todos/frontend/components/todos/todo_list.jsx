@@ -12,7 +12,7 @@ const TodoList = (props) => {
           })
         }
       </ul>
-      <TodoForm recieveTodo={props.receiveTodo} />
+      <TodoForm receiveTodo={props.receiveTodo} />
     </div>
   )
 };

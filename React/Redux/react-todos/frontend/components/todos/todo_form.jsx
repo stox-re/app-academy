@@ -1,11 +1,45 @@
 import React from 'react';
+import { receiveTodo } from '../../actions/todo_actions';
+import { uniqueId } from '../../util';
 
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    console.log("todo form props");
-    console.log(props);
+
+    this.state = {
+      title: '',
+      body: ''
+    };
+
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleTitleChange(event) {
+    this.setState({
+      title: event.target.value
+    })
+  }
+
+  handleBodyChange(event) {
+    this.setState({
+      body: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.receiveTodo({
+      id: uniqueId(),
+      title: this.state.title,
+      body: this.state.body,
+      done: false
+    });
+    this.setState({
+      title: '',
+      body: ''
+    })
   }
 
   render() {
@@ -15,14 +49,14 @@ class TodoForm extends React.Component {
         <form>
           <div className='input-group'>
             <label htmlFor='todo-title'>Title</label>
-            <input id='todo-title' type='text'></input>
+            <input onChange={this.handleTitleChange} id='todo-title' type='text' value={this.state.title}></input>
           </div>
           <div className='input-group'>
             <label htmlFor='todo-body'>Body</label>
-            <input id='todo-body' type='text'></input>
+            <input onChange={this.handleBodyChange} id='todo-body' type='text' value={this.state.body}></input>
           </div>
           <div className='button-group'>
-            <button type='submit'>Submit</button>
+            <button onClick={this.handleSubmit} type='submit'>Submit</button>
           </div>
         </form>
       </div>
