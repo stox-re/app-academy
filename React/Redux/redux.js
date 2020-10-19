@@ -21,3 +21,5 @@ subscribe(listener)
 
 // Middleware
 // Perhaps the most common use for middleware is to dispatch asynchronous requests to a server.
+
+// npm install webpack webpack - cli react react - dom redux react - redux @babel/core babel-loader @babel/preset - react @babel/preset-env
