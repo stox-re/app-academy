@@ -8,7 +8,7 @@ const TodoList = (props) => {
       <ul className='todo-list'>
         {
           props.todos.map((todo, index) => {
-            return <TodoListItem key={index} todo={todo} />
+            return <TodoListItem removeTodo={props.removeTodo} receiveTodo={props.receiveTodo} key={index} todo={todo} />
           })
         }
       </ul>
