@@ -50,6 +50,7 @@ nav h1 {
   display:flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px;
 }
 
 .todo-item button {
@@ -141,8 +142,8 @@ input[type=text]:focus, textarea:focus {
   padding:10px;
   margin-top:-5px;
   margin-bottom:5px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .todo-item-open-details {
@@ -166,6 +167,16 @@ input[type=text]:focus, textarea:focus {
 .step-list-view h4 {
   padding:10px 0 10px 0;
 }
+.todo-list-item {
+  border-radius: 10px;
+  padding:10px;
+  margin-bottom:15px;
+  box-shadow: 0px 0px 15px gray;
+}
+.todo-list-item:hover {
+  box-shadow: 0px 0px 15px gray;
+  border-radius: 10px;
+}
 .step-list-item, .flex-item {
   display: flex;
   justify-content: space-between;
@@ -180,8 +191,8 @@ input[type=text]:focus, textarea:focus {
 }
 
 .dot {
-  height: 25px;
-  width: 25px;
+  height: 40px;
+  width: 40px;
   background-color: #dfdfdf;
   border:1px solid #ddd;
   border-radius: 50%;
