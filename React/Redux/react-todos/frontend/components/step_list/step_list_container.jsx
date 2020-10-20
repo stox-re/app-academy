@@ -3,10 +3,12 @@ import { receiveStep } from '../../actions/step_actions';
 import { stepsByTodoId } from '../../reducers/selectors';
 import StepList from './step_list';
 
-const mapStateToProps = (state, { todoId }) => {
+const mapStateToProps = (state, props) => {
+  console.log("Map state props");
+  console.log(props.todo.id);
   return {
-    steps: stepsByTodoId(state, todoId),
-    todo_id: todoId
+    steps: stepsByTodoId(state, props.todo.id),
+    todo_id: props.todo.id
   }
 };
 

@@ -23,7 +23,7 @@ class StepListItem extends React.Component {
       title: step.title,
       done: !step.done
     });
-    this.handleDotDone(event.target.children[0])
+    this.handleDotDone(event.currentTarget.children[0])
   }
 
   handleRemove() {
