@@ -155,3 +155,23 @@ input[type=text]:focus, textarea:focus {
 .todo-item-open-details:hover{
   text-decoration: underline;
 }
+
+.step-list-view ul {
+  list-style: none;
+}
+.step-list-view {
+  border-top:3px solid black;
+  margin-top:15px;
+  padding-bottom:5px;
+}
+.step-list-view h4 {
+  padding:10px 0 10px 0;
+}
+.step-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.step-list-item button {
+  margin-left:5px;
+}
