@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div>
       <nav>
-        <h1>React Todo List</h1>
+        <h1>Any Todos</h1>
       </nav>
       <div className='todo-container'>
         <TodoListContainer />

@@ -37,10 +37,9 @@ class StepForm extends React.Component {
   render() {
     return (
       <div className='step-form'>
-        <h3>Add New Step</h3>
         <form className='clear-fix'>
           <div className='input-group'>
-            <label htmlFor='step-title'>Title</label>
+            <label htmlFor='step-title'>New step</label>
             <input onChange={this.handleTitleChange} name='step-title' type='text' value={this.state.title} placeholder='Enter your step title...'></input>
           </div>
           <div className='button-group'>

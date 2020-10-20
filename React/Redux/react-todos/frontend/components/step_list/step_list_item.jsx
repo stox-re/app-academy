@@ -13,7 +13,7 @@ class StepListItem extends React.Component {
     this.handleRemove = this.handleRemove.bind(this);
   }
 
-  handleDone() {
+  handleDone(event) {
     console.log("Handle done");
     let step = this.props.step;
     console.log(step);
@@ -23,24 +23,31 @@ class StepListItem extends React.Component {
       title: step.title,
       done: !step.done
     });
+    this.handleDotDone(event.target.children[0])
   }
 
   handleRemove() {
     let stepId = this.props.step.id;
     this.props.removeStep(stepId)
   }
-
+  handleDotDone(target) {
+    if (!this.props.step.done) {
+      target.classList.add('dot-done');
+    } else {
+      target.classList.remove('dot-done');
+    }
+  }
   render() {
     return (
       <li className='step-list-item'>
-        <div>
-          {this.props.index}. &nbsp;
-          {this.props.step.title}
+        <div onClick={this.handleDone}>
+          <div className='step-list-item step-list-done'>
+            <div className={this.props.step.done ? 'dot check-dot dot-done' : 'dot check-dot'}></div>
+            {this.props.step.title}
+          </div>
         </div>
         <div>
-          {this.props.step.done ? '✔' : ''}
-          <button onClick={this.handleDone}>{this.props.step.done ? 'Undo' : 'Done'}</button>
-          <button onClick={this.handleRemove} className='remove'>X</button>
+          <div onClick={this.handleRemove} className='dot'>✗</div>
         </div>
       </li>
     )

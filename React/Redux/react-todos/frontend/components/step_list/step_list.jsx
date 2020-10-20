@@ -11,7 +11,6 @@ const StepList = (props) => {
 
   return (
     <div className='step-list-view'>
-      <h4>Steps:</h4>
       <ul>
         {listItems}
       </ul>

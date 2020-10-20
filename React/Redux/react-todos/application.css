@@ -11,7 +11,7 @@ span, article, footer, time, small {
   text-align: inherit;
   text-decoration: inherit;
   vertical-align: inherit;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
 }
 
 #root {
@@ -23,8 +23,8 @@ span, article, footer, time, small {
 }
 
 body {
-  background-color:#f3f3f3;
-  color:black;
+  background-color:white;
+  color:#222;
 }
 
 nav {
@@ -34,10 +34,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#222;
-  color:white;
   margin-bottom:30px;
-  border-bottom: 5px solid yellow;
+  text-transform: uppercase;
+  font-weight: 100;
 }
 
 nav h1 {
@@ -68,7 +67,7 @@ label {
 input {
   margin-top:3px;
   width:100%;
-  border-radius: 3px;
+  border-radius: 10px;
   padding:15px 5px 15px 5px;
   text-indent: 10px;
   background-color:white;
@@ -80,7 +79,7 @@ button {
   background-color:white;
   color:black;
   margin-top:5px;
-  border:1px solid gray;
+  border:1px solid lightgray;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -91,7 +90,7 @@ button.remove {
 }
 
 button:hover {
-  color:gray;
+  opacity: 0.9;
 }
 
 .todo-list {
@@ -109,7 +108,6 @@ button:hover {
 .todo-form h3 {
   padding:30px 0 5px 0;
   margin-bottom:30px;
-  border-bottom:5px solid black;
   text-align: center;
 }
 
@@ -139,7 +137,7 @@ input[type=text]:focus, textarea:focus {
 
 .todo-detail-view {
   width:auto;
-  background-color:lightgoldenrodyellow;
+  background-color:white;
   padding:10px;
   margin-top:-5px;
   margin-bottom:5px;
@@ -150,28 +148,69 @@ input[type=text]:focus, textarea:focus {
 .todo-item-open-details {
   cursor: pointer;
   font-weight: bold;
+  display: inline-block;
 }
 
-.todo-item-open-details:hover{
-  text-decoration: underline;
+.todo-item-titles {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .step-list-view ul {
   list-style: none;
 }
 .step-list-view {
-  border-top:3px solid black;
-  margin-top:15px;
   padding-bottom:5px;
 }
 .step-list-view h4 {
   padding:10px 0 10px 0;
 }
-.step-list-item {
+.step-list-item, .flex-item {
   display: flex;
   justify-content: space-between;
 }
 
 .step-list-item button {
   margin-left:5px;
+}
+
+.step-list-item {
+  padding:0px 0 5px 0;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #dfdfdf;
+  border:1px solid #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right:10px;
+  color:#444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 3px #888;
+  cursor: pointer;
+}
+
+.dot.check-dot.dot-done:after {
+  content: '✔'
+}
+
+.dot.check-dot:hover:before {
+  content: ''
+}
+
+.dot.check-dot:hover:after {
+  content: '✔';
+}
+
+.step-list-text {
+  display: inline-block;
+}
+
+.step-list-done {
+  cursor: pointer;
 }
