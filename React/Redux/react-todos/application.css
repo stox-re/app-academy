@@ -34,8 +34,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom:30px;
-  text-transform: uppercase;
   font-weight: 100;
 }
 
@@ -81,7 +79,7 @@ button {
   color:black;
   margin-top:5px;
   border:1px solid lightgray;
-  border-radius: 3px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -107,8 +105,6 @@ button:hover {
   display: block;
 }
 .todo-form h3 {
-  padding:30px 0 5px 0;
-  margin-bottom:30px;
   text-align: center;
 }
 
@@ -180,6 +176,7 @@ input[type=text]:focus, textarea:focus {
 .step-list-item, .flex-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .step-list-item button {
@@ -214,14 +211,24 @@ input[type=text]:focus, textarea:focus {
   content: ''
 }
 
-.dot.check-dot:hover:after {
-  content: '✔';
-}
-
 .step-list-text {
   display: inline-block;
 }
 
 .step-list-done {
   cursor: pointer;
+}
+
+.showingForm {
+  position: fixed;
+  bottom:0;
+  right:15px;
+  color:#444;
+  font-size:4em;
+}
+
+.todo-form-inside {
+  box-shadow: 0px 0px 15px gray;
+  padding:30px;
+  border-radius: 10px;
 }
