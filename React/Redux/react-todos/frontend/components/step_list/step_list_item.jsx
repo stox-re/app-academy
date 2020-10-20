@@ -40,7 +40,7 @@ class StepListItem extends React.Component {
         <div>
           {this.props.step.done ? '✔' : ''}
           <button onClick={this.handleDone}>{this.props.step.done ? 'Undo' : 'Done'}</button>
-          <button onClick={this.handleRemove}>X</button>
+          <button onClick={this.handleRemove} className='remove'>X</button>
         </div>
       </li>
     )

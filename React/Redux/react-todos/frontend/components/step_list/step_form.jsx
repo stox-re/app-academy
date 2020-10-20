@@ -1,12 +1,12 @@
 import React from 'react';
+import { uniqueId } from '../../util';
 
 class StepForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: '',
-      body: ''
+      title: ''
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -21,16 +21,23 @@ class StepForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let newStep = {
-      title: event.target.title,
+
+    this.props.receiveStep({
+      id: uniqueId(),
+      title: this.state.title,
       done: false,
-    }
+      todo_id: this.props.todoId
+    });
+
+    this.setState({
+      title: ''
+    });
   }
 
   render() {
     return (
       <div className='step-form'>
-        <h3>Add New Todo</h3>
+        <h3>Add New Step</h3>
         <form className='clear-fix'>
           <div className='input-group'>
             <label htmlFor='step-title'>Title</label>
