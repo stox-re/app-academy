@@ -8,7 +8,7 @@ import { receiveSteps, receiveStep, removeStep } from './actions/step_actions';
 
 import { allTodos, stepsByTodoId } from './reducers/selectors';
 
-const store = configureStore();
+let store = configureStore();
 window.store = store;
 window.receiveTodo = receiveTodo;
 window.receiveTodos = receiveTodos;
@@ -18,18 +18,18 @@ window.removeStep = removeStep;
 window.allTodos = allTodos;
 window.stepsByTodoId = stepsByTodoId;
 
-function addLoggingToDispatch (inputStore) {
-  let storeDispatch = inputStore.dispatch;
-  return (action) => {
-    console.log(inputStore.getState());
-    console.log(action);
-    storeDispatch(action);
-    console.log(inputStore.getState());
-  }
-}
+/* const applyMiddlewares = (inputStore, middlewareList) => {
+  let dispatch = inputStore.dispatch;
+  middlewareList.forEach((middleware) => {
+    dispatch = middleware(inputStore)(dispatch);
+  });
+
+  return Object.assign({}, inputStore, { dispatch });
+}; */
 
 document.addEventListener('DOMContentLoaded', () => {
-  store.dispatch = addLoggingToDispatch(store);
+  //store = applyMiddlewares(store, [addLoggingToDispatch]);
+
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 });
