@@ -1,19 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/root_reducer';
+import thunk from '../middleware/thunk';
+import logging from '../middleware/logging';
 
-const addLoggingToDispatch = (inputStore) => {
-  return (next) => {
-    return (action) => {
-      console.log(inputStore.getState());
-      console.log(action);
-      next(action);
-      console.log(inputStore.getState());
-    };
-  };
-};
+
+let middlewares = [logging, thunk];
 
 const configureStore = () => {
-  return createStore(rootReducer, {}, applyMiddleware(addLoggingToDispatch));
+  return createStore(rootReducer, {}, applyMiddleware(...middlewares));
 };
 
 export default configureStore;

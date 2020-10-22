@@ -1,6 +1,6 @@
 import { RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO } from '../actions/todo_actions';
 
-const initialState = {
+/*const initialState = {
   1: {
     id: 1,
     title: "Wash the car",
@@ -13,7 +13,8 @@ const initialState = {
     body: "once you get a dog, with shampoo",
     done: true
   }
-};
+};*/
+const initialState = {};
 
 const todosReducer = (state = initialState, action) => {
   Object.freeze(state);

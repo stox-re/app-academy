@@ -3,13 +3,15 @@ import React from 'react';
 import configureStore from './store/store.js';
 import Root from './components/root';
 
-import { receiveTodos, receiveTodo } from './actions/todo_actions';
+import { receiveTodos, receiveTodo, fetchTodos } from './actions/todo_actions';
 import { receiveSteps, receiveStep, removeStep } from './actions/step_actions';
 
 import { allTodos, stepsByTodoId } from './reducers/selectors';
-
+import * as Util from './util';
 let store = configureStore();
+window.Util = Util;
 window.store = store;
+window.fetchTodos = fetchTodos;
 window.receiveTodo = receiveTodo;
 window.receiveTodos = receiveTodos;
 window.receiveSteps = receiveSteps;
