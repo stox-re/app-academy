@@ -33,6 +33,10 @@ span, article, footer, time, small {
   font-size:1.1em;
 }
 
+body {
+
+}
+
 .todo-container {
   padding:10px;
 }
@@ -43,7 +47,7 @@ body {
 }
 
 nav {
-  background-color:white;
+  color:#2b2b2b;
   width: 100%;
   padding:20px 0 20px 0;
   display: flex;
@@ -58,12 +62,13 @@ nav h1 {
 
 .todo-item {
   background-color: white;
-  padding:10px;
+  padding:20px;
   margin-bottom: 5px;
   display:flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
+  box-shadow: 0px 0px 15px lightgray;
 }
 
 .todo-item button {
@@ -157,8 +162,8 @@ input[type=text]:focus, textarea:focus {
 .todo-detail-view {
   width:auto;
   background-color:white;
-  padding:10px;
-  margin-top:-5px;
+  padding:20px;
+  margin-top:-15px;
   margin-bottom:5px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -187,12 +192,10 @@ input[type=text]:focus, textarea:focus {
 }
 .todo-list-item {
   border-radius: 10px;
-  padding:10px;
   margin-bottom:15px;
-  box-shadow: 0px 0px 15px gray;
 }
 .todo-list-item:hover {
-  box-shadow: 0px 0px 15px gray;
+  box-shadow: 0px 0px 15px lightgray;
   border-radius: 10px;
 }
 .step-list-item, .flex-item {
@@ -225,6 +228,11 @@ input[type=text]:focus, textarea:focus {
   cursor: pointer;
 }
 
+.showingForm.dot {
+  height:60px;
+  width:60px;
+  border:1px solid #2b2b2b;
+}
 .dot.check-dot.dot-done:after {
   content: '✔'
 }
@@ -243,7 +251,7 @@ input[type=text]:focus, textarea:focus {
 
 .showingForm {
   position: fixed;
-  bottom:0;
+  bottom:15px;
   right:5px;
   color:#777;
   font-size:4em;
@@ -256,7 +264,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .todo-form-inside {
-  box-shadow: 0px 0px 15px gray;
+  box-shadow: 0px 0px 15px lightgray;
   padding:50px 50px 75px 50px;
   border-radius: 10px;
 }

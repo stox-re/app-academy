@@ -83,7 +83,7 @@ class TodoForm extends React.Component {
 
     return (
       <div className='todo-form'>
-        <div className='showingForm' onClick={this.showTodoForm}>{this.state.showingForm ? '⊖' : '⊕'}</div>
+        <div className='showingForm dot' onClick={this.showTodoForm}>+</div>
         {form}
       </div>
     )
