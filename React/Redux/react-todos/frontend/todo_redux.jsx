@@ -18,7 +18,18 @@ window.removeStep = removeStep;
 window.allTodos = allTodos;
 window.stepsByTodoId = stepsByTodoId;
 
+function addLoggingToDispatch (inputStore) {
+  let storeDispatch = inputStore.dispatch;
+  return (action) => {
+    console.log(inputStore.getState());
+    console.log(action);
+    storeDispatch(action);
+    console.log(inputStore.getState());
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  store.dispatch = addLoggingToDispatch(store);
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 });

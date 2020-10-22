@@ -6,17 +6,13 @@ class StepListItem extends React.Component {
     this.state = {
       done: false
     }
-    console.log("Step list item props");
-    console.log(props);
 
     this.handleDone = this.handleDone.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleDone(event) {
-    console.log("Handle done");
     let step = this.props.step;
-    console.log(step);
     this.props.receiveStep({
       id: step.id,
       todo_id: step.todo_id,
