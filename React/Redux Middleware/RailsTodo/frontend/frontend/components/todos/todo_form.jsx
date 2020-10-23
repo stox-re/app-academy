@@ -39,15 +39,11 @@ class TodoForm extends React.Component {
         body: this.state.body,
         done: false
       }
-    }).then((result) => {
-      console.log("This result");
-      console.log(result);
-
+    }).then(() => {
       this.setState({
         title: '',
         body: ''
       });
-
       this.showTodoForm();
     });
   }

@@ -16,7 +16,11 @@ const mapDispatchToProps = (dispatch) => {
     receiveTodo: (todo) => { return dispatch(receiveTodo(todo)); },
     removeTodo: (todo) => { return dispatch(removeTodo(todo)); },
     fetchTodos: () => { return dispatch(fetchTodos()); },
-    createTodo: (todo) => { return dispatch(createTodo(todo)); }
+    createTodo: (todo) => {
+      return new Promise((resolve, reject) => {
+        resolve(dispatch(createTodo(todo)));
+      });
+    }
   };
 }
 
