@@ -8,6 +8,7 @@ import { receiveSteps, receiveStep, removeStep } from './actions/step_actions';
 
 import { allTodos, stepsByTodoId } from './reducers/selectors';
 import * as Util from './util';
+
 let store = configureStore();
 window.Util = Util;
 window.store = store;

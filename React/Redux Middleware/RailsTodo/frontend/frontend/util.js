@@ -25,10 +25,17 @@ export const updateTodo = (todo) => {
   });
 }
 
-
 export const deleteTodo = (todoId) => {
   return $.ajax({
     method: 'DELETE',
     url: `/api/todos/${todoId}`
+  });
+}
+
+export const fetchSteps = (todoId) => {
+  console.log("Fetching steps with todo_id: " + todoId);
+  return $.ajax({
+    method: 'GET',
+    url: `/api/todos/${todoId}/steps`
   });
 }

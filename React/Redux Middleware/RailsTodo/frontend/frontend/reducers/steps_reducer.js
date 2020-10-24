@@ -1,37 +1,6 @@
 import { RECEIVE_STEPS, RECEIVE_STEP, REMOVE_STEP } from '../actions/step_actions';
 
-const initialState = {
-  1: {
-    id:1,
-    todo_id: 1,
-    title: "get soap",
-    done: false
-  },
-  2: {
-    id:2,
-    todo_id: 1,
-    title: "get water",
-    done: false
-  },
-  3: {
-    id:3,
-    todo_id: 1,
-    title: "now wash",
-    done: false
-  },
-  4: {
-    id:4,
-    todo_id: 2,
-    title: "get water and shampoo",
-    done: true
-  },
-  5: {
-    id:5,
-    todo_id: 2,
-    title: "wash the dog now",
-    done: true
-  }
-};
+const initialState = {};
 
 const stepsReducer = (state = initialState, action) => {
   Object.freeze(state);

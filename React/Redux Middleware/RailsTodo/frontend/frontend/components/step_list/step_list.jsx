@@ -2,20 +2,31 @@ import React from 'react';
 import StepListItemContainer from './step_list_item_container';
 import StepForm from './step_form';
 
-const StepList = (props) => {
-  let listItems = [];
-  props.steps.forEach((step, index) => {
-    listItems.push(<StepListItemContainer key={step.id} index={index + 1} step={step} />)
-  });
+class StepList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className='step-list-view'>
-      <ul>
-        {listItems}
-      </ul>
-      <StepForm todoId={props.todo_id} receiveStep={props.receiveStep} />
-    </div>
-  )
+  componentDidMount() {
+    console.log("This props todo_id: " + this.props.todo_id);
+    this.props.fetchSteps(this.props.todo_id);
+  }
+
+  render () {
+    let listItems = [];
+    this.props.steps.forEach((step, index) => {
+      listItems.push(<StepListItemContainer key={step.id} index={index + 1} step={step} />)
+    });
+
+    return (
+      <div className='step-list-view'>
+        <ul>
+          {listItems}
+        </ul>
+        <StepForm todoId={this.props.todo_id} receiveStep={this.props.receiveStep} />
+      </div>
+    )
+  };
 };
 
 export default StepList;

@@ -22,3 +22,11 @@ export const removeStep = (stepId) => {
     id: stepId
   }
 }
+
+export const fetchSteps = (todoId) => {
+  return (dispatch) => {
+    Util.fetchSteps(todoId).then((res) => {
+      return dispatch(receiveSteps(res));
+    });
+  };
+};
