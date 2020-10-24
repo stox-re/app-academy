@@ -20,7 +20,7 @@ class TodoListItem extends React.Component {
   }
 
   handleRemoveClick() {
-    this.props.removeTodo(this.props.todo.id);
+    this.props.deleteTodo(this.props.todo.id);
   }
 
   handleDoneClick(event) {

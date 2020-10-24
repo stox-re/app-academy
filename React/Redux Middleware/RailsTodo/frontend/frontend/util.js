@@ -24,3 +24,11 @@ export const updateTodo = (todo) => {
     data: todo
   });
 }
+
+
+export const deleteTodo = (todoId) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/todos/${todoId}`
+  });
+}

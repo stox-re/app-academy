@@ -59,3 +59,16 @@ export const updateTodo = (todo) => {
   };
 }
 
+export const deleteTodo = (todo) => {
+  return (dispatch) => {
+    Util.deleteTodo(todo).then(
+      (res) => {
+        return dispatch(removeTodo(res.id));
+      },
+      (err) => {
+        return dispatch(receiveErrors(err.responseJSON))
+      }
+    );
+  };
+}
+
