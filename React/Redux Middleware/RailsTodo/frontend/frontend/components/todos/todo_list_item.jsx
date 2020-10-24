@@ -25,12 +25,19 @@ class TodoListItem extends React.Component {
 
   handleDoneClick(event) {
     let todo = this.props.todo;
-    this.props.receiveTodo({
+    this.props.updateTodo({
+      todo: {
+        id: todo.id,
+        done: !todo.done
+      }
+    });
+
+    /*this.props.receiveTodo({
       id: todo.id,
       title: todo.title,
       body: todo.body,
       done: !todo.done
-    });
+    });*/
 
     this.handleDotDone(event.currentTarget.children[0]);
   }

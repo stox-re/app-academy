@@ -31,6 +31,7 @@ class TodoForm extends React.Component {
   }
 
   handleSubmit(event) {
+    const self = this;
     event.preventDefault();
 
     this.props.createTodo({
@@ -40,12 +41,16 @@ class TodoForm extends React.Component {
         done: false
       }
     }).then(() => {
-      this.setState({
-        title: '',
-        body: ''
+        console.log("Did not have errors");
+        this.setState({
+          title: '',
+          body: ''
+        });
+        this.showTodoForm();
+      }).catch((errRes) => {
+        console.log("Caught the error in the form");
+        console.log(errRes);
       });
-      this.showTodoForm();
-    });
   }
 
   showTodoForm() {
@@ -55,6 +60,11 @@ class TodoForm extends React.Component {
   }
 
   render() {
+    let resultingErrors = [];
+    resultingErrors = this.props.errors.map((data, idx) => {
+      return <li key={idx}>{data}</li>
+    });
+
     let form = '';
     if (this.state.showingForm) {
       form =
@@ -72,6 +82,7 @@ class TodoForm extends React.Component {
             <div className='button-group'>
               <button onClick={this.handleSubmit} type='submit'>Submit</button>
             </div>
+            <div><ul>{resultingErrors}</ul></div>
           </form>
         </div>
       ;

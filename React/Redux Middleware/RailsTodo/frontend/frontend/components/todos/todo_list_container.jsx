@@ -1,25 +1,38 @@
 import { connect } from 'react-redux';
-import { receiveTodo, removeTodo, fetchTodos, createTodo } from '../../actions/todo_actions';
-import { allTodos } from '../../reducers/selectors';
+import { receiveTodo, removeTodo, fetchTodos, createTodo, updateTodo } from '../../actions/todo_actions';
+import { allTodos, allErrors } from '../../reducers/selectors';
 
 import TodoList from './todo_list';
 
 // Creates props from arguments to send to the child component
 const mapStateToProps = (state) => {
   return {
-    todos: allTodos(state)
+    todos: allTodos(state),
+    errors: allErrors(state)
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receiveTodo: (todo) => { return dispatch(receiveTodo(todo)); },
     removeTodo: (todo) => { return dispatch(removeTodo(todo)); },
     fetchTodos: () => { return dispatch(fetchTodos()); },
+    clearErrors: () => { return dispatch(clearErrors()); },
+    updateTodo: (todo) => { return dispatch(updateTodo(todo)); },
     createTodo: (todo) => {
-      return new Promise((resolve, reject) => {
-        resolve(dispatch(createTodo(todo)));
+      const returnPromise = new Promise((resolve, reject) => {
+
+        let returningDispatch = dispatch(createTodo(todo));
+        console.log("returning dispatch is: ");
+        console.log(returningDispatch);
+
+          if (returningDispatch) {
+          resolve(returningDispatch);
+        } else {
+          reject(returningDispatch);
+        }
       });
+
+      return returnPromise;
     }
   };
 }

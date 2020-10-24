@@ -8,6 +8,10 @@ export const allTodos = (state) => {
   return newTodoArray;
 };
 
+export const allErrors = (state) => {
+  return state.errors;
+};
+
 export const stepsByTodoId = (state, todoId) => {
   let theseStepKeys = Object.keys(state.steps);
   let theseSteps = [];

@@ -2,6 +2,7 @@ export const RECEIVE_TODOS = 'RECEIVE_TODOS';
 export const RECEIVE_TODO = 'RECEIVE_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 import * as Util from '../util';
+import { receiveErrors } from './error_actions';
 
 export const receiveTodos = (todos) => {
   return {
@@ -34,8 +35,27 @@ export const fetchTodos = () => {
 
 export const createTodo = (todo) => {
   return (dispatch) => {
-    Util.createTodo(todo).then((res) => {
-      return dispatch(receiveTodo(res));
-    });
+    Util.createTodo(todo).then(
+      (res) => {
+        return dispatch(receiveTodo(res));
+      },
+      (err)  => {
+        return dispatch(receiveErrors(err.responseJSON))
+      }
+    );
   };
 }
+
+export const updateTodo = (todo) => {
+  return (dispatch) => {
+    Util.updateTodo(todo).then(
+      (res) => {
+        return dispatch(receiveTodo(res));
+      },
+      (err) => {
+        return dispatch(receiveErrors(err.responseJSON))
+      }
+    );
+  };
+}
+
