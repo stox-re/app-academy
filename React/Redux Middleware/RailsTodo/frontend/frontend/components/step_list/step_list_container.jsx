@@ -13,10 +13,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     receiveStep: (step) => { return dispatch(receiveStep(step)); },
-    fetchSteps: (todoId) => {
-      console.log("Fetching steps with todo Id (mapDispatchToProps): " + todoId);
-      return dispatch(fetchSteps(todoId));
-    }
+    fetchSteps: (todoId) => { return dispatch(fetchSteps(todoId)); }
   };
 }
 

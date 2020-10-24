@@ -33,9 +33,20 @@ export const deleteTodo = (todoId) => {
 }
 
 export const fetchSteps = (todoId) => {
-  console.log("Fetching steps with todo_id: " + todoId);
   return $.ajax({
     method: 'GET',
     url: `/api/todos/${todoId}/steps`
+  });
+}
+
+export const updateStep = (step) => {
+  return $.ajax({
+    method: 'PUT',
+    url: `/api/todos/${step.step.todo_id}/steps/${step.step.id}`,
+    data: {
+      step: {
+        done: step.step.done
+      }
+    }
   });
 }

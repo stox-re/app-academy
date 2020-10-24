@@ -9,6 +9,5 @@ class Todo < ApplicationRecord
     class_name: :Step,
     dependent: :destroy
   })
-
 end
 

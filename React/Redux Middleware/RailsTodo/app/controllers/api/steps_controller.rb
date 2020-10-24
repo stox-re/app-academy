@@ -20,7 +20,9 @@ class Api::StepsController < ApplicationController
 
   def update
     @step = Step.where({id: params[:id]})
-    if @step.update!(step_params)
+    puts "Updating from controller"
+    puts @step
+    if @step.update(step_params)
       render json: @step
     else
       render json: @step.errors.full_messages, status: 422

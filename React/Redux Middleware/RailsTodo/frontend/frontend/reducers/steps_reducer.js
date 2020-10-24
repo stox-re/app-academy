@@ -11,7 +11,11 @@ const stepsReducer = (state = initialState, action) => {
 
     case RECEIVE_STEP:
       let receiveNewState = Object.assign({}, state);
-      receiveNewState[action.step.id] = action.step;
+      Object.keys(receiveNewState).forEach((key) => {
+        if (receiveNewState[key].id == action.step[0].id) {
+          receiveNewState[key] = action.step[0];
+        }
+      })
       return receiveNewState;
 
     case REMOVE_STEP:

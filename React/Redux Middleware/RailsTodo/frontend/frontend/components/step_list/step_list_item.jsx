@@ -13,19 +13,22 @@ class StepListItem extends React.Component {
 
   handleDone(event) {
     let step = this.props.step;
-    this.props.receiveStep({
-      id: step.id,
-      todo_id: step.todo_id,
-      title: step.title,
-      done: !step.done
+    this.props.updateStep({
+      step: {
+       id: step.id,
+       todo_id: step.todo_id,
+       done: !step.done
+      }
     });
-    this.handleDotDone(event.currentTarget.children[0])
+
+    this.handleDotDone(event.currentTarget.children[0]);
   }
 
   handleRemove() {
     let stepId = this.props.step.id;
     this.props.removeStep(stepId)
   }
+
   handleDotDone(target) {
     if (!this.props.step.done) {
       target.classList.add('dot-done');
