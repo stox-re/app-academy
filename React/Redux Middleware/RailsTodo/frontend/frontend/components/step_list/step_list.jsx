@@ -8,7 +8,6 @@ class StepList extends React.Component {
   }
 
   componentDidMount() {
-    console.log("This props todo_id: " + this.props.todo_id);
     this.props.fetchSteps(this.props.todo_id);
   }
 

@@ -28,8 +28,6 @@ export const removeTodo = (todoId) => {
 export const fetchTodos = () => {
   return (dispatch) => {
     Util.fetchTodos().then((res) => {
-      console.log("Fetched todos");
-      console.log(res);
       return dispatch(receiveTodos(res));
     });
   };
