@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         console.log("returning dispatch is: ");
         console.log(returningDispatch);
 
-          if (returningDispatch) {
+        if (returningDispatch) {
           resolve(returningDispatch);
         } else {
           reject(returningDispatch);

@@ -26,7 +26,9 @@ class StepListItem extends React.Component {
 
   handleRemove() {
     let stepId = this.props.step.id;
-    this.props.removeStep(stepId)
+    console.log("This step id " + stepId );
+    //this.props.removeStep(stepId)
+    this.props.deleteStep(this.props.step);
   }
 
   handleDotDone(target) {

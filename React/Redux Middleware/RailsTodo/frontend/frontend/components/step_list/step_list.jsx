@@ -23,7 +23,11 @@ class StepList extends React.Component {
         <ul>
           {listItems}
         </ul>
-        <StepForm todoId={this.props.todo_id} receiveStep={this.props.receiveStep} />
+        <StepForm
+          todoId={this.props.todo_id}
+          receiveStep={this.props.receiveStep}
+          createStep={this.props.createStep}
+          />
       </div>
     )
   };

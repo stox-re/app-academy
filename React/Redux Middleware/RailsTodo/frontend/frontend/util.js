@@ -15,7 +15,7 @@ export const createTodo = (todo) => {
     url: '/api/todos',
     data: todo
   });
-}
+};
 
 export const updateTodo = (todo) => {
   return $.ajax({
@@ -23,21 +23,21 @@ export const updateTodo = (todo) => {
     url: `/api/todos/${todo.todo.id}`,
     data: todo
   });
-}
+};
 
 export const deleteTodo = (todoId) => {
   return $.ajax({
     method: 'DELETE',
     url: `/api/todos/${todoId}`
   });
-}
+};
 
 export const fetchSteps = (todoId) => {
   return $.ajax({
     method: 'GET',
     url: `/api/todos/${todoId}/steps`
   });
-}
+};
 
 export const updateStep = (step) => {
   return $.ajax({
@@ -49,4 +49,19 @@ export const updateStep = (step) => {
       }
     }
   });
-}
+};
+
+export const deleteStep = (step) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/todos/${step.todo_id}/steps/${step.id}`
+  });
+};
+
+export const createStep = (step) => {
+  return $.ajax({
+    method: 'POST',
+    url: `/api/todos/${step.step.todo_id}/steps`,
+    data: step
+  });
+};

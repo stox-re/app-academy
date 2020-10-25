@@ -30,8 +30,10 @@ class Api::StepsController < ApplicationController
   end
 
   def destroy
-    @step = Todo.find_by(id: params[:id])
-    if @step.destroy!
+    puts "Params incoming"
+    puts params
+    @step = Step.find_by(id: params[:id])
+    if @step.destroy
       render json: @step
     else
       render json: @step.errors.full_messages, status: 422
@@ -40,6 +42,6 @@ class Api::StepsController < ApplicationController
 
 
   def step_params
-    params.require(:step).permit(:title, :done)
+    params.require(:step).permit(:title, :done, :todo_id)
   end
 end

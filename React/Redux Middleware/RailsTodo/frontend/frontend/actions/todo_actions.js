@@ -44,7 +44,7 @@ export const createTodo = (todo) => {
       }
     );
   };
-}
+};
 
 export const updateTodo = (todo) => {
   return (dispatch) => {
@@ -57,7 +57,7 @@ export const updateTodo = (todo) => {
       }
     );
   };
-}
+};
 
 export const deleteTodo = (todo) => {
   return (dispatch) => {
@@ -70,5 +70,5 @@ export const deleteTodo = (todo) => {
       }
     );
   };
-}
+};
 

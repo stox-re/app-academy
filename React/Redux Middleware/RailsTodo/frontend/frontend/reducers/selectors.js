@@ -15,6 +15,8 @@ export const allErrors = (state) => {
 export const stepsByTodoId = (state, todoId) => {
   let theseStepKeys = Object.keys(state.steps);
   let theseSteps = [];
+  console.log("Checking step keys");
+  console.log(theseStepKeys);
 
   theseStepKeys.forEach((stepKey) => {
     if (state.steps[stepKey].todo_id == todoId) {
