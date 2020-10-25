@@ -12,7 +12,16 @@ const todosReducer = (state = initialState, action) => {
 
     case RECEIVE_TODO:
       let receiveNewState = Object.assign({}, state);
-      receiveNewState[action.todo.id] = action.todo;
+      let wasFound = false;
+      Object.keys(receiveNewState).forEach((key) => {
+        if (receiveNewState[key].id == action.todo.id) {
+          wasFound = true;
+          receiveNewState[key] = action.todo;
+        }
+      });
+      if (!wasFound) {
+        receiveNewState[action.todo.id] = action.todo;
+      }
       return receiveNewState;
 
     case REMOVE_TODO:

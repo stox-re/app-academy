@@ -1,4 +1,5 @@
 class Api::TodosController < ApplicationController
+  before_action :require_current_user!, only: [:show, :index, :create, :update, :destroy]
 
   def show
     @todo = Todo.find_by({id: params[:id]})
@@ -10,11 +11,13 @@ class Api::TodosController < ApplicationController
   end
 
   def index
-    render json: Todo.all.order(created_at: :asc)
+    #render json: Todo.all.order(created_at: :asc)
+    render json: current_user.todos.order(created_at: :asc)
   end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
+    #@todo = Todo.new(todo_params)
     if @todo.save
       render json: @todo
     else
@@ -23,7 +26,8 @@ class Api::TodosController < ApplicationController
   end
 
   def update
-    @todo = Todo.find_by({id: params[:id]})
+    @todo = current_user.todos.find_by({id: params[:id]})
+    #@todo = Todo.find_by({id: params[:id]})
     if @todo.update!(todo_params)
       render json: @todo
     else
@@ -32,7 +36,8 @@ class Api::TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find_by(id: params[:id])
+    @todo = current_user.todos.find_by({id: params[:id]})
+    #@todo = Todo.find_by(id: params[:id])
     if @todo.destroy!
       render json: @todo
     else

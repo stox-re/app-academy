@@ -37,4 +37,11 @@ class User < ApplicationRecord
   def is_password(pw)
     BCrypt::Password.new(self.password_digest).is_password?(pw)
   end
+
+  has_many(:todos, {
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Todo,
+    dependent: :destroy
+  })
 end
