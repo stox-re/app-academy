@@ -1,0 +1,18 @@
+<div>
+  <h2 class="login-signup-header">Create a new user</h2>
+  <%= render 'shared/errors' %>
+  <form class="login-signup-form" action="<%= users_url %>" method="POST">
+    <%= auth_token %>
+    <div>
+      <label for="user_email">Email</label>
+      <input type="text" name="user[email]" id="user_email">
+    </div>
+    <div>
+      <label for="user_password">Password</label>
+      <input type="password" name="user[password]" id="user_password">
+    </div>
+    <div class="button-group">
+      <input class="menu-link" type="submit" value="Signup">
+    </div>
+  </form>
+</div>

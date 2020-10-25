@@ -1,7 +1,7 @@
 class Api::StepsController < ApplicationController
 
   def index
-    @steps = Step.where({todo_id: params[:todo_id]})
+    @steps = Step.where({todo_id: params[:todo_id]}).order(created_at: :asc)
     if @steps
       render json: @steps
     else

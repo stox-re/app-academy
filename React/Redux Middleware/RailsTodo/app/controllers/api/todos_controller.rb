@@ -10,7 +10,7 @@ class Api::TodosController < ApplicationController
   end
 
   def index
-    render json: Todo.all
+    render json: Todo.all.order(created_at: :asc)
   end
 
   def create

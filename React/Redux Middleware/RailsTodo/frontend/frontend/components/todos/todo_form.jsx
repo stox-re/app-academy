@@ -82,7 +82,7 @@ class TodoForm extends React.Component {
             <div className='button-group'>
               <button onClick={this.handleSubmit} type='submit'>Submit</button>
             </div>
-            <div><ul>{resultingErrors}</ul></div>
+            <div><ul className='errors'>{resultingErrors}</ul></div>
           </form>
         </div>
       ;
@@ -90,7 +90,7 @@ class TodoForm extends React.Component {
 
     return (
       <div className='todo-form'>
-        <div className='showingForm dot' onClick={this.showTodoForm}>+</div>
+        <div className='showingForm' onClick={this.showTodoForm}>{this.state.showingForm ? 'Hide' : 'Add new todo'}</div>
         {form}
       </div>
     )

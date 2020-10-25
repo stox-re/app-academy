@@ -7,7 +7,13 @@ const stepsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_STEPS:
-      return Object.assign({}, action.steps);
+      let objectCopy = Object.assign({}, state);
+
+      action.steps.forEach((step) => {
+        objectCopy[step.id] = step;
+      });
+
+      return objectCopy;
 
     case RECEIVE_STEP:
       let receiveNewState = Object.assign({}, state);
@@ -22,7 +28,7 @@ const stepsReducer = (state = initialState, action) => {
       });
 
       if (!wasFound) {
-        receiveNewState[Object.keys(receiveNewState).length] = toCheck;
+        receiveNewState[toCheck.id] = toCheck;
       }
       return receiveNewState;
 

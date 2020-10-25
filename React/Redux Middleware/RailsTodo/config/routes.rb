@@ -6,5 +6,10 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'static_pages#root'
+  resource :session, only: [:create, :destroy, :new]
+  resources :users, only: [:new, :create]
+
+  root to: redirect('/session/new')
+  match '/all', to: 'static_pages#root', via: 'get', as: :all
+
 end

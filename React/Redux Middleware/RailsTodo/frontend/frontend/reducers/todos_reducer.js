@@ -7,12 +7,8 @@ const todosReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_TODOS:
-      let newObject = {};
       let newObjectToSwitchKeys = Object.assign({}, action.todos);
-      Object.keys(newObjectToSwitchKeys).forEach((key) => {
-        newObject[newObjectToSwitchKeys[key].id] = newObjectToSwitchKeys[key];
-      })
-      return newObject;
+      return newObjectToSwitchKeys;
 
     case RECEIVE_TODO:
       let receiveNewState = Object.assign({}, state);
@@ -21,7 +17,11 @@ const todosReducer = (state = initialState, action) => {
 
     case REMOVE_TODO:
       let newStateRemoved = Object.assign({}, state);
-      delete newStateRemoved[action.id];
+      Object.keys(newStateRemoved).forEach((key) => {
+        if (newStateRemoved[key].id == action.id) {
+          delete newStateRemoved[key];
+        }
+      });
       return newStateRemoved;
 
     default:
