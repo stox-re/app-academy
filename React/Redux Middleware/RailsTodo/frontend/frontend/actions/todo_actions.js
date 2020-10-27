@@ -35,12 +35,12 @@ export const fetchTodos = () => {
 
 export const createTodo = (todo) => {
   return (dispatch) => {
-    Util.createTodo(todo).then(
+    return Util.createTodo(todo).then(
       (res) => {
-        return dispatch(receiveTodo(res));
+        dispatch(receiveTodo(res));
       },
       (err)  => {
-        return dispatch(receiveErrors(err.responseJSON))
+        dispatch(receiveErrors(err.responseJSON))
       }
     );
   };

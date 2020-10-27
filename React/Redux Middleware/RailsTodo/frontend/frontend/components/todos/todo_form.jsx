@@ -40,8 +40,9 @@ class TodoForm extends React.Component {
         body: this.state.body,
         done: false
       }
-    }).then(() => {
+    }).then((res) => {
         console.log("Did not have errors");
+        console.log(res);
         this.setState({
           title: '',
           body: ''
