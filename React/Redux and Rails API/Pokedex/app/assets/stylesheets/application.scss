@@ -91,7 +91,6 @@
 
  #root {
    height: 100%;
-   padding-top: 20px;
  }
 
  h2 {
@@ -103,3 +102,23 @@
    text-align: center;
    color: $black;
  }
+
+.pokemon-list-item {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:10px 30px 10px 30px;
+  background-color:#f7f7f7;
+  margin-bottom:5px;
+
+  img {
+    width:50px;
+  }
+}
+
+@media screen and (min-width:1000px) {
+  .pokemon-list-item {
+    width:300px;
+  }
+}
