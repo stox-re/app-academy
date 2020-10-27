@@ -24,3 +24,22 @@ const configureStore = (preloadedState = {}) => (
 );
 
 export default configureStore;
+
+//Setting up react and redux
+/*
+npm install--save the following packages:
+
+webpack
+webpack-cli
+react
+react-dom
+react-router-dom
+redux
+react-redux
+redux-logger
+@babel/core
+@babel/preset-env
+@babel/preset-react
+babel-loader
+
+*/
