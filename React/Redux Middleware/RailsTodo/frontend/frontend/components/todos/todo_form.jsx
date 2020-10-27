@@ -16,6 +16,7 @@ class TodoForm extends React.Component {
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showTodoForm = this.showTodoForm.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
   }
 
   handleTitleChange(event) {
@@ -40,24 +41,32 @@ class TodoForm extends React.Component {
         body: this.state.body,
         done: false
       }
-    }).then((res) => {
-        console.log("Did not have errors");
-        console.log(res);
-        this.setState({
-          title: '',
-          body: ''
-        });
-        this.showTodoForm();
-      }).catch((errRes) => {
-        console.log("Caught the error in the form");
-        console.log(errRes);
-      });
+    }).then(() => {
+      this.handleSuccess();
+    });
   }
 
   showTodoForm() {
+    this.props.clearErrors()
     this.setState({
       showingForm: !this.state.showingForm
     });
+  }
+
+  handleSuccess() {
+    this.props.clearErrors()
+    this.setState({
+      title: '',
+      body: '',
+      showingForm: false
+    });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    let isTrue = props.errors.length > 0 ? true : state.showingForm;
+    return {
+      showingForm: isTrue
+    }
   }
 
   render() {

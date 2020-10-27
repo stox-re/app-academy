@@ -1,5 +1,5 @@
 <div>
-  <h2 class="login-signup-header">Login user</h2>
+  <h2 class="login-signup-header">Login</h2>
   <%= render 'shared/errors' %>
   <form class="login-signup-form" action="<%= session_url %>" method="POST">
     <%= auth_token %>
@@ -15,4 +15,7 @@
       <input type="submit" value="Login">
     </div>
   </form>
+  <div class="signup-notice">
+    <a href="<%=new_user_url%>">New here ? Sign up here </a>
+  </div>
 </div>

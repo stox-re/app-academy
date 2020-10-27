@@ -112,6 +112,7 @@ button {
   cursor: pointer;
 }
 
+
 button.remove {
   background-color: red;
   color:white;
@@ -154,6 +155,14 @@ button:hover {
   float:right;
   font-size:0.8em;
   color:gray;
+}
+
+input[type="submit"] {
+  cursor:pointer;
+}
+
+.signup-notice {
+  padding-left:15px;
 }
 
 input, textarea {

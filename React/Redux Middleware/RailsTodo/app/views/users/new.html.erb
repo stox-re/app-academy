@@ -1,5 +1,5 @@
 <div>
-  <h2 class="login-signup-header">Create a new user</h2>
+  <h2 class="login-signup-header">Create a new account</h2>
   <%= render 'shared/errors' %>
   <form class="login-signup-form" action="<%= users_url %>" method="POST">
     <%= auth_token %>
@@ -15,4 +15,8 @@
       <input class="menu-link" type="submit" value="Signup">
     </div>
   </form>
+
+  <div class="signup-notice">
+    <a href="<%=new_session_url%>">Already a user ? Login here </a>
+  </div>
 </div>

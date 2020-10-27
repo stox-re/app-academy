@@ -31,14 +31,6 @@ class TodoListItem extends React.Component {
         done: !todo.done
       }
     });
-
-    /*this.props.receiveTodo({
-      id: todo.id,
-      title: todo.title,
-      body: todo.body,
-      done: !todo.done
-    });*/
-
     this.handleDotDone(event.currentTarget.children[0]);
   }
 
