@@ -29,9 +29,11 @@ class PokemonDetail extends React.Component {
         <div>Attack: {this.props.pokemon.attack}</div>
         <div>Defence: {this.props.pokemon.defense}</div>
         <div>Type: {this.props.pokemon.poke_type}</div>
+        <div>
         <ul>
           {this.props.pokemon.moves.map((move, idx) => { return <li key={idx}>{move}</li> })}
         </ul>
+        </div>
       </div>
     }
 
