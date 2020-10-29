@@ -42,8 +42,17 @@ class PokemonDetail extends React.Component {
         </div>
     }
 
+    let loading = '';
+    if (this.props.loading) {
+      loading =
+        <div id="loading-pokeball-container">
+          <div id="loading-pokeball"></div>
+        </div>;
+    }
+
     return (
       <div className="pokemon-detail-container">
+        {loading}
         {rendering}
       </div>
     )

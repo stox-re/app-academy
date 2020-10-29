@@ -1,3 +1,7 @@
+export const selectLoading = (state) => {
+  return state.loading.value;
+};
+
 export const selectAllPokemon = (state) => {
   return Object.values(state.entities.pokemon)
 };
