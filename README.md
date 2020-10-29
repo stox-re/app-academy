@@ -31,4 +31,5 @@ I started the course from [App Academy](https://www.appacademy.io/immersive/curr
 * [Mail](https://github.com/stockermans/app-academy/tree/master/JavaScript/JavaScript%20DOM%20API/Mail) - Single page mail app with composing messages and saving drafts
 * [React Widgets](https://github.com/stockermans/app-academy/tree/master/React/React%20Fundamentals/react-widgets) - A collection of 4 react widgets, a clock, tabs, a weather app, and an autocompletion list
 * [React Minesweeper](https://github.com/stockermans/app-academy/tree/master/React/React%20Fundamentals/minesweeper) - A game of Minesweeper, built with React
-* [React Todos](https://github.com/stockermans/app-academy/tree/master/React/Redux%20Middleware/RailsTodo) - This is a react frontend built with a ruby on rails backend for a todos app.
+* [React Todos](https://github.com/stockermans/app-academy/tree/master/React/Redux%20Middleware/RailsTodo) - This is a React frontend built with a Ruby on Rails backend for a todos app
+* [Pokedex Navigator](https://github.com/stockermans/app-academy/tree/master/React/Redux%20and%20Rails%20API/Pokedex) - This is a Pokedex built with React and a Ruby on Rails backend

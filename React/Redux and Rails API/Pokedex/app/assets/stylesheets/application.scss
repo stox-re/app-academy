@@ -196,7 +196,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size:3em;
   background: #ffefba; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffefba, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ffefba, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -204,8 +203,11 @@
   div {
     padding:30px;
   }
-
+  h1 {
+    font-size:3em;
+  }
   h2 {
+    font-size:1.4em;
     text-align: center;
   }
 }
