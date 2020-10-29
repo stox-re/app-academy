@@ -35,7 +35,6 @@ export const requestAllPokemon = () => {
 
 export const requestOnePokemon = (pokemonId) => {
   return (dispatch) => {
-    console.log("What is the id here: " + pokemonId);
     return Util.fetchOnePokemon(pokemonId).then((pokemon) => {
       dispatch(receiveOnePokemon(pokemon));
       dispatch(receiveItemsFromPokemon(pokemon));

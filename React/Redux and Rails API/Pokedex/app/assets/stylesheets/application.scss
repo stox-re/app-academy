@@ -123,8 +123,8 @@
 
   .pokedex-list {
     overflow-y: auto;
-    width:200px;
-    height: calc(100vh - 70px);
+    width:100px;
+    height: calc(100vh - 75px);
   }
 }
 
@@ -139,9 +139,15 @@
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
+.pokemon-detail-container {
+  width: 100%;
+  background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffefba, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffefba, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .pokemon-detail {
   padding:50px;
-  width:100%;
 
   .name-image {
     display:flex;
@@ -156,7 +162,59 @@
     text-align: center;
     color:black;
   }
+
+  .item-link {
+    display:block;
+    font-weight: 700;
+    font-size:1.1em;
+  }
+  .item-link.active {
+    color:orange;
+  }
+
+  .pokemon-attributes {
+    padding:10px 0 10px 0;
+  }
+
+  .pokemon-links {
+    margin-top:10px;
+    border:1px solid gray;
+    padding:10px;
+    border-radius: 10px;
+    background-color:gray;
+    color:white;
+
+    a {
+      padding:5px;
+      display: block;
+    }
+  }
+}
+
+.pokedex-intro-view {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:3em;
+  background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffefba, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffefba, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  h2 {
+    text-align: center;
+  }
 }
 
 @media screen and (min-width:1000px) {
+  .pokemon-detail {
+    display:flex;
+    justify-content: space-around;
+  }
+
+  .pokedex {
+    .pokedex-list{
+       width:200px;
+    }
+  }
 }

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import PokemonDetail from './pokemon_detail';
 import { requestOnePokemon } from '../../actions/pokemon_actions';
-import { selectItems, selectOnePokemon } from '../../reducers/selectors.js';
+import { selectItems, selectOnePokemon, selectThisPokemonItems } from '../../reducers/selectors.js';
 
 const mapStateToProps = (state, selfProps) => ({
   pokemon: selectOnePokemon(state, selfProps.match.params.pokemonId),
-  items: selectItems(state)
+  items: selectItems(state),
+  thisPokemonItems: selectThisPokemonItems(state, selfProps.match.params.pokemonId)
 });
 
 const mapDispatchToProps = dispatch => ({

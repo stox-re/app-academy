@@ -1,5 +1,6 @@
 import React from 'react';
-import pokemonReducer from '../../reducers/pokemon_reducer';
+import { Route, NavLink } from 'react-router-dom';
+import ItemDetailContainer from './item_detail_container';
 
 class PokemonDetail extends React.Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class PokemonDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Mounting pokemon details with: " + this.props.match.params.pokemonId);
     this.props.requestOnePokemon(this.props.match.params.pokemonId);
   }
 
@@ -22,23 +22,28 @@ class PokemonDetail extends React.Component {
     if (typeof this.props.pokemon != 'undefined' && typeof this.props.pokemon.attack != 'undefined') {
       rendering =
         <div className="pokemon-detail">
-        <div className="name-image">
-          <h2>{this.props.pokemon.name}</h2>
-          <img src={this.props.pokemon.image_url}></img>
+          <div className="name-image">
+            <h2>{this.props.pokemon.name}</h2>
+            <img src={this.props.pokemon.image_url}></img>
+          </div>
+          <div className="pokemon-attributes">
+            <h3>Attack: {this.props.pokemon.attack}</h3>
+            <h3>Defence: {this.props.pokemon.defense}</h3>
+            <h3>Type: {this.props.pokemon.poke_type}</h3>
+            <div className="pokemon-links">
+              {
+                this.props.thisPokemonItems.map((item, idx) => {
+                  return <NavLink className="item-link" key={idx} to={`/pokemon/${this.props.pokemon.id}/items/${item.id}`}>{item.name}</NavLink>
+                })
+              }
+            </div>
+          </div>
+          <Route path={`/pokemon/:pokemonId/items/:itemId`} component={ItemDetailContainer} />
         </div>
-        <div>Attack: {this.props.pokemon.attack}</div>
-        <div>Defence: {this.props.pokemon.defense}</div>
-        <div>Type: {this.props.pokemon.poke_type}</div>
-        <div>
-        <ul>
-          {this.props.pokemon.moves.map((move, idx) => { return <li key={idx}>{move}</li> })}
-        </ul>
-        </div>
-      </div>
     }
 
     return (
-      <div>
+      <div className="pokemon-detail-container">
         {rendering}
       </div>
     )
