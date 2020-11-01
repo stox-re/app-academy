@@ -6,17 +6,12 @@ import configureStore from './store/store';
 import { selectAllPokemon } from './reducers/selectors';
 import Root from './root';
 
-window.Util = Util;
-window.receiveAllPokemon = receiveAllPokemon;
-window.requestAllPokemon = requestAllPokemon;
-window.selectAllPokemon = selectAllPokemon;
-
 document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();
   const root = document.getElementById('root');
 
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
+  //window.getState = store.getState;
+  //window.dispatch = store.dispatch;
 
   ReactDOM.render(<Root store={store}/>, root);
 });
