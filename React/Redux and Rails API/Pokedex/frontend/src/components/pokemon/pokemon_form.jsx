@@ -24,8 +24,6 @@ class PokemonForm extends React.Component {
     this.props.createOnePokemon(this.state).then((resData) => {
       if (resData.success) {
         this.props.history.push(`pokemon/${resData.pokemon.id}`);
-      } else {
-        console.log("Error in form submit");
       }
     });
   }
@@ -58,13 +56,11 @@ class PokemonForm extends React.Component {
       'rock',
       'steel'
     ];
+
     let typeOptions = [];
     types.forEach((type, index) => {
       typeOptions.push(<option key={index} value={type}>{type}</option>)
     })
-
-    console.log("These props");
-    console.log(this.props);
 
     let errors = [];
     if (Object.keys(this.props.errors).length != 0) {
