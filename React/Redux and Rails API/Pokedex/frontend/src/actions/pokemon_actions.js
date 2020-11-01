@@ -7,6 +7,7 @@ export const RECEIVE_ITEMS_FROM_POKEMON = "RECEIVE_ITEMS_FROM_POKEMON";
 export const START_LOADING_ALL_POKEMON = "START_LOADING_ALL_POKEMON";
 export const START_LOADING_SINGLE_POKEMON = "START_LOADING_SINGLE_POKEMON";
 export const STOP_LOADING_POKEMON = "STOP_LOADING_POKEMON";
+export const RECIEVE_POKEMON_ERRORS = "RECIEVE_POKEMON_ERRORS";
 
 export const receiveAllPokemon = (pokemon) => {
   return {
@@ -49,10 +50,18 @@ export const startLoadingSinglePokemon = () => {
     value: true
   }
 };
+
 export const stopLoadingPokemon = () => {
   return {
     type: STOP_LOADING_POKEMON,
     value: false
+  }
+};
+
+export const receivePokemonErrors = (res) => {
+  return {
+    type: RECIEVE_POKEMON_ERRORS,
+    value: res.errors
   }
 };
 
@@ -84,10 +93,14 @@ export const createOnePokemon = (pokemonData) => {
   return (dispatch) => {
     dispatch(startLoadingAllPokemon);
 
-    return Util.createPokemon(pokemonData).then((pokemon) => {
-        dispatch(receiveOnePokemon(pokemon));
-        dispatch(stopLoadingPokemon());
-        return pokemon;
+    return Util.createPokemon(pokemonData).then((res) => {
+      if (res.success) {
+        dispatch(receiveNewPokemon(res));
+      } else {
+        dispatch(receivePokemonErrors(res));
+      }
+      dispatch(stopLoadingPokemon());
+      return res;
     });
   };
 };
