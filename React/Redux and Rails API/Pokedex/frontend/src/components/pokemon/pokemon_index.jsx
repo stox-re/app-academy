@@ -2,7 +2,7 @@ import React from 'react';
 import PokemonIndexItem from './pokemon_index_item';
 import { Route } from 'react-router-dom';
 import PokemonDetailContainer from './pokemon_detail_container';
-import PokedexIntroView from './pokedex_intro_view';
+import PokemonRootView from './pokemon_root_view';
 
 class PokemonIndex extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class PokemonIndex extends React.Component {
       <div className="pokedex">
         {loading}
         <Route path='/pokemon/:pokemonId' component={PokemonDetailContainer} />
-        <Route exact path='/' component={PokedexIntroView} />
+        <Route exact path='/' component={PokemonRootView} />
         <ul className="pokedex-list">
           {lis}
         </ul>

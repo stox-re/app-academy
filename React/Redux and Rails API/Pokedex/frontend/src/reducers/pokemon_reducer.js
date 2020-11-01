@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_POKEMON, RECEIVE_ONE_POKEMON } from '../actions/pokemon_actions';
+import { RECEIVE_ALL_POKEMON, RECEIVE_ONE_POKEMON, RECEIVE_NEW_POKEMON } from '../actions/pokemon_actions';
 
 const pokemonReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -17,6 +17,11 @@ const pokemonReducer = (state = {}, action) => {
       let newObj = Object.assign({}, state);
       newObj[action.pokemon.pokemon.id] = action.pokemon.pokemon;
       return newObj;
+
+    case RECEIVE_NEW_POKEMON:
+        let newStateObj = Object.assign({}, state);
+      newStateObj[action.pokemon.pokemon.id] = action.pokemon.pokemon;
+      return newStateObj;
 
     default:
       return state;

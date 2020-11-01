@@ -190,6 +190,9 @@
     }
   }
 }
+.pokedex-root-view {
+  width:100%;
+}
 
 .pokedex-intro-view {
   width:100%;
@@ -211,6 +214,37 @@
     text-align: center;
   }
 }
+
+.pokemon-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffefba, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffefba, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  min-height:75vh;
+
+  .input-group {
+    display:flex;
+    flex-direction: column;
+  }
+
+  input, .button-group button {
+    background-color:white;
+    color:black;
+    padding:10px;
+    border:1px solid gray;
+  }
+
+  label {
+    font-size:1.3em;
+  }
+
+  .button-group button {
+    margin-top:5px;
+  }
+}
+
 
 @media screen and (min-width:1000px) {
   .pokemon-detail {
