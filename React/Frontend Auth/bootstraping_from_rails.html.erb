@@ -1,0 +1,41 @@
+<!--In application.html.erb-->
+<% if logged_in ? %>
+  <script type="text/javascript">
+    window.currentUser = <%= render("api/users/user.json.jbuilder", user: current_user).html_safe %>
+  </script>
+<% end %>
+
+<!--
+  Inside our entry point, within the doc-ready callback, check for the presence of window.currentUser
+  If window.currentUser exists, generate a preloadedState and pass it to configureStore
+-->
+
+<!-- From the frontend check for current_user and then delete it-->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  let store;
+  if (window.currentUser) {
+    const { currentUser } = window;
+    const { id } = currentUser;
+    const preloadedState = {
+      entitities: {
+        users: {
+          [id]: currentUser
+        }
+      }
+      session: { id }
+      };
+    store = configureStore(preloadedState);
+
+    // Clean up after ourselves so we don't accidentally use the
+    // global currentUser instead of the one in the store
+    delete window.currentUser;
+
+  } else {
+    store = configureStore();
+  }
+
+  const root = document.getElementById('root');
+  ReactDOM.render(<Root store={store} />, root);
+});
+</script>
