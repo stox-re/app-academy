@@ -5,9 +5,9 @@ class Api::SessionsController < ApplicationController
     @user_check = User.find_by_credentials(params[:user][:email], params[:user][:password])
 
     if @user_check == nil
-      render json: {success: false, message: 'User not found', status: 401, errors: @user_check.errors}
+      render json: {success: false, status: 401, errors: ['User not found']}
     elsif @user_check == false
-      render json: {success: false, message: 'Invalid credentials', status: 422, errors: @user_check.errors}
+      render json: {success: false, status: 422, errors: ['Invalid credentials']}
     else
       @user_check.reset_session_token!
       render json: @user_check
