@@ -10,6 +10,7 @@ class Api::SessionsController < ApplicationController
       render json: {success: false, status: 422, errors: ['Invalid credentials']}
     else
       @user_check.reset_session_token!
+      session[:session_token] = @user_check.session_token
       render json: @user_check
     end
   end
