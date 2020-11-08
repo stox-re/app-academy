@@ -7,6 +7,8 @@ const usersReducer = (state = _nullUsers, action) => {
 
   switch (action.type) {
     case SessionActions.RECEIVE_CURRENT_USER:
+      console.log("Receiving current user");
+      console.log(action.user);
       return Object.assign({}, state, { [action.user.id]: action.user })
 
     default:
