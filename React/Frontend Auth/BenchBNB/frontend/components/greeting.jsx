@@ -7,8 +7,6 @@ class Greeting extends React.Component {
   }
 
   render() {
-    console.log("Greeting props");
-    console.log(this.props);
 
     let loggedInRender =
       <div>

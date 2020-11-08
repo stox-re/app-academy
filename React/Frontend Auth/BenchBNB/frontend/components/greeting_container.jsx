@@ -4,8 +4,6 @@ import { logout } from '../actions/session_actions';
 import Greeting from './greeting';
 
 const mapStateToProps = (state) => {
-  console.log("Map state to props");
-  console.log(state);
   return {
     currentUser: state.entities.users[state.session.id]
   };
