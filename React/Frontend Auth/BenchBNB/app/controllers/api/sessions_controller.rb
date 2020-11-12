@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
     else
       @user_check.reset_session_token!
       session[:session_token] = @user_check.session_token
-      render json: @user_check
+      render json: {success: true, user: @user_check}
     end
   end
 

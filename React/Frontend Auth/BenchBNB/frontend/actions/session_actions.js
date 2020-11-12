@@ -33,17 +33,23 @@ const receiveSessionErrors = (errors) => {
 };
 
 export const login = formUser => dispatch => SessionUtils.login(formUser)
-  .then((user) => {
-    dispatch(receiveCurrentUser(user));
-  }).catch((errors) => {
-    dispatch(receiveSessionErrors(errors));
+  .then((result) => {
+    if (result.success) {
+      dispatch(receiveCurrentUser(result.user));
+    } else {
+      dispatch(receiveSessionErrors(result.errors))
+    }
+    return result;
   });
 
 export const signup = formUser => dispatch => SessionUtils.signup(formUser)
-  .then((user) => {
-    dispatch(receiveCurrentUser(user));
-  }).catch((errors) => {
-    dispatch(receiveErrors(errors))
+  .then((result) => {
+    if (result.success) {
+      dispatch(receiveCurrentUser(result.user));
+    } else {
+      dispatch(receiveSessionErrors(result.errors))
+    }
+    return result;
   });
 
 export const logout = () => dispatch => SessionUtils.logout()
