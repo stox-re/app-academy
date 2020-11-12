@@ -1,1 +1,9 @@
+<% if current_user %>
+  <script>
+    window.currentUser = {
+      "id": <%= current_user.id.to_s.html_safe %>,
+      "email": "<%= current_user.email.to_s.html_safe %>"
+    };
+  </script>
+<% end %>
 <div id="root"></div>
